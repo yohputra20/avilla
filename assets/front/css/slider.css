@@ -1,0 +1,28 @@
+.suga-container {
+  margin: 20px auto;
+}
+.suga-container ul{
+  list-style-type: none;
+}
+.suga-container img{
+  max-height: 100px;
+}
+.suga-slider-wrap {
+  overflow: hidden;
+  margin: 1em;
+}
+
+.suga-slider-group:before, .suga-slider-group:after {
+  content: " ";
+  display: table;
+}
+.suga-slider-group:after {
+  clear: both;
+}
+
+.suga-slide {
+  float: left;
+  position: relative;
+  margin-left: 0;
+  padding-right: 8px;
+}
