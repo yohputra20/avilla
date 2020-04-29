@@ -24,14 +24,14 @@ class About extends CI_Controller{
             'galley_data' => $about_data
         );
         // echo json_encode($content);die(0);
-        $this->load->view('admin/header');
+        $this->load->view('admin/header', $content);
         $this->load->view('admin/about', $content);
         $this->load->view('admin/footer');
         $this->load->view('admin/modal/about_modal');
     }
 
     public function show_about(){
-        $about_data = $this->about_model->aboutData($data);
+        $about_data = $this->about_model->aboutData();
         return $about_data;
     }
 

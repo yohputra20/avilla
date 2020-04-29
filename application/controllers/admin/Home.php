@@ -17,7 +17,7 @@ class Home extends CI_Controller{
             'username' => $this->session->userdata('username')
         );
         // echo json_encode($content);die(0);
-        $this->load->view('admin/header');
+        $this->load->view('admin/header',$content);
         $this->load->view('admin/home', $content);
         $this->load->view('admin/footer');
         $this->load->view('admin/modal/home_modal');
