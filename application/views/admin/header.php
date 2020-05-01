@@ -13,8 +13,7 @@
     <title>CMS Avilla</title>
 
     <!-- Custom fonts for this template -->
-    <link href="<?php echo base_url(); ?>assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-        type="text/css">
+    <link href="<?php echo base_url(); ?>assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/admin/css/sb-admin-font.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -37,18 +36,18 @@
     <!-- Parsley CSS -->
     <link href="<?php echo base_url(); ?>assets/admin/css/parsley.css" rel="stylesheet">
     <script>
-    var base_url = '<?php echo base_url(); ?>';
+        var base_url = '<?php echo base_url(); ?>';
     </script>
 
 </head>
 
 <body id="page-top">
 
-  <div id="rpModal" style="">
-      <center>
-        <div class="loader"></div>
-      </center>
-  </div>
+    <div id="rpModal" style="">
+        <center>
+            <div class="loader"></div>
+        </center>
+    </div>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -149,15 +148,12 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $username; ?></span>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $username; ?></span>
                                 <i class="far fa-user-circle fa-2x"></i>
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
@@ -193,8 +189,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -212,7 +207,7 @@
         </div>
     </div>
 
-    <?php $this->load->view($content_modal); ?>
+    <?php if($content_modal!=""){ $this->load->view($content_modal);} ?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="<?php echo base_url(); ?>assets/admin/vendor/jquery/jquery.min.js"></script>
@@ -235,20 +230,20 @@
     <script src="<?php echo base_url(); ?>assets/admin/node_modules/tinymce/tinymce.min.js" referrerpolicy="origin">
     </script>
     <script>
-    tinymce.init({
-        selector: 'textarea',
-        min_height: 400,
-        menubar: 'edit insert format',
-        plugins: [
-            'advlist autolink lists link image charmap print preview anchor',
-            'searchreplace visualblocks code fullscreen',
-            'insertdatetime media table paste code help wordcount'
-        ],
-        toolbar: 'undo redo | formatselect | ' +
-            ' bold italic backcolor | alignleft aligncenter ' +
-            ' alignright alignjustify | bullist numlist outdent indent |' +
-            ' removeformat ',
-    });
+        tinymce.init({
+            selector: 'textarea',
+            min_height: 400,
+            menubar: 'edit insert format',
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar: 'undo redo | formatselect | ' +
+                ' bold italic backcolor | alignleft aligncenter ' +
+                ' alignright alignjustify | bullist numlist outdent indent |' +
+                ' removeformat ',
+        });
     </script>
 
 

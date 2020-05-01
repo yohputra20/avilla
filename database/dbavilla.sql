@@ -92,10 +92,12 @@ CREATE TABLE IF NOT EXISTS `contactus` (
   `modifiedDate` datetime DEFAULT NULL,
   `modifiedBy` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table dbavilla.contactus: ~0 rows (approximately)
 /*!40000 ALTER TABLE `contactus` DISABLE KEYS */;
+INSERT INTO `contactus` (`id`, `title`, `description`, `fdelete`, `createdDate`, `createdBy`, `modifiedDate`, `modifiedBy`) VALUES
+	(1, 'fsfsdf', '<p>fsdfsdf</p>', 0, '2020-05-01 17:34:58', 'adminavilla', NULL, NULL);
 /*!40000 ALTER TABLE `contactus` ENABLE KEYS */;
 
 -- Dumping structure for table dbavilla.product
@@ -112,16 +114,19 @@ CREATE TABLE IF NOT EXISTS `product` (
   `modifiedDate` datetime DEFAULT NULL,
   `modifiedBy` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table dbavilla.product: ~0 rows (approximately)
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` (`id`, `title`, `description`, `img_path`, `alt`, `meta_description`, `fdelete`, `createdDate`, `createdBy`, `modifiedDate`, `modifiedBy`) VALUES
+	(1, 'spare park', '<p>asdadasda</p>', 'product_5eabccc6174e2.jpg', 'spare park genset', 'spare park genset dan', 0, '2020-05-01 14:16:22', NULL, '2020-05-01 14:31:45', 'adminavilla');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 
 -- Dumping structure for table dbavilla.service
 CREATE TABLE IF NOT EXISTS `service` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `meta_title` varchar(30) DEFAULT NULL,
+  `img_path` varchar(255) DEFAULT NULL,
   `meta_description` text,
   `title` varchar(255) DEFAULT NULL,
   `description` text,
@@ -131,10 +136,12 @@ CREATE TABLE IF NOT EXISTS `service` (
   `modifiedDate` datetime DEFAULT NULL,
   `modifiedBy` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table dbavilla.service: ~0 rows (approximately)
 /*!40000 ALTER TABLE `service` DISABLE KEYS */;
+INSERT INTO `service` (`id`, `meta_title`, `img_path`, `meta_description`, `title`, `description`, `fdelete`, `createdDate`, `createdBy`, `modifiedDate`, `modifiedBy`) VALUES
+	(1, 'maintenance genset', 'service_5eaa23feb61e5.jpg', 'maintenance genset dengan garansi 5th', 'test service ', '<p>asdasdasdasd adsasdasd</p>', 0, '2020-04-30 07:31:04', 'adminavilla', '2020-04-30 08:03:58', 'adminavilla');
 /*!40000 ALTER TABLE `service` ENABLE KEYS */;
 
 -- Dumping structure for table dbavilla.user
