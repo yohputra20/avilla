@@ -45,7 +45,44 @@ function showImgInfo() {
 	}
 }
 
+function checkContactUs() {
+	$.ajax({
+		url: base_url + 'admin/contact_us/show_contactus',
 
+		type: 'POST',
+		datatype: 'JSON',
+		async: false,
+		processData: false,
+		contentType: false,
+		beforeSend: function () {
+			document.getElementById('rpModal').style.display = 'block';
+		},
+		success: function (data) {
+			var data = JSON.parse(data);
+
+			document.getElementById('rpModal').style.display = 'none';
+			if (data.status == 1) {
+				$('.viewContactUs').show();
+				$('.editContactUs').hide();
+
+				$('#contacusId').val(data.data.id);
+				$('#contactusTitle').text(data.data.title);
+				$('#contactUsBody').html(data.data.description);
+			} else {
+				$('.viewContactUs').hide();
+				$('.editContactUs').show();
+			}
+
+
+		},
+		error: function (e) {
+
+			document.getElementById('rpModal').style.display = 'none';
+
+
+		}
+	});
+}
 
 $(document).ready(function () {
 
@@ -64,7 +101,7 @@ $(document).ready(function () {
 		document.getElementById('image_source_banner').required = true;
 	});
 
-
+	checkContactUs();
 	tinyMCE.activeEditor.on('keyup', function () {
 		var id = this.id;
 		// $('#parsley-id-9').attr('style', 'display:none');        
@@ -418,6 +455,124 @@ $(document).ready(function () {
 
 
 	/* ================================================================================================================= */
+
+	/* Function contact us JS */
+
+	$('#editbtnContactus').on('click', function (e) {
+		$.ajax({
+			url: base_url + 'admin/contact_us/show_contactus',
+
+			type: 'POST',
+			datatype: 'JSON',
+			async: false,
+			processData: false,
+			contentType: false,
+			beforeSend: function () {
+				document.getElementById('rpModal').style.display = 'block';
+			},
+			success: function (data) {
+				var data = JSON.parse(data);
+
+				document.getElementById('rpModal').style.display = 'none';
+				if (data.status == 1) {
+					$('.viewContactUs').hide();
+					$('.editContactUs').show();
+
+					$('#contacusId').val(data.data.id);
+					$('#contactus_title').val(data.data.title);
+					console.log(data.data.description);
+					tinyMCE.activeEditor.setContent(data.data.description);
+				} else {
+
+					$('.viewContactUs').show();
+					$('.editContactUs').hide();
+				}
+
+
+			},
+			error: function (e) {
+
+				document.getElementById('rpModal').style.display = 'none';
+
+
+			}
+		});
+
+	});
+
+	$('#contactForm').parsley();
+	$('#contactForm').on('submit', function (e) {
+		e.preventDefault();
+		var url;
+		var form = $(this);
+		form.parsley().validate();
+		var formData = new FormData(this);
+		var id = $('#contacusId').val();
+
+
+		url = 'contact_us/save_contactus';
+
+
+
+		if (form.parsley().isValid()) {
+			$.ajax({
+				url: url,
+				data: formData,
+				type: 'POST',
+				datatype: 'JSON',
+				async: false,
+				processData: false,
+				contentType: false,
+				beforeSend: function () {
+					document.getElementById('rpModal').style.display = 'block';
+				},
+				success: function (data) {
+					var data = JSON.parse(data);
+
+					document.getElementById('rpModal').style.display = 'none';
+					if (data.status == 1) {
+						Swal.fire({
+							position: 'center',
+							type: 'success',
+							title: 'Data has been saved',
+							showConfirmButton: false,
+							timer: 1500
+						}).then((timer) => {
+							
+							checkContactUs();
+
+						
+						});
+
+					} else {
+
+						document.getElementById('rpModal').style.display = 'none';
+						swal.fire(
+							'Error',
+							'Oops, your data was not saved.', // had a missing comma
+							'error'
+						)
+					}
+
+
+				},
+				error: function (e) {
+
+					document.getElementById('rpModal').style.display = 'none';
+
+					swal.fire(
+						'Error',
+						'Oops, your data was not saved.', // had a missing comma
+						'error'
+					)
+				}
+			});
+		}
+		// newsCreateUpdate(formData);
+	});
+
+
+	// ========================================================================
 
 	/* Function product JS */
 
