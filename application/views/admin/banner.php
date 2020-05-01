@@ -6,9 +6,9 @@
      <!-- DataTales Example -->
      <div class="card shadow mb-4">
          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-             <h6 class="m-0 font-weight-bold" style="color:#18011B;">Data banner</h6>
+             <h6 class="m-0 font-weight-bold" style="color:#18011B;">Data Banner</h6>
              <a href="#" class="btn btn-success" id="bannerAdd">
-                 <span class="text">Add banner</span>
+                 <span class="text">Add Banner</span>
              </a>
 
          </div>
