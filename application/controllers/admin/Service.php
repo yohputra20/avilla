@@ -23,11 +23,12 @@ class Service extends CI_Controller{
             'username' => $this->session->userdata('username'),
             'service_data' => $service_data
         );
-        // echo json_encode($content);die(0);
+        $content['data_content'] = "admin/service";
+        $content['content_modal'] = "admin/modal/service_modal";
+        
         $this->load->view('admin/header', $content);
-        $this->load->view('admin/service', $content);
-        $this->load->view('admin/footer');
-        $this->load->view('admin/modal/service_modal');
+        // echo json_encode($content);die(0);
+      
     }
 
     public function show_service(){
