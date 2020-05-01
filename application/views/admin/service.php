@@ -23,6 +23,7 @@
                       <th>No</th>
                       <th>Title</th>
                       <th>Meta</th>
+                      <th>Image</th>
                       <th>Description</th>
                       <th>Action</th>
                     </tr>
@@ -30,9 +31,10 @@
                   <tbody>
                   <?php $i = 1; foreach($service_data['query'] as $row): ?>
                     <tr>   
-                        <td width="10%"><?php echo $i; ?></td>
+                        <td width="5%"><?php echo $i; ?></td>
                         <td width="25%"><?php echo $row['title']; ?></td>
                         <td width="30%"><b><?php echo $row['meta_title'] ?></b><p><?php echo $row['meta_description'] ?></p></td>
+                        <td width="30%"><img id="preview_image_list" alt="image preview" src="<?php echo base_url()."/assets/admin/upload/service/" .$row['img_path']; ?>"/></td>
                         <td width="25%"><?php echo $row['description']; ?></td>
                         <td align="center" width="10%">
                           <button id="serviceEdit" style="width:80px;" class="btn btn-warning margin5" data-value="<?php echo $row['id']; ?>">
