@@ -6,9 +6,9 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold" style="color:#18011B;">Data Service</h6>
-              <a href="#" class="btn btn-success" id="serviceAdd">
-                <span class="text">Add Service</span>
+              <h6 class="m-0 font-weight-bold" style="color:#18011B;">Data product</h6>
+              <a href="#" class="btn btn-success" id="productAdd">
+                <span class="text">Add Product</span>
               </a>
 
             </div>
@@ -27,20 +27,20 @@
                   </thead>
                   <tbody>
                     <?php $i = 1;
-                    foreach ($service_data['query'] as $row) : ?>
+                    foreach ($product_data['query'] as $row) : ?>
                       <tr>
                         <td width="5%"><?php echo $i; ?></td>
                         <td width="25%"><?php echo $row['title']; ?></td>
-                        <td width="30%"><b><?php echo $row['meta_title'] ?></b>
+                        <td width="25%"><b><?php echo $row['alt'] ?></b>
                           <p><?php echo $row['meta_description'] ?></p>
                         </td>
-                        <td width="30%"><img id="preview_image_list" alt="image preview" src="<?php echo base_url() . "/assets/admin/upload/service/" . $row['img_path']; ?>" /></td>
-                        <td width="25%"><?php echo $row['description']; ?></td>
+                        <td width="25%"><img id="preview_image_list" alt="image preview" src="<?php echo base_url() . "/assets/admin/upload/product/" . $row['img_path']; ?>" /></td>
+                        <td width="35%"><?php echo $row['description']; ?></td>
                         <td align="center" width="10%">
-                          <button id="serviceEdit" style="width:80px;" class="btn btn-warning margin5" data-value="<?php echo $row['id']; ?>">
+                          <button id="productEdit" style="width:80px;" class="btn btn-warning margin5" data-value="<?php echo $row['id']; ?>">
                             Edit
                           </button>
-                          <button id="serviceDelete" style="width:80px;" class="btn btn-danger margin5" data-value="<?php echo $row['id']; ?>">
+                          <button id="productDelete" style="width:80px;" class="btn btn-danger margin5" data-value="<?php echo $row['id']; ?>">
                             Delete
                           </button>
                         </td>

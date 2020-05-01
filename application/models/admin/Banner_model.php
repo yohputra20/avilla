@@ -26,8 +26,7 @@ class banner_model extends CI_Model{
             }    
             
         }        
-        // echo json_encode ($image);die(0);
-        
+            
         $insert_data =array(
             'img_path' => $image,
             'description' => $data['banner_desc'],
@@ -47,7 +46,7 @@ class banner_model extends CI_Model{
         $this->db->where('id', $id);
         $query = $this->db->get('banner');
         $result = $query->row_array();
-        // echo json_encode ($result_array);die(0);
+   
         return $result;
     }
 
@@ -62,7 +61,7 @@ class banner_model extends CI_Model{
         }else {
             $image = $data['banner_old_image'];
         }
-        // echo $image;die(0);
+ 
         $update_data =array(
             'img_path' => $image,
             'description' => $data['banner_desc'],
@@ -80,7 +79,7 @@ class banner_model extends CI_Model{
             'fdelete' => '1',
             'modifiedDate' => $datetime
         );
-        // $this->db->set('fdelete', '1', FALSE);
+     
         $this->db->where('id', $id);
         $delete = $this->db->update('banner', $delete_data);
         return $delete;
@@ -94,23 +93,16 @@ class banner_model extends CI_Model{
         $config['max_size']             = 10240; // 10MB
         // $config['max_width']            = 1024;
         // $config['max_height']           = 768;
-        // echo($image_name);die(0);
+       
 
         $this->load->library('upload', $config);        
         if ($this->upload->do_upload($image_name)) {
             return $this->upload->data('file_name');
         }else{
-            // echo $this->upload->display_errors();die(0);
+          
             return '0';
         }
-        // return '';
-    }
-
-    // public function bannerDelete($id){
-    //     $this->db->where('id', $id);
-    //     $delete = $this->db->delete('banner');
-    //     // echo $delete; die(0);
-    //     return $delete;
-    // }        
+      
+    }      
 }
 ?>

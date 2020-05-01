@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Comissions extends CI_Controller{
+class Product extends CI_Controller{
     function __construct(){
         parent::__construct(); //header (seperti #include<stdio.h> pada c
         $this->load->library('session');
@@ -9,7 +9,7 @@ class Comissions extends CI_Controller{
         date_default_timezone_set('Asia/Jakarta');
         $this->load->library('email');
         $this->load->library('form_validation');
-        $this->load->model('admin/comissions_model');
+        $this->load->model('admin/product_model');
 
         if($this->session->userdata('status') != 'login'){
 			redirect(base_url('admin'));
@@ -18,33 +18,46 @@ class Comissions extends CI_Controller{
 
     public function index(){
         
-        $comissions_data['query'] = $this->comissions_model->comissionsData();
+        $product_data['query'] = $this->product_model->productData();
         $content = array(
             'username' => $this->session->userdata('username'),
-            'galley_data' => $comissions_data
+            'product_data' => $product_data
         );
-        // echo json_encode($content);die(0);
-        $this->load->view('admin/header');
-        $this->load->view('admin/comissions', $content);
-        $this->load->view('admin/footer');
-        $this->load->view('admin/modal/comissions_modal');
+        $content['data_content'] = "admin/product";
+        $content['content_modal'] = "admin/modal/product_modal";
+        
+        $this->load->view('admin/header', $content);
     }
-
-    public function show_comissions(){
-        $comissions_data = $this->comissions_model->comissionsData($data);
-        return $comissions_data;
-    }
-
-
-    public function view_comissions($id){
-        $comissions_data = $this->comissions_model->comissionsView($id);
-        if (sizeof($comissions_data) != 0) {
+    public function add_product(){
+		$data = array();
+		foreach ($_POST as $key => $value) {
+			$data[$key] = $value;
+        }
+      
+        $productAdd = $this->product_model->productAdd($data);
+        if ($productAdd == 1) {
             $balikan = [
                 'status' => '1',
                 'message' => 'success',
-                'data' => $comissions_data
+                'data' => $productAdd
             ];
-
+        }else {
+            $balikan = [
+                'status' => '0',
+                'message' => 'failed',
+                'data' => []
+            ];
+        }
+        echo json_encode($balikan);
+    }
+    public function get_product($id){
+        $product_data = $this->product_model->productGet($id);
+        if (sizeof($product_data) != 0) {
+            $balikan = [
+                'status' => '1',
+                'message' => 'success',
+                'data' => $product_data
+            ];
         } else {
             $balikan = [
                 'status' => '0',
@@ -53,44 +66,20 @@ class Comissions extends CI_Controller{
             ];
         }
         echo json_encode($balikan);
-        // return $comissions_data;
+        
     }
-
-    public function add_comissions(){
-		$data = array();
-		foreach ($_POST as $key => $value) {
-			$data[$key] = $value;
-        }
-        // echo json_encode($data);die(0);
-        $comissionsAdd = $this->comissions_model->comissionsAdd($data);
-        if ($comissionsAdd == 1) {
-            $balikan = [
-                'status' => '1',
-                'message' => 'success',
-                'data' => $comissionsAdd
-            ];
-        }else {
-            $balikan = [
-                'status' => '0',
-                'message' => 'failed',
-                'data' => []
-            ];
-        }
-        echo json_encode($balikan);
-    }
-
-    public function edit_comissions(){
+    public function edit_product(){
         $data = array();
 		foreach ($_POST as $key => $value) {
 			$data[$key] = $value;
         }
-        // echo json_encode($data);die(0);
-        $comissionsEdit = $this->comissions_model->comissionsEdit($data);
-        if ($comissionsEdit == 1) {
+      
+        $productEdit = $this->product_model->productEdit($data);
+        if ($productEdit == 1) {
             $balikan = [
                 'status' => '1',
                 'message' => 'success',
-                'data' => $comissionsEdit
+                'data' => $productEdit
             ];
         }else {
             $balikan = [
@@ -102,8 +91,8 @@ class Comissions extends CI_Controller{
         echo json_encode($balikan);
     }
 
-    public function delete_comissions($id){
-        $delete = $this->comissions_model->comissionsDelete($id);
+    public function delete_product($id){
+        $delete = $this->product_model->productDelete($id);
 
         if ($delete == 1) {
             $balikan = [

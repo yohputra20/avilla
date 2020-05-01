@@ -27,8 +27,6 @@ class Service extends CI_Controller{
         $content['content_modal'] = "admin/modal/service_modal";
         
         $this->load->view('admin/header', $content);
-        // echo json_encode($content);die(0);
-      
     }
 
     public function show_service(){
