@@ -64,8 +64,12 @@ $route['home/kirim_kontak_kami'] = 'front/home_controllers/kirim_kontak_kami';
 /* Admin Route */
 $route['admin'] = 'admin/login';
 $route['admin/home'] = 'admin/home';
-$route['admin/comissions'] = 'admin/comissions';
-$route['admin/gallery'] = 'admin/gallery';
-$route['admin/news'] = 'admin/news';
+$route['admin/banner'] = 'admin/banner';
+$route['admin/about_us'] = 'admin/about_us';
+$route['admin/product'] = 'admin/product';
+$route['admin/service'] = 'admin/service';
+$route['admin/client'] = 'admin/client';
+$route['admin/contact_us'] = 'admin/contact_us';
+
 
 

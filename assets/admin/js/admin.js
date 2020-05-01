@@ -4,10 +4,10 @@ $(document).on('focusin', function(e) { // for modal insert/edit link in tinyMCE
     if ($(e.target).closest(".tox-textfield").length)
         e.stopImmediatePropagation();
 });
-function galleryPreviewImage() {
+function bannerPreviewImage() {
     document.getElementById('preview_image').style.display = 'block';
     var oFReader = new FileReader();
-    oFReader.readAsDataURL(document.getElementById('image_source_gallery').files[0]);
+    oFReader.readAsDataURL(document.getElementById('image_source_banner').files[0]);
 
     oFReader.onload = function(oFREvent) {
         document.getElementById('preview_image').src = oFREvent.target.result;
@@ -162,19 +162,19 @@ function comissionsAddImage(){
 
 $(document).ready(function (){
 
-    /* FUnction Gallery JS */
+    /* FUnction banner JS */
 
-    $('#galleryAdd').on('click', function (e) {
-        $('#galleryModal').modal('show');
-        $('#galleryForm').parsley().reset();
-        $("#title_gallery_modal").text("Add Gallery");    
-        // var id = $('#galleryId').val();
+    $('#bannerAdd').on('click', function (e) {
+        $('#bannerModal').modal('show');
+        $('#bannerForm').parsley().reset();
+        $("#title_banner_modal").text("Add banner");    
+        // var id = $('#bannerId').val();
         $('#preview_image').attr('style', 'display:none');
-        $('#galleryId').val(null);
-        $('#gallery_title').val(null);
+        $('#bannerId').val(null);
+        $('#banner_title').val(null);
         tinyMCE.activeEditor.setContent('');
         $('#preview_image').attr('src', '');
-        document.getElementById('image_source_gallery').required = true;
+        document.getElementById('image_source_banner').required = true;
     });
 
    
@@ -184,20 +184,20 @@ $(document).ready(function (){
         $('#'+id).parsley().reset(); // hide message error from parsley validator
     });
    
-    $('#galleryForm').parsley();
-    $('#galleryForm').on('submit', function(e){
+    $('#bannerForm').parsley();
+    $('#bannerForm').on('submit', function(e){
         e.preventDefault();
         var url;
         var form = $(this);
         form.parsley().validate();
         var formData = new FormData(this);
-        var id = $('#galleryId').val();
+        var id = $('#bannerId').val();
         // alert(id);
         if (id != '') {
-            url = base_url+'admin/gallery/edit_gallery';
+            url = base_url+'admin/banner/edit_banner';
             // alert(url);
         }else{
-            url = base_url+'admin/gallery/add_gallery';
+            url = base_url+'admin/banner/add_banner';
             // alert(url);
         }
 
@@ -225,7 +225,7 @@ $(document).ready(function (){
                             showConfirmButton: false,
                             timer: 1500
                         }).then((timer)=>{
-                            window.location.href = 'gallery';
+                            window.location.href = 'banner';
                         });
                     }else{
     
@@ -251,21 +251,21 @@ $(document).ready(function (){
                 }
             });
         }        
-        // galleryCreateUpdate(formData);
+        // bannerCreateUpdate(formData);
     });
 
     /* Edit data table */
-    $('#dataTable tbody').on('click', '#galleryEdit', function (){
-        $('#galleryModal').modal('show');
-        $('#galleryForm').parsley().reset();
-        document.getElementById("image_source_gallery").required = false;
-        $("#title_gallery_modal").text("Edit Gallery");    
+    $('#dataTable tbody').on('click', '#bannerEdit', function (){
+        $('#bannerModal').modal('show');
+        $('#bannerForm').parsley().reset();
+        document.getElementById("image_source_banner").required = false;
+        $("#title_banner_modal").text("Edit banner");    
         // var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
         var id = $(this).attr('data-value');
         // console.log('Record ID is', id);
         event.preventDefault(); // prevent form submit
         $.ajax({
-            url: 'gallery/get_gallery/'+ id,
+            url: 'banner/get_banner/'+ id,
             type: 'POST',
             beforeSend: function () {
                 document.getElementById('rpModal').style.display = 'block';
@@ -276,10 +276,10 @@ $(document).ready(function (){
                 // console.log(data);
                 if (data.status != null) {
                     $('#preview_image').attr('style', 'display:block');
-                    $('#galleryId').val(data.data.id);
-                    $('#gallery_title').val(data.data.title);
-                    $('#gallery_old_image').val(data.data.image);
-                    $('#preview_image').attr('src', base_url + '/assets/admin/upload/gallery/' + data.data.image);
+                    $('#bannerId').val(data.data.id);
+                    $('#orderby').val(data.data.orderby);
+                    $('#banner_old_image').val(data.data.img_path);
+                    $('#preview_image').attr('src', base_url + '/assets/admin/upload/banner/' + data.data.img_path);
                     tinyMCE.activeEditor.setContent(data.data.description);
                     
                 }
@@ -297,13 +297,13 @@ $(document).ready(function (){
      });
 
     /* Delete data table */
-    $('#dataTable tbody').on('click', '#galleryDelete', function (){
+    $('#dataTable tbody').on('click', '#bannerDelete', function (){
         var id = $(this).attr('data-value');
         // console.log('Record ID is', id);     
         event.preventDefault(); // prevent form submit
         Swal.fire({
             title: 'Delete',
-            text: 'Are you sure want to delete this Gallery?',
+            text: 'Are you sure want to delete this banner?',
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -314,7 +314,7 @@ $(document).ready(function (){
           }).then((result) => {            
             if (result.value) {
                 $.ajax({
-                    url: 'gallery/delete_gallery/'+ id,
+                    url: 'banner/delete_banner/'+ id,
                     type: 'POST',
                     beforeSend: function () {
                         document.getElementById('rpModal').style.display = 'block';
@@ -328,7 +328,7 @@ $(document).ready(function (){
                             showConfirmButton: false,
                             timer: 1500
                         }).then((timer)=>{
-                            window.location.href = 'gallery';
+                            window.location.href = 'banner';
                         });                        
                     },
                     error: function (e) {

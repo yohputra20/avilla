@@ -1,12 +1,12 @@
 <?php
 
-class About_model extends CI_Model{
+class About_us_model extends CI_Model{
 
     public function __construct(){
         $this->load->database();
     }
 
-    public function aboutData(){
+    public function about_usData(){
         $this->db->select('*');
         $this->db->where('fdelete', '0');
         $query = $this->db->get('about');
@@ -15,24 +15,24 @@ class About_model extends CI_Model{
         return $result_array;
     }
 
-    public function aboutAdd($data){
+    public function about_usAdd($data){
         $datetime = date('Y-m-d H:i:s');
         
         
         $insert_data =array(
-            'title' => $data['about_title'],
-            'description' => $data['about_desc'],
+            'title' => $data['about_us_title'],
+            'description' => $data['about_us_desc'],
             'fdelete' => '0',
             'created_date' => $datetime,
             'created_by' => '',
             'modified_date' => $datetime,
             'modified_by' => ''
         );
-        $about_insert = $this->db->insert('about', $insert_data);
-        return $about_insert;
+        $about_us_insert = $this->db->insert('about_us', $insert_data);
+        return $about_us_insert;
     }
 
-    public function aboutGet($id){
+    public function about_usGet($id){
         $this->db->select('*');
         $this->db->where('id', $id);
         $query = $this->db->get('about');
@@ -41,20 +41,20 @@ class About_model extends CI_Model{
         return $result;
     }
 
-    public function aboutEdit($data){
+    public function about_usEdit($data){
         $datetime = date('Y-m-d H:i:s');
 
         $update_data =array(
-            'title' => $data['about_title'],
-            'description' => $data['about_desc'],
+            'title' => $data['about_us_title'],
+            'description' => $data['about_us_desc'],
             'modified_date' => $datetime,
         );
-        $this->db->where('id', $data['aboutId']);
-        $about_update = $this->db->update('about', $update_data);
-        return $about_update;
+        $this->db->where('id', $data['about_usId']);
+        $about_us_update = $this->db->update('about_us', $update_data);
+        return $about_us_update;
     }
 
-    public function aboutDelete($id){
+    public function about_usDelete($id){
         $datetime = date('Y-m-d H:i:s');
         $delete_data =array(            
             'fdelete' => '1',
@@ -62,11 +62,11 @@ class About_model extends CI_Model{
         );
         // $this->db->set('fdelete', '1', FALSE);
         $this->db->where('id', $id);
-        $delete = $this->db->update('about', $delete_data);
+        $delete = $this->db->update('about_us', $delete_data);
         return $delete;
     }
 
-    // public function aboutDelete($id){
+    // public function about_usDelete($id){
     //     $this->db->where('id', $id);
     //     $delete = $this->db->delete('about');
     //     // echo $delete; die(0);
