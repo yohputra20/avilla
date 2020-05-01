@@ -11,7 +11,7 @@
   <meta name="author" content="">
 
   <link rel="icon" href="<?php echo base_url(); ?>assets/admin/img/icon_tab_browser.png">
-  <title>CMS Blair Townsend Studio</title>
+  <title>CMS Avilla</title>
 
   <!-- Custom fonts for this template -->
   <link href="<?php echo base_url(); ?>assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
