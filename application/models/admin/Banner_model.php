@@ -1,26 +1,26 @@
 <?php
 
-class Gallery_model extends CI_Model{
+class banner_model extends CI_Model{
 
     public function __construct(){
         $this->load->database();
     }
 
-    public function galleryData(){
+    public function bannerData(){
         $this->db->select('*');
         $this->db->where('fdelete', '0');
-        $this->db->order_by('modified_date','desc');
-        $query = $this->db->get('gallery');
+        $this->db->order_by('modifiedDate','desc');
+        $query = $this->db->get('banner');
         $result_array = $query->result_array();
 
         return $result_array;
     }
 
-    public function galleryAdd($data){
+    public function bannerAdd($data){
         $datetime = date('Y-m-d H:i:s');
         
-        if (!empty($_FILES['image_source_gallery']['name'])) {
-            $image = $this->_uploadImage('gallery'.'_'.uniqid(), 'image_source_gallery');
+        if (!empty($_FILES['image_source_banner']['name'])) {
+            $image = $this->_uploadImage('banner'.'_'.uniqid(), 'image_source_banner');
             if ($image == '0') {
                 return '0';
             }    
@@ -29,65 +29,65 @@ class Gallery_model extends CI_Model{
         // echo json_encode ($image);die(0);
         
         $insert_data =array(
-            'title' => $data['gallery_title'],
-            'image' => $image,
-            'description' => $data['gallery_desc'],
+            'img_path' => $image,
+            'description' => $data['banner_desc'],
+            'orderby' => $data['orderby'],
             'fdelete' => '0',
-            'created_date' => $datetime,
-            'created_by' => '',
-            'modified_date' => $datetime,
-            'modified_by' => ''
+            'createdDate' => $datetime,
+            'createdBy' => '',
+            'modifiedDate' => $datetime,
+            'modifiedBy' => ''
         );
-        $gallery_insert = $this->db->insert('gallery', $insert_data);
-        return $gallery_insert;
+        $banner_insert = $this->db->insert('banner', $insert_data);
+        return $banner_insert;
     }
 
-    public function galleryGet($id){
+    public function bannerGet($id){
         $this->db->select('*');
         $this->db->where('id', $id);
-        $query = $this->db->get('gallery');
+        $query = $this->db->get('banner');
         $result = $query->row_array();
         // echo json_encode ($result_array);die(0);
         return $result;
     }
 
-    public function galleryEdit($data){
+    public function bannerEdit($data){
         $datetime = date('Y-m-d H:i:s');
 
-        if (!empty($_FILES['image_source_gallery']['name'])) {
-            $image = $this->_uploadImage('gallery'.'_'.uniqid(), 'image_source_gallery');
+        if (!empty($_FILES['image_source_banner']['name'])) {
+            $image = $this->_uploadImage('banner'.'_'.uniqid(), 'image_source_banner');
             if ($image == '0') {
                 return '0';
             }
         }else {
-            $image = $data['gallery_old_image'];
+            $image = $data['banner_old_image'];
         }
         // echo $image;die(0);
         $update_data =array(
-            'title' => $data['gallery_title'],
-            'image' => $image,
-            'description' => $data['gallery_desc'],
-            'modified_date' => $datetime,
+            'img_path' => $image,
+            'description' => $data['banner_desc'],
+            'orderby' => $data['orderby'],
+            'modifiedDate' => $datetime,
         );
-        $this->db->where('id', $data['galleryId']);
-        $gallery_update = $this->db->update('gallery', $update_data);
-        return $gallery_update;
+        $this->db->where('id', $data['bannerId']);
+        $banner_update = $this->db->update('banner', $update_data);
+        return $banner_update;
     }
 
-    public function galleryDelete($id){
+    public function bannerDelete($id){
         $datetime = date('Y-m-d H:i:s');
         $delete_data =array(            
             'fdelete' => '1',
-            'modified_date' => $datetime
+            'modifiedDate' => $datetime
         );
         // $this->db->set('fdelete', '1', FALSE);
         $this->db->where('id', $id);
-        $delete = $this->db->update('gallery', $delete_data);
+        $delete = $this->db->update('banner', $delete_data);
         return $delete;
     }
 
     private function _uploadImage($file_name, $image_name){
-        $config['upload_path']          = './assets/admin/upload/gallery/';
+        $config['upload_path']          = './assets/admin/upload/banner/';
         $config['allowed_types']        = 'jpg|png|jpeg|JPEG|JPG|PNG';
         $config['file_name']            = $file_name;
         $config['overwrite']            = true;
@@ -106,9 +106,9 @@ class Gallery_model extends CI_Model{
         // return '';
     }
 
-    // public function galleryDelete($id){
+    // public function bannerDelete($id){
     //     $this->db->where('id', $id);
-    //     $delete = $this->db->delete('gallery');
+    //     $delete = $this->db->delete('banner');
     //     // echo $delete; die(0);
     //     return $delete;
     // }        

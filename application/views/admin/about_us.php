@@ -1,7 +1,4 @@
-
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+<div class="container-fluid">
 
           <!-- Page Heading -->
          
@@ -51,7 +48,3 @@
           </div>
 
         </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->

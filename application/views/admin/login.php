@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +41,9 @@
   </script>
 
 </head>
-<body style="background-color:#18011B;">
+
+<body style="background-color:#919191;">
+
 
   <div class="container">
 
@@ -64,14 +67,15 @@
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" id="password" name="username" placeholder="Password">
                     </div>
-                    <button id="login" class="btn btn-primary btn-user btn-block" style="background-color:#18011B;">
+                    <button id="login" class="btn btn-primary btn-user btn-block" style="background-color:#919191;">
                       LOGIN
                     </button>                    
                   </form>
                   <hr>
                   <div class="text-center">
                     <a class="fa fa-arrow-left" href="<?php echo base_url(); ?>" style="color:#18011B;"></a>
-                    <a class="medium" href="<?php echo base_url(); ?>" style="color:#18011B;">Back to Avilla Front</a>
+                    <a class="medium" href="<?php echo base_url(); ?>" style="color:#18011B;">Back to Aviila Home Page</a>
+
                   </div>
                 </div>
               </div>

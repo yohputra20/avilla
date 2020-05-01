@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class About extends CI_Controller{
+class About_us extends CI_Controller{
     function __construct(){
         parent::__construct(); //header (seperti #include<stdio.h> pada c
         $this->load->library('session');
@@ -9,7 +9,7 @@ class About extends CI_Controller{
         date_default_timezone_set('Asia/Jakarta');
         $this->load->library('email');
         $this->load->library('form_validation');
-        $this->load->model('admin/about_model');
+        $this->load->model('admin/about_us_model');
         
         if($this->session->userdata('status') != 'login'){
 			redirect(base_url('admin'));
@@ -18,30 +18,30 @@ class About extends CI_Controller{
 
     public function index(){
         
-        $about_data['query'] = $this->about_model->aboutData();
+        $about_us_data['query'] = $this->about_us_model->about_usData();
         $content = array(
             'username' => $this->session->userdata('username'),
-            'galley_data' => $about_data
+            'galley_data' => $about_us_data
         );
         // echo json_encode($content);die(0);
+        $content['data_content'] = "admin/about_us";
+        $content['content_modal'] = "admin/modal/about_us_modal";
+        
         $this->load->view('admin/header', $content);
-        $this->load->view('admin/about', $content);
-        $this->load->view('admin/footer');
-        $this->load->view('admin/modal/about_modal');
     }
 
-    public function show_about(){
-        $about_data = $this->about_model->aboutData();
-        return $about_data;
+    public function show_about_us(){
+        $about_us_data = $this->about_us_model->about_usData($data);
+        return $about_us_data;
     }
 
-    public function get_about($id){
-        $about_data = $this->about_model->aboutGet($id);
-        if (sizeof($about_data) != 0) {
+    public function get_about_us($id){
+        $about_us_data = $this->about_us_model->about_usGet($id);
+        if (sizeof($about_us_data) != 0) {
             $balikan = [
                 'status' => '1',
                 'message' => 'success',
-                'data' => $about_data
+                'data' => $about_us_data
             ];
 
         } else {
@@ -52,21 +52,21 @@ class About extends CI_Controller{
             ];
         }
         echo json_encode($balikan);
-        // return $about_data;
+        // return $about_us_data;
     }
 
-    public function add_about(){
+    public function add_about_us(){
 		$data = array();
 		foreach ($_POST as $key => $value) {
 			$data[$key] = $value;
         }
         // echo json_encode($data);die(0);
-        $aboutAdd = $this->about_model->aboutAdd($data);
-        if ($aboutAdd == 1) {
+        $about_usAdd = $this->about_us_model->about_usAdd($data);
+        if ($about_usAdd == 1) {
             $balikan = [
                 'status' => '1',
                 'message' => 'success',
-                'data' => $aboutAdd
+                'data' => $about_usAdd
             ];
         }else {
             $balikan = [
@@ -78,18 +78,18 @@ class About extends CI_Controller{
         echo json_encode($balikan);
     }
 
-    public function edit_about(){
+    public function edit_about_us(){
         $data = array();
 		foreach ($_POST as $key => $value) {
 			$data[$key] = $value;
         }
         // echo json_encode($data);die(0);
-        $aboutEdit = $this->about_model->aboutEdit($data);
-        if ($aboutEdit == 1) {
+        $about_usEdit = $this->about_us_model->about_usEdit($data);
+        if ($about_usEdit == 1) {
             $balikan = [
                 'status' => '1',
                 'message' => 'success',
-                'data' => $aboutEdit
+                'data' => $about_usEdit
             ];
         }else {
             $balikan = [
@@ -101,8 +101,8 @@ class About extends CI_Controller{
         echo json_encode($balikan);
     }
 
-    public function delete_about($id){
-        $delete = $this->about_model->aboutDelete($id);
+    public function delete_about_us($id){
+        $delete = $this->about_us_model->about_usDelete($id);
 
         if ($delete == 1) {
             $balikan = [

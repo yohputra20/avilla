@@ -42,6 +42,24 @@ INSERT INTO `about` (`id`, `meta_title`, `meta_description`, `title`, `descripti
 	(6, '0', NULL, 'ABOUT BLAIR TOWNSEND', '<ul>\r\n<li>BA Princeton; Economics</li>\r\n<li>Masters in Fine Art Otis College</li>\r\n<li style="text-align: justify;">Worked in New York gallery scene</li>\r\n<li>Asst to boutique hotelier Ian Schraeger</li>\r\n<li>Worked for Getty furniture designer Roy McMakin</li>\r\n<li>One time Hotel owner: Hotel Oloffson, Port-au-Prince, Haiti (Hotel from Graham Greene book, The Comedians) which still exists.</li>\r\n<li>All custom furniture and interior design for producer Barry Levinson&rsquo;s house and Vidal Sassoon&rsquo;s house working under Larry Totah.</li>\r\n</ul>', 0, '2020-01-21 09:08:57', '', '2020-02-27 07:49:05', '');
 /*!40000 ALTER TABLE `about` ENABLE KEYS */;
 
+-- Dumping structure for table dbavilla.banner
+CREATE TABLE IF NOT EXISTS `banner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `img_path` varchar(255) DEFAULT NULL,
+  `description` text,
+  `orderby` int(11) DEFAULT NULL,
+  `fdelete` tinyint(4) DEFAULT NULL,
+  `createdDate` datetime DEFAULT NULL,
+  `createdBy` varchar(50) DEFAULT NULL,
+  `modifiedDate` datetime DEFAULT NULL,
+  `modifiedBy` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table dbavilla.banner: ~0 rows (approximately)
+/*!40000 ALTER TABLE `banner` DISABLE KEYS */;
+/*!40000 ALTER TABLE `banner` ENABLE KEYS */;
+
 -- Dumping structure for table dbavilla.client
 CREATE TABLE IF NOT EXISTS `client` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
