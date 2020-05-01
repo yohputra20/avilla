@@ -20,6 +20,8 @@ class About_us_model extends CI_Model{
         
         
         $insert_data =array(
+            'meta_title' => $data['meta_title'],
+            'meta_description' => $data['meta_desc'],
             'title' => $data['about_us_title'],
             'description' => $data['about_us_desc'],
             'fdelete' => '0',
@@ -28,7 +30,7 @@ class About_us_model extends CI_Model{
             'modified_date' => $datetime,
             'modified_by' => ''
         );
-        $about_us_insert = $this->db->insert('about_us', $insert_data);
+        $about_us_insert = $this->db->insert('about', $insert_data);
         return $about_us_insert;
     }
 
@@ -45,12 +47,14 @@ class About_us_model extends CI_Model{
         $datetime = date('Y-m-d H:i:s');
 
         $update_data =array(
+            'meta_title' => $data['meta_title'],
+            'meta_description' => $data['meta_desc'],
             'title' => $data['about_us_title'],
             'description' => $data['about_us_desc'],
             'modified_date' => $datetime,
         );
         $this->db->where('id', $data['about_usId']);
-        $about_us_update = $this->db->update('about_us', $update_data);
+        $about_us_update = $this->db->update('about', $update_data);
         return $about_us_update;
     }
 
@@ -62,7 +66,7 @@ class About_us_model extends CI_Model{
         );
         // $this->db->set('fdelete', '1', FALSE);
         $this->db->where('id', $id);
-        $delete = $this->db->update('about_us', $delete_data);
+        $delete = $this->db->update('about', $delete_data);
         return $delete;
     }
 

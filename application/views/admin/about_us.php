@@ -6,10 +6,10 @@
          
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold" style="color:#18011B;">Data about</h6>
+              <h6 class="m-0 font-weight-bold" style="color:#18011B;">Data about us</h6>
               <?php if ($galley_data['query'] == null) { ?>    
                 <a href="#" class="btn btn-success" id="aboutAdd">
-                  <span class="text">Add About</span>
+                  <span class="text">Add About us</span>
               </a>
               <?php } ?>            
                 
@@ -21,6 +21,7 @@
                     <tr>
                       <th>No</th>
                       <th>Title</th>
+                      <th>Meta</th>
                       <th>Description</th>
                       <th>Action</th>
                     </tr>
@@ -30,12 +31,16 @@
                     <tr>   
                         <td width="10%"><?php echo $i; ?></td>
                         <td width="35%"><?php echo $row['title']; ?></td>
+                        <td width="25%">
+                          <b><?php echo $row['meta_title'] ?></b>
+                          <p><?php echo $row['meta_description'] ?></p>
+                        </td>
                         <td width="45%"><?php echo $row['description']; ?></td>
                         <td align="center" width="10%">
-                          <button id="aboutEdit" style="width:80px;" class="btn btn-warning margin5" data-value="<?php echo $row['id']; ?>">
+                          <button id="about_usEdit" style="width:80px;" class="btn btn-warning margin5" data-value="<?php echo $row['id']; ?>">
                               Edit
                           </button>
-                          <button id="aboutDelete" style="width:80px;" class="btn btn-danger margin5" data-value="<?php echo $row['id']; ?>">
+                          <button id="about_usDelete" style="width:80px;" class="btn btn-danger margin5" data-value="<?php echo $row['id']; ?>">
                               Delete
                           </button>
                         </td>

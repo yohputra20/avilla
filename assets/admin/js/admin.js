@@ -612,16 +612,16 @@ $(document).ready(function () {
 
 	/* ================================================================================================================= */
 
-	/* Function about JS */
+	/* Function about_us JS */
 
-	$('#aboutAdd').on('click', function (e) {
-		$('#aboutModal').modal('show');
-		$('#aboutForm').parsley().reset();
-		$("#title_about_modal").text("Add About");
-		// var id = $('#aboutId').val();
+	$('#about_usAdd').on('click', function (e) {
+		$('#about_usModal').modal('show');
+		$('#about_usForm').parsley().reset();
+		$("#title_about_us_modal").text("Add about_us");
+		// var id = $('#about_usId').val();
 		$('#preview_image').attr('style', 'display:none');
-		$('#aboutId').val(null);
-		$('#about_title').val(null);
+		$('#about_usId').val(null);
+		$('#about_us_title').val(null);
 		tinyMCE.activeEditor.setContent('');
 	});
 
@@ -629,20 +629,20 @@ $(document).ready(function () {
 	//     $('#parsley-id-9').attr('style', 'display:none');
 	// });
 
-	$('#aboutForm').parsley();
-	$('#aboutForm').on('submit', function (e) {
+	$('#about_usForm').parsley();
+	$('#about_usForm').on('submit', function (e) {
 		e.preventDefault();
 		var url;
 		var form = $(this);
 		form.parsley().validate();
 		var formData = new FormData(this);
-		var id = $('#aboutId').val();
+		var id = $('#about_usId').val();
 		// alert(id);
 		if (id != '') {
-			url = 'about/edit_about';
+			url = 'about_us/edit_about_us';
 			// alert(url);
 		} else {
-			url = 'about/add_about';
+			url = 'about_us/add_about_us';
 			// alert(url);
 		}
 
@@ -670,7 +670,7 @@ $(document).ready(function () {
 							showConfirmButton: false,
 							timer: 1500
 						}).then((timer) => {
-							window.location.href = 'about';
+							window.location.href = 'about_us';
 						});
 					} else {
 
@@ -696,20 +696,20 @@ $(document).ready(function () {
 				}
 			});
 		}
-		// aboutCreateUpdate(formData);
+		// about_usCreateUpdate(formData);
 	});
 
 	/* Edit data table */
-	$('#dataTable tbody').on('click', '#aboutEdit', function () {
-		$('#aboutModal').modal('show');
-		$('#aboutForm').parsley().reset();
-		$("#title_about_modal").text("Edit About");
+	$('#dataTable tbody').on('click', '#about_usEdit', function () {
+		$('#about_usModal').modal('show');
+		$('#about_usForm').parsley().reset();
+		$("#title_about_us_modal").text("Edit about_us");
 		// var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
 		var id = $(this).attr('data-value');
 		// console.log('Record ID is', id);
 		event.preventDefault(); // prevent form submit
 		$.ajax({
-			url: 'about/get_about/' + id,
+			url: 'about_us/get_about_us/' + id,
 			type: 'POST',
 			beforeSend: function () {
 				document.getElementById('rpModal').style.display = 'block';
@@ -720,8 +720,8 @@ $(document).ready(function () {
 				// console.log(data);
 				if (data.status != null) {
 					$('#preview_image').attr('style', 'display:block');
-					$('#aboutId').val(data.data.id);
-					$('#about_title').val(data.data.title);
+					$('#about_usId').val(data.data.id);
+					$('#about_us_title').val(data.data.title);
 					$('#old_image').val(data.data.image);
 					tinyMCE.activeEditor.setContent(data.data.description);
 
@@ -740,13 +740,13 @@ $(document).ready(function () {
 	});
 
 	/* Delete data table */
-	$('#dataTable tbody').on('click', '#aboutDelete', function () {
+	$('#dataTable tbody').on('click', '#about_usDelete', function () {
 		var id = $(this).attr('data-value');
 		// console.log('Record ID is', id);     
 		event.preventDefault(); // prevent form submit
 		Swal.fire({
 			title: 'Delete',
-			text: 'Are you sure want to delete this About?',
+			text: 'Are you sure want to delete this about_us?',
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
@@ -757,7 +757,7 @@ $(document).ready(function () {
 		}).then((result) => {
 			if (result.value) {
 				$.ajax({
-					url: 'about/delete_about/' + id,
+					url: 'about_us/delete_about_us/' + id,
 					type: 'POST',
 					beforeSend: function () {
 						document.getElementById('rpModal').style.display = 'block';
@@ -771,7 +771,7 @@ $(document).ready(function () {
 							showConfirmButton: false,
 							timer: 1500
 						}).then((timer) => {
-							window.location.href = 'about';
+							window.location.href = 'about_us';
 						});
 					},
 					error: function (e) {
@@ -787,4 +787,5 @@ $(document).ready(function () {
 			}
 		});
 	});
+	
 });

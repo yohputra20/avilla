@@ -20,7 +20,19 @@
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="about_us_title" value="" name="about_us_title" required="">                               
                             </div>
-                        </div>                        
+                        </div> 
+                        <div class="form-group">
+                          <label class="control-label col-sm-12" for="product_title">Title Meta:</label>
+                          <div class="col-sm-12">
+                            <input type="text" class="form-control" id="meta_title" value="" name="meta_title" required="">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-12" for="product_title">Meta Description :</label>
+                          <div class="col-sm-12">
+                            <input type="text" class="form-control" id="meta_desc" value="" name="meta_desc" required="">
+                          </div>
+                        </div>                       
                         <div class="form-group col-sm-12">
                             <label class="control-label col-sm-12" for="gallert_desc">Description :</label>
                             <div class="col-sm-12">
