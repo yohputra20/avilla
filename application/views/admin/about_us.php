@@ -23,6 +23,7 @@
                       <th>Title</th>
                       <th>Meta</th>
                       <th>Description</th>
+                      <th>Vision & Mission</th>
                       <th>Action</th>
                     </tr>
                   </thead>                  
@@ -36,6 +37,7 @@
                           <p><?php echo $row['meta_description'] ?></p>
                         </td>
                         <td width="45%"><?php echo $row['description']; ?></td>
+                        <td width="45%"><?php echo $row['vision_mission']; ?></td>
                         <td align="center" width="10%">
                           <button id="about_usEdit" style="width:80px;" class="btn btn-warning margin5" data-value="<?php echo $row['id']; ?>">
                               Edit

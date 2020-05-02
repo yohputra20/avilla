@@ -103,7 +103,7 @@
                                     </li>
                                     <li><a href="#service">Services</a></li>
                                     <li><a href="#portfolio">Product</a></li>
-                                    <li><a href="#team">Client</a></li>
+                                    <li><a href="#clients">Client</a></li>
                                     <li><a href="#about-us">About</a>
                                     </li>
                                     <li><a href="#contact">Contact</a></li>
@@ -125,7 +125,8 @@
 
             <?php foreach($data_banner as $row) { ?>
             <!-- Single Slider -->
-            <div class="single-slider" style="background-image:url('<?php echo base_url()."assets/admin/upload/banner/".$row['img_path']; ?>');">
+            <div class="single-slider"
+                style="background-image:url('<?php echo base_url()."assets/admin/upload/banner/".$row['img_path']; ?>');">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 col-sm-12 col-xs-12">
@@ -148,7 +149,7 @@
             <!--/ End Single Slider -->
             <?php } ?>
 
-            
+
         </div>
     </section>
     <!--/ End Slider -->
@@ -165,41 +166,18 @@
             </div>
             <div class="row">
                 <!-- Single Service -->
-                <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="0.4s">
+                <?php $delay=4; foreach($data_service as $row) { ?>
+                <div class="col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="0.<?php echo $delay?>s">
                     <div class="single-service">
-                        <i class="fa fa-check"></i>
-                        <h2>Web Design</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.</p>
+                        <img src="<?php echo base_url()."assets/admin/upload/service/".$row['img_path']; ?>"
+                            alt="<?php echo $row['meta_title']?>">
+                        <br>
+                        <h2><?php echo $row['title']; ?></h2>
+                        <?php echo $row['description']; ?>
                     </div>
                 </div>
-                <!--/ End Single Service -->
-                <!-- Single Service -->
-                <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="0.6s">
-                    <div class="single-service">
-                        <i class="fa fa-edit"></i>
-                        <h2>Web Developments</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.</p>
-                    </div>
-                </div>
-                <!--/ End Single Service -->
-                <!-- Single Service -->
-                <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="0.8s">
-                    <div class="single-service">
-                        <i class="fa fa-send"></i>
-                        <h2>Smart Coding</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.</p>
-                    </div>
-                </div>
-                <!--/ End Single Service -->
-                <!-- Single Service -->
-                <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="1s">
-                    <div class="single-service">
-                        <i class="fa fa-code"></i>
-                        <h2>UI/UX Design</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.</p>
-                    </div>
-                </div>
-                <!--/ End Single Service -->
+                <?php $delay += 2; } ?>
+
             </div>
         </div>
     </section>
@@ -220,89 +198,24 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="portfolio-carousel">
                         <!-- Single Portfolio -->
+
+                        <?php foreach($data_product as $row) { ?>
                         <div class="portfolio-single">
-                            <a href="images/portfolio/1.jpg" class="zoom">
+                            <a href="<?php echo base_url()."assets/admin/upload/product/".$row['img_path']; ?>"
+                                alt="<?php echo $row['alt']?>" class="zoom">
                                 <div class="portfolio-head">
-                                    <img src="<?php echo base_url();?>assets/front/images/portfolio/1.jpg" alt="" />
+                                    <img src="<?php echo base_url()."assets/admin/upload/product/".$row['img_path']; ?>"
+                                        alt="<?php echo $row['alt']?>" />
                                     <i class="fa fa-search"></i>
                                 </div>
                             </a>
                             <div class="text">
-                                <h4><a href="portfolio-single.html">Portfolio 1</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum.</p>
+                                <h4><a href="#"><?php echo $row['title']; ?></a></h4>
+                                <p><?php echo $row['description']; ?></p>
                             </div>
                         </div>
-                        <!--/ End Portfolio -->
-                        <!-- Single Portfolio -->
-                        <div class="portfolio-single">
-                            <a href="images/portfolio/2.jpg" class="zoom">
-                                <div class="portfolio-head">
-                                    <img src="<?php echo base_url();?>assets/front/images/portfolio/2.jpg" alt="" />
-                                    <i class="fa fa-search"></i>
-                                </div>
-                            </a>
-                            <div class="text">
-                                <h4><a href="portfolio-single.html">Portfolio 2</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum.</p>
-                            </div>
-                        </div>
-                        <!--/ End Portfolio -->
-                        <!-- Single Portfolio -->
-                        <div class="portfolio-single">
-                            <a href="images/portfolio/3.jpg" class="zoom">
-                                <div class="portfolio-head">
-                                    <img src="<?php echo base_url();?>assets/front/images/portfolio/3.jpg" alt="" />
-                                    <i class="fa fa-search"></i>
-                                </div>
-                            </a>
-                            <div class="text">
-                                <h4><a href="portfolio-single.html">Portfolio 3</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum.</p>
-                            </div>
-                        </div>
-                        <!--/ End Portfolio -->
-                        <!-- Single Portfolio -->
-                        <div class="portfolio-single">
-                            <a href="images/portfolio/4.jpg" class="zoom">
-                                <div class="portfolio-head">
-                                    <img src="<?php echo base_url();?>assets/front/images/portfolio/4.jpg" alt="" />
-                                    <i class="fa fa-search"></i>
-                                </div>
-                            </a>
-                            <div class="text">
-                                <h4><a href="portfolio-single.html">Portfolio 4</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum.</p>
-                            </div>
-                        </div>
-                        <!--/ End Portfolio -->
-                        <!-- Single Portfolio -->
-                        <div class="portfolio-single">
-                            <a href="images/portfolio/5.jpg" class="zoom">
-                                <div class="portfolio-head">
-                                    <img src="<?php echo base_url();?>assets/front/images/portfolio/5.jpg" alt="" />
-                                    <i class="fa fa-search"></i>
-                                </div>
-                            </a>
-                            <div class="text">
-                                <h4><a href="portfolio-single.html">Portfolio 5</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum.</p>
-                            </div>
-                        </div>
-                        <!--/ End Portfolio -->
-                        <!-- Single Portfolio -->
-                        <div class="portfolio-single">
-                            <a href="images/portfolio/6.jpg" class="zoom">
-                                <div class="portfolio-head">
-                                    <img src="<?php echo base_url();?>assets/front/images/portfolio/6.jpg" alt="" />
-                                    <i class="fa fa-search"></i>
-                                </div>
-                            </a>
-                            <div class="text">
-                                <h4><a href="portfolio-single.html">Portfolio 6</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum.</p>
-                            </div>
-                        </div>
-                        <!--/ End Portfolio -->
+                        <?php } ?>
+
                     </div>
                 </div>
             </div>
@@ -311,7 +224,7 @@
     <!--/ End Products -->
 
     <!-- Start Client -->
-    <section id="team" class="section">
+    <section id="clients" class="section wow fadeIn">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
@@ -321,65 +234,16 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="0.4s">
-                    <!-- Single Client -->
-                    <div class="single-team">
-                        <div class="team-head">
-                            <img src="<?php echo base_url();?>assets/front/images/team/team1.jpg" alt="" />
+                <div class="col-md-12">
+                    <div class="clients-carousel">
+                        <!-- Single Clients -->
+
+                        <?php foreach($data_client as $row) { ?>
+                        <div class="single-client">
+                            <img src="<?php echo base_url()."assets/admin/upload/client/".$row['logo_path']; ?>" alt="<?php echo $row['alt']?>" class="img-responsive">
                         </div>
-                        <div class="team-info">
-                            <div class="name">
-                                <h4>Rimu Akhter<span>Creative Director</span></h4>
-                            </div>
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                        </div>
+                        <?php } ?>
                     </div>
-                    <!--/ End Single Team -->
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="0.6s">
-                    <!-- Single Team -->
-                    <div class="single-team">
-                        <div class="team-head">
-                            <img src="<?php echo base_url();?>assets/front/images/team/team2.jpg" alt="" />
-                        </div>
-                        <div class="team-info">
-                            <div class="name">
-                                <h4>Shakil Hossain<span>Web Developer</span></h4>
-                            </div>
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                        </div>
-                    </div>
-                    <!--/ End Single Team -->
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="0.8s">
-                    <!-- Single Team -->
-                    <div class="single-team active">
-                        <div class="team-head">
-                            <img src="<?php echo base_url();?>assets/front/images/team/team3.jpg" alt="" />
-                        </div>
-                        <div class="team-info">
-                            <div class="name">
-                                <h4>Sufia<span>Server Administor</span></h4>
-                            </div>
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                        </div>
-                    </div>
-                    <!--/ End Single Team -->
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="1s">
-                    <!-- Single Team -->
-                    <div class="single-team">
-                        <div class="team-head">
-                            <img src="<?php echo base_url();?>assets/front/images/team/team4.jpg" alt="" />
-                        </div>
-                        <div class="team-info">
-                            <div class="name">
-                                <h4>SM Jehad<span>UI/UX Design</span></h4>
-                            </div>
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                        </div>
-                    </div>
-                    <!--/ End Single Client -->
                 </div>
             </div>
         </div>
@@ -387,12 +251,12 @@
     <!--/ End Client -->
 
     <!-- Start About Us -->
-    <section id="about-us" class="section">
+    <section id="about-us" class="section" style="padding-bottom: 30px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
                     <div class="section-title center">
-                        <h2>About <span>US</span></h2>
+                        <h2 class="h2about" style="color: white;">About The Company</h2>
                     </div>
                 </div>
             </div>
@@ -401,7 +265,7 @@
                 <div class="col-md-5 col-sm-12 col-xs-12 wow slideInLeft">
                     <div class="about-main">
                         <div class="about-img">
-                            <img src="<?php echo base_url();?>assets/front/images/choose-image.png" alt="" />
+                            <img src="<?php echo base_url();?>assets/admin/img/icon_tab_browser.png" alt="PT. Avilla Jaya Teknik" style="width: 70%;"/>
                         </div>
                     </div>
                 </div>
@@ -412,110 +276,22 @@
                         <!-- Tab Nav -->
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active"><a href="#welcome" data-toggle="tab">Welcome</a></li>
-                            <li role="presentation"><a href="#about" data-toggle="tab">About Us</a></li>
-                            <li role="presentation"><a href="#information" data-toggle="tab">Information</a></li>
+                            <li role="presentation"><a href="#about" data-toggle="tab">Vision & Mission</a></li>
                         </ul>
                         <!--/ End Tab Nav -->
                         <!-- Tab Content -->
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="welcome">
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-                                    piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <!-- Single Tab -->
-                                        <div class="single-tab">
-                                            <i class="fa fa-check"></i>
-                                            <h4>Super Technology</h4>
-                                            <p>It has roots in a piece of classical Latin literature from 45 BC[..]</p>
-                                        </div>
-                                        <!--/ End Single Tab -->
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <!-- Single Tab -->
-                                        <div class="single-tab">
-                                            <i class="fa fa-support"></i>
-                                            <h4>Live Support</h4>
-                                            <p>It has roots in a piece of classical Latin literature from 45 BC[..]</p>
-                                        </div>
-                                        <!--/ End Single Tab -->
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <!-- Single Tab -->
-                                        <div class="single-tab">
-                                            <i class="fa fa-send"></i>
-                                            <h4>fast Delivery</h4>
-                                            <p>It has roots in a piece of classical Latin literature from 45 BC[..]</p>
-                                        </div>
-                                        <!--/ End Single Tab -->
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <!-- Single Tab -->
-                                        <div class="single-tab">
-                                            <i class="fa fa-rocket"></i>
-                                            <h4>Speed Marketing</h4>
-                                            <p>It has roots in a piece of classical Latin literature from 45 BC[..]</p>
-                                        </div>
-                                        <!--/ End Single Tab -->
-                                    </div>
+                                <div class="about">
+                                    <?php echo $data_about[0]['description']?>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade in" id="about">
                                 <div class="about">
-                                    <p>Aliquam erat volutpat. Phasellus lobortis erat vitae fringilla malesuada. Fusce
-                                        semper purus suscipit ultricies tincidunt. Nulla eget turpis ac leo euismod
-                                        pharetra at nec diam. Etiam id purus lacus. Suspendisse ligula nulla, cursus non
-                                        lacinia tincidunt, elementum eu sapien</p>
-                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
-                                        in a piece of classical Latin literature from 45 BC, making it over 2000 years
-                                        old.</p>
-                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
-                                        in a piece of classical Latin literature from 45 BC, making it over 2000 years
-                                        old.</p>
+                                    <?php echo $data_about[0]['vision_mission']?>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade in" id="information">
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-                                    piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <!-- Single Tab -->
-                                        <div class="single-tab">
-                                            <i class="fa fa-check"></i>
-                                            <h4>Super Technology</h4>
-                                            <p>It has roots in a piece of classical Latin literature from 45 BC[..]</p>
-                                        </div>
-                                        <!--/ End Single Tab -->
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <!-- Single Tab -->
-                                        <div class="single-tab">
-                                            <i class="fa fa-support"></i>
-                                            <h4>Live Support</h4>
-                                            <p>It has roots in a piece of classical Latin literature from 45 BC[..]</p>
-                                        </div>
-                                        <!--/ End Single Tab -->
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <!-- Single Tab -->
-                                        <div class="single-tab">
-                                            <i class="fa fa-send"></i>
-                                            <h4>fast Delivery</h4>
-                                            <p>It has roots in a piece of classical Latin literature from 45 BC[..]</p>
-                                        </div>
-                                        <!--/ End Single Tab -->
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <!-- Single Tab -->
-                                        <div class="single-tab">
-                                            <i class="fa fa-rocket"></i>
-                                            <h4>Speed Marketing</h4>
-                                            <p>It has roots in a piece of classical Latin literature from 45 BC[..]</p>
-                                        </div>
-                                        <!--/ End Single Tab -->
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                         <!--/ End Tab Content -->
                     </div>
@@ -527,7 +303,7 @@
     <!--/ End About Us -->
 
     <!-- Contact Us -->
-    <section id="contact" class="section" style="border-top:1px solid #d2cccc;">
+    <section id="contact" class="section" style="border-top:1px solid #d2cccc; background:white;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
@@ -539,72 +315,20 @@
             <!-- Google Map -->
             <div class="row">
                 <!-- Contact Form -->
-                <div class="col-md-5 col-sm-5 col-xs-12">
-                    <form class="form" method="post" action="mail/mail.php">
-                        <div class="form-group">
-                            <input type="text" name="name" placeholder="Name" required="required">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Email" required="required">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="subject" placeholder="Subject" required="required">
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" rows="6" placeholder="Message"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="button primary"><i class="fa fa-send"></i>Submit</button>
-                        </div>
-                    </form>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <?php echo $data_contactus[0]['description']; ?>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                <img src="<?php echo base_url();?>assets/admin/img/maps.jpg" class="img-responsive" style="border: 1px solid #dfdfdf;"/>
                 </div>
                 <!--/ End Contact Form -->
             </div>
         </div>
-        <div class="gmap">
+        <!-- <div class="gmap">
             <div class="map"></div>
-        </div>
+        </div> -->
     </section>
     <!--/ End Clients Us -->
-
-    <!-- Location -->
-    <section id="location" class="section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-12 wow fadeIn" data-wow-delay="0.4s">
-                    <!-- Single Address -->
-                    <div class="single-address">
-                        <i class="fa fa-phone"></i>
-                        <h4>Our Phone</h4>
-                        <p>+8801812345678, +8801700000123</p>
-                    </div>
-                    <!--/ End Single Address -->
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12 wow fadeIn" data-wow-delay="0.6s">
-                    <!-- Single Address -->
-                    <div class="single-address active">
-                        <i class="fa fa-phone"></i>
-                        <h4>Office Location</h4>
-                        <p>240, Khilgaon Dhaka 1230.</p>
-                    </div>
-                    <!--/ End Single Address -->
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12 wow fadeIn" data-wow-delay="0.8s">
-                    <!-- Single Address -->
-                    <div class="single-address">
-                        <i class="fa fa-phone"></i>
-                        <h4>Corporate Email</h4>
-                        <p>info@mizan.com, support@mizan.com</p>
-                    </div>
-                    <!--/ End Single Address -->
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!--/ End Location -->
-
-
 
     <!-- Start Footer -->
     <footer id="footer" class="wow fadeIn">
@@ -625,7 +349,6 @@
                             <li class="active"><a href="#"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
                         </ul>
                         <!--/ End Social -->
                     </div>

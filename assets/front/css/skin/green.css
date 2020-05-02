@@ -34,3 +34,7 @@ Version:	1.1
 #footer:before{
 	border-bottom-color:#919191;
 }
+
+.h2about:before{
+	background:white !important;
+}

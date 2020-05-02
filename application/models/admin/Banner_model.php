@@ -4,6 +4,7 @@ class banner_model extends CI_Model{
 
     public function __construct(){
         $this->load->database();
+        $this->username = $this->session->userdata('username');
     }
 
     public function bannerData(){
@@ -33,9 +34,9 @@ class banner_model extends CI_Model{
             'orderby' => $data['orderby'],
             'fdelete' => '0',
             'createdDate' => $datetime,
-            'createdBy' => '',
+            'createdBy' => $this->username,
             'modifiedDate' => $datetime,
-            'modifiedBy' => ''
+            'modifiedBy' => $this->username
         );
         $banner_insert = $this->db->insert('banner', $insert_data);
         return $banner_insert;
@@ -54,6 +55,15 @@ class banner_model extends CI_Model{
         $datetime = date('Y-m-d H:i:s');
 
         if (!empty($_FILES['image_source_banner']['name'])) {
+            $this->db->select('*');
+            $this->db->where('id', $data['bannerId']);
+            $query = $this->db->get('banner');
+            $result = $query->row_array();
+            
+            if (file_exists("./assets/admin/upload/banner/" . $result['img_path'])) {
+                unlink("./assets/admin/upload/banner/" . $result['img_path']);
+            }
+
             $image = $this->_uploadImage('banner'.'_'.uniqid(), 'image_source_banner');
             if ($image == '0') {
                 return '0';
@@ -66,6 +76,7 @@ class banner_model extends CI_Model{
             'img_path' => $image,
             'description' => $data['banner_desc'],
             'orderby' => $data['orderby'],
+            'modifiedBy' =>  $this->username,
             'modifiedDate' => $datetime,
         );
         $this->db->where('id', $data['bannerId']);

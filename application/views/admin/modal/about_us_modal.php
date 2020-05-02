@@ -39,6 +39,12 @@
                             <textarea id="about_us_desc" name="about_us_desc" required=""></textarea>                               
                             </div>
                         </div>
+                        <div class="form-group col-sm-12">
+                            <label class="control-label col-sm-12" for="gallert_desc">Vision & Mission :</label>
+                            <div class="col-sm-12">
+                            <textarea id="vision_mission" name="vision_mission" required=""></textarea>                               
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer" style="justify-content:center;">

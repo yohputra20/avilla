@@ -35,8 +35,8 @@
                           <p><?php echo $row['meta_description'] ?></p>
                         </td>
                         <td width="30%">
-                          <img id="preview_image_list" alt="image preview" src="<?php if ($row['img_path'] != '') {
-                                                                                  echo base_url() . "/assets/admin/upload/client/" . $row['img_path'];
+                          <img id="preview_image_list" width="200" alt="image preview" src="<?php if ($row['img_path'] != '') {
+                                                                                  echo base_url() . "/assets/admin/upload/service/" . $row['img_path'];
                                                                                 } else {
                                                                                   echo base_url() . "/assets/admin/img/no_photo.jpg";
                                                                                 } ?>" />

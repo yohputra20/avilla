@@ -1073,8 +1073,13 @@ $(document).ready(function () {
 					$('#preview_image').attr('style', 'display:block');
 					$('#about_usId').val(data.data.id);
 					$('#about_us_title').val(data.data.title);
+					$('#meta_title').val(data.data.meta_title);
+					$('#meta_desc').val(data.data.meta_description);
 					$('#old_image').val(data.data.image);
-					tinyMCE.activeEditor.setContent(data.data.description);
+
+					tinyMCE.get('vision_mission').setContent(data.data.vision_mission);
+					tinyMCE.get('about_us_desc').setContent(data.data.description);
+					//tinyMCE.activeEditor.setContent(data.data.description);
 
 				}
 			},

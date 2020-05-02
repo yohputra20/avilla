@@ -4,6 +4,7 @@ class About_us_model extends CI_Model{
 
     public function __construct(){
         $this->load->database();
+        $this->username = $this->session->userdata('username');
     }
 
     public function about_usData(){
@@ -24,11 +25,12 @@ class About_us_model extends CI_Model{
             'meta_description' => $data['meta_desc'],
             'title' => $data['about_us_title'],
             'description' => $data['about_us_desc'],
+            'vision_mission' => $data['vision_mission'],
             'fdelete' => '0',
             'created_date' => $datetime,
-            'created_by' => '',
+            'created_by' => $this->username,
             'modified_date' => $datetime,
-            'modified_by' => ''
+            'modified_by' => $this->username
         );
         $about_us_insert = $this->db->insert('about', $insert_data);
         return $about_us_insert;
@@ -49,6 +51,7 @@ class About_us_model extends CI_Model{
         $update_data =array(
             'meta_title' => $data['meta_title'],
             'meta_description' => $data['meta_desc'],
+            'vision_mission' => $data['vision_mission'],
             'title' => $data['about_us_title'],
             'description' => $data['about_us_desc'],
             'modified_date' => $datetime,
