@@ -34,7 +34,13 @@
                         <td width="30%"><b><?php echo $row['meta_title'] ?></b>
                           <p><?php echo $row['meta_description'] ?></p>
                         </td>
-                        <td width="30%"><img id="preview_image_list" alt="image preview" src="<?php echo base_url() . "/assets/admin/upload/service/" . $row['img_path']; ?>" /></td>
+                        <td width="30%">
+                          <img id="preview_image_list" alt="image preview" src="<?php if ($row['img_path'] != '') {
+                                                                                  echo base_url() . "/assets/admin/upload/client/" . $row['img_path'];
+                                                                                } else {
+                                                                                  echo base_url() . "/assets/admin/img/no_photo.jpg";
+                                                                                } ?>" />
+                        </td>
                         <td width="25%"><?php echo $row['description']; ?></td>
                         <td align="center" width="10%">
                           <button id="serviceEdit" style="width:80px;" class="btn btn-warning margin5" data-value="<?php echo $row['id']; ?>">

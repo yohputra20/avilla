@@ -25,6 +25,16 @@ function servicePreviewImage() {
 	};
 };
 
+function clientPreviewImage() {
+	document.getElementById('preview_image').style.display = 'block';
+	var oFReader = new FileReader();
+	oFReader.readAsDataURL(document.getElementById('image_source_client').files[0]);
+
+	oFReader.onload = function (oFREvent) {
+		document.getElementById('preview_image').src = oFREvent.target.result;
+	};
+};
+
 function productPreviewImage() {
 
 	document.getElementById('preview_image').style.display = 'block';
@@ -164,9 +174,9 @@ $(document).ready(function () {
 
 				},
 				error: function (e) {
-					// window.location.href = 'home';
+					
 					document.getElementById('rpModal').style.display = 'none';
-					// console.log(e.toString());
+					
 					swal.fire(
 						'Error',
 						'Oops, your data was not saved.', // had a missing comma
@@ -175,7 +185,7 @@ $(document).ready(function () {
 				}
 			});
 		}
-		// bannerCreateUpdate(formData);
+		
 	});
 
 	/* Edit data table */
@@ -184,9 +194,9 @@ $(document).ready(function () {
 		$('#bannerForm').parsley().reset();
 		document.getElementById("image_source_banner").required = false;
 		$("#title_banner_modal").text("Edit banner");
-		// var base_url = window.location.origin + '/' + window.location.pathname.split ('/') [1];
+	
 		var id = $(this).attr('data-value');
-		// console.log('Record ID is', id);
+	
 		event.preventDefault(); // prevent form submit
 		$.ajax({
 			url: 'banner/get_banner/' + id,
@@ -197,7 +207,7 @@ $(document).ready(function () {
 			success: function (data) {
 				document.getElementById('rpModal').style.display = 'none';
 				var data = JSON.parse(data);
-				// console.log(data);
+			
 				if (data.status != null) {
 					$('#preview_image').attr('style', 'display:block');
 					$('#bannerId').val(data.data.id);
@@ -209,7 +219,7 @@ $(document).ready(function () {
 				}
 			},
 			error: function (e) {
-				// console.log(e.toString());  
+				
 				document.getElementById('rpModal').style.display = 'none';
 				swal.fire(
 					'Error',
@@ -223,7 +233,7 @@ $(document).ready(function () {
 	/* Delete data table */
 	$('#dataTable tbody').on('click', '#bannerDelete', function () {
 		var id = $(this).attr('data-value');
-		// console.log('Record ID is', id);     
+		   
 		event.preventDefault(); // prevent form submit
 		Swal.fire({
 			title: 'Delete',
@@ -256,6 +266,186 @@ $(document).ready(function () {
 						});
 					},
 					error: function (e) {
+						
+						document.getElementById('rpModal').style.display = 'none';
+						swal.fire(
+							'Error',
+							'Oops, your data was not deleted.', // had a missing comma
+							'error'
+						);
+					}
+				});
+			}
+		});
+	});
+	/* Function Client JS */
+
+	$('#clientAdd').on('click', function (e) {
+		$('#clientModal').modal('show');
+		$("#title_client_modal").text("Add client");
+		$('#clientForm').parsley().reset();
+		
+
+		$('#clientId').val(null);
+		$('#client_title').val(null);
+		tinyMCE.activeEditor.setContent('');
+
+	});
+
+	
+
+	$('#clientForm').parsley();
+	$('#clientForm').on('submit', function (e) {
+		e.preventDefault();
+		var url;
+		var form = $(this);
+		form.parsley().validate();
+		var formData = new FormData(this);
+		var id = $('#clientId').val();
+
+		if (id != '') {
+			url = 'client/edit_client';
+
+		} else {
+			url = 'client/add_client';
+
+		}
+
+		if (form.parsley().isValid()) {
+			$.ajax({
+				url: url,
+				data: formData,
+				type: 'POST',
+				datatype: 'JSON',
+				async: false,
+				processData: false,
+				contentType: false,
+				beforeSend: function () {
+					document.getElementById('rpModal').style.display = 'block';
+				},
+				success: function (data) {
+					var data = JSON.parse(data);
+
+					document.getElementById('rpModal').style.display = 'none';
+					if (data.status == 1) {
+						Swal.fire({
+							position: 'center',
+							type: 'success',
+							title: 'Data has been saved',
+							showConfirmButton: false,
+							timer: 1500
+						}).then((timer) => {
+							window.location.href = 'client';
+						});
+					} else {
+
+						document.getElementById('rpModal').style.display = 'none';
+						swal.fire(
+							'Error',
+							'Oops, your data was not saved.', // had a missing comma
+							'error'
+						)
+					}
+
+
+				},
+				error: function (e) {
+
+					document.getElementById('rpModal').style.display = 'none';
+
+					swal.fire(
+						'Error',
+						'Oops, your data was not saved.', // had a missing comma
+						'error'
+					)
+				}
+			});
+		}
+		
+	});
+
+	/* Edit data table */
+	$('#dataTable tbody').on('click', '#clientEdit', function () {
+		$('#clientModal').modal('show');
+		$('#clientForm').parsley().reset();
+		$("#title_client_modal").text("Edit client");
+		document.getElementById("image_source_client").required = false;
+
+		var id = $(this).attr('data-value');
+
+		event.preventDefault(); // prevent form submit
+		$.ajax({
+			url: 'client/get_client/' + id,
+			type: 'POST',
+			beforeSend: function () {
+				document.getElementById('rpModal').style.display = 'block';
+			},
+			success: function (msg) {
+				document.getElementById('rpModal').style.display = 'none';
+				var data = JSON.parse(msg);
+				console.log(data);
+				if (data.status != null) {
+					$('#preview_image').attr('style', 'display:block');
+					$('#clientId').val(data.data.id);
+					$('#client_title').val(data.data.title);
+					$('#client_meta_title').val(data.data.alt);
+					$('#client_meta_desc').val(data.data.meta_description);
+
+
+					$('#client_old_image').val(data.data.logo_path);
+					$('#preview_image').attr('src', base_url + '/assets/admin/upload/client/' + data.data.logo_path);
+					tinyMCE.activeEditor.setContent(data.data.description);
+
+				}
+			},
+			error: function (e) {
+
+				document.getElementById('rpModal').style.display = 'none';
+				swal.fire(
+					'Error',
+					'Oops, your data was not updated.', // had a missing comma
+					'error'
+				);
+			}
+		});
+	});
+
+	/* Delete data table */
+	$('#dataTable tbody').on('click', '#clientDelete', function () {
+		var id = $(this).attr('data-value');
+		// console.log('Record ID is', id);     
+		event.preventDefault(); // prevent form submit
+		Swal.fire({
+			title: 'Delete',
+			text: 'Are you sure want to delete this News?',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes',
+			reverseButtons: true,
+			cancelButtonText: 'No'
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					url: 'client/delete_client/' + id,
+					type: 'POST',
+					beforeSend: function () {
+						document.getElementById('rpModal').style.display = 'block';
+					},
+					success: function (e) {
+						document.getElementById('rpModal').style.display = 'none';
+						Swal.fire({
+							position: 'center',
+							type: 'success',
+							title: 'Data has been saved',
+							showConfirmButton: false,
+							timer: 1500
+						}).then((timer) => {
+							window.location.href = 'client';
+						});
+					},
+					error: function (e) {
 						// console.log(e.toString());
 						document.getElementById('rpModal').style.display = 'none';
 						swal.fire(
@@ -269,6 +459,9 @@ $(document).ready(function () {
 		});
 	});
 
+
+
+	/* ================================================================================================================= */
 	/* Function Service JS */
 
 	$('#serviceAdd').on('click', function (e) {
@@ -499,6 +692,9 @@ $(document).ready(function () {
 		});
 
 	});
+	$('#cancelcontact').on('click',function(){
+		checkContactUs();
+	})
 
 	$('#contactForm').parsley();
 	$('#contactForm').on('submit', function (e) {
