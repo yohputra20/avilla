@@ -83,7 +83,7 @@ class About_us extends CI_Controller{
 		foreach ($_POST as $key => $value) {
 			$data[$key] = $value;
         }
-        // echo json_encode($data);die(0);
+       
         $about_usEdit = $this->about_us_model->about_usEdit($data);
         if ($about_usEdit == 1) {
             $balikan = [

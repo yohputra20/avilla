@@ -7,14 +7,14 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 class="m-0 font-weight-bold" style="color:#18011B;">Data product</h6>
-              <a href="#" class="btn btn-success" id="productAdd">
-                <span class="text">Add Product</span>
-              </a>
+              <button href="#" class="btn btn-success" id="productAdd">
+                <i class="fa fa-plus"></i>
+              </button>
 
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered responsive nowrap" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>No</th>
@@ -35,7 +35,7 @@
                           <p><?php echo $row['meta_description'] ?></p>
                         </td>
                         <td width="25%">
-                        <img id="preview_image_list" alt="image preview" src="<?php if ($row['img_path'] != '') {
+                          <img id="preview_image_list" alt="image preview" src="<?php if ($row['img_path'] != '') {
                                                                                   echo base_url() . "/assets/admin/upload/client/" . $row['img_path'];
                                                                                 } else {
                                                                                   echo base_url() . "/assets/admin/img/no_photo.jpg";
@@ -43,11 +43,11 @@
                         </td>
                         <td width="35%"><?php echo $row['description']; ?></td>
                         <td align="center" width="10%">
-                          <button id="productEdit" style="width:80px;" class="btn btn-warning margin5" data-value="<?php echo $row['id']; ?>">
-                            Edit
+                          <button id="productEdit" class="btn btn-warning margin5" data-value="<?php echo $row['id']; ?>">
+                            <i class="fa fa-edit"></i>
                           </button>
-                          <button id="productDelete" style="width:80px;" class="btn btn-danger margin5" data-value="<?php echo $row['id']; ?>">
-                            Delete
+                          <button id="productDelete" class="btn btn-danger margin5" data-value="<?php echo $row['id']; ?>">
+                            <i class="fa fa-trash"></i>
                           </button>
                         </td>
                       </tr>
