@@ -14,7 +14,7 @@ class Login_model extends CI_Model{
         $result_array = $query->row_array();
 
         // echo json_encode($result_array);die(0);
-        if (password_verify($data['passwords'], $result_array['password'])) {
+        if (password_verify($data['password'], $result_array['password'])) {
             return $result_array;
         }else{
             return   $balikan;

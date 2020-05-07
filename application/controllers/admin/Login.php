@@ -36,7 +36,7 @@ class Login extends CI_Controller{
             $balikan = [
                 'status' => '1',
                 'message' => 'success',
-                'data' => $ceklogin[0]
+                'data' => $ceklogin
             ];
             $this->set_session($balikan['data']);
 
