@@ -94,6 +94,306 @@ function checkContactUs() {
 	});
 }
 
+// function usermanagement
+function viewowner() {
+	$('#ownerdata').dataTable({
+		"sPaginationType": "full_numbers",
+
+		"iDisplayLength": 30,
+		"bDestroy": true,
+		"bLengthChange": false,
+		"aaSorting": [],
+		"bAutoWidth": false,
+		"bSortable": false,
+		"bSortClasses": true,
+		"responsive": true,
+		"sAjaxSource": '<?php echo base_url(); ?>index.php/usermanegement', //ambil jsonnya di controler usermanagement
+		"dom": 'Bfrtip',
+		"buttons": [{
+			"text": 'Add User',
+			action: function (e, dt, node, config) {
+
+				$('#addModal').modal('show');
+
+			}
+		}]
+	});
+}
+
+function doviewrole() {
+	var roleid = $('#role').val();
+	getviewrole(roleid);
+
+}
+
+function changerole() {
+	var roleid = $('#role').val();
+	getviewrole(roleid);
+
+}
+
+function getviewrole(roleid) {
+
+	$('#roledata').dataTable({
+		"sPaginationType": "full_numbers",
+
+		"iDisplayLength": 30,
+		"bDestroy": true,
+		"bLengthChange": false,
+		"aaSorting": [],
+		"bAutoWidth": false,
+		"bSortable": false,
+		"bSortClasses": true,
+		"responsive": true,
+		"sAjaxSource": '<?php echo base_url(); ?>index.php/usermanegement/getrole', //ambil jsonnya di controler usermanagement
+		"fnServerParams": function (aoData) {
+			aoData.push({
+				'name': 'roleid',
+				'value': roleid
+			});
+		}
+	});
+}
+
+function editUser(id) {
+
+	$.ajax({
+		type: 'post',
+		url: '<?php echo base_url(); ?>index.php/usermanegement/oneuser/' + id,
+
+		success: function (msg) {
+			var data = JSON.parse(msg)
+			$('#uname').val(data.uname);
+			$('#roleid').val(data.roleid);
+			$('#userid').val(data.userid);
+			$('#addModal').modal('show');
+		}
+
+	});
+}
+
+function validasi() {
+	var uname = $('#uname').val();
+	var roleid = $('#roleid').val();
+	if (uname == '') {
+		alert('Username Required');
+		$('#uname').focus();
+	} else if (roleid == '-') {
+		alert('Roleid Required');
+		$('#roleid').focus();
+	}
+	$('.loader').show();
+	return true;
+}
+
+function savedata() {
+	var uname = $('#uname').val();
+	var id = $('#userid').val();
+	var roleid = $('#roleid').val();
+	$.ajax({
+		type: 'post',
+		url: '<?php echo base_url(); ?>index.php/usermanegement/saveUser/',
+		data: 'userid=' + id + '&uname=' + uname + '&roleid=' + roleid,
+
+		beforeSend: validasi,
+		success: function (msg) {
+			$('.loader').hide();
+
+			var data = JSON.parse(msg);
+
+			if (data.status == 1) {
+
+				alert(data.msg);
+				location.reload();
+
+			} else {
+				alert(data.msg);
+			}
+
+		}
+	});
+}
+
+function closemodal() {
+	$('#addModal').modal('hide');
+	$('#umanagementform').resetForm();
+	$('#roleid').val('');
+	$('#userid').val('');
+}
+
+function deleteUser(id) {
+
+	$("#dialog-delete").find('p').html('<p>Are you sure delete this user?</p>');
+	$("#dialog-delete").dialog({
+		autoOpen: false,
+		height: 200,
+		width: 350,
+		title: 'Delete User',
+		modal: true,
+		buttons: {
+			OK: function () {
+				$.ajax({
+					type: 'post',
+					url: '<?php echo base_url(); ?>index.php/usermanegement/deleteUser/' + id,
+					beforeSend: function () {
+						$('.loader').show();
+					},
+					success: function (msg) {
+						$('.loader').hide();
+						var data = JSON.parse(msg);
+
+						if (data.status == 1) {
+
+							alert(data.msg);
+							location.reload();
+
+						} else {
+							alert(data.msg);
+						}
+					}
+
+				});
+			},
+			NO: function () {
+				$(this).dialog("close");
+
+			}
+		}
+	});
+
+
+	$("#dialog-delete").dialog("open");
+
+	$(".ui-dialog-titlebar-close").css('visibility', 'hidden');
+	$("#dialog-delete").css('overflow', 'hidden');
+
+}
+
+function actionrole(permission, action) {
+	var roleid = $('#role').val();
+	$.ajax({
+		type: 'post',
+		url: '<?php echo base_url(); ?>index.php/usermanegement/changeroleaction/',
+		data: 'permission=' + permission + '&roleid=' + roleid + '&action=' + action,
+		//                                            datatype : "JSON",
+		beforeSend: function () {
+			$('.loader').show();
+		},
+		success: function (msg) {
+			$('.loader').hide();
+			var data = JSON.parse(msg);
+
+			if (data.status == 1) {
+
+				$('#alert').text(data.msg);
+				$('#alert').prop('class', 'alert alert-success');
+				$('#divadd').prop('style', 'top:218px;text-align:left;margin-bottom: 10px;');
+				$('#alert').show();
+				setTimeout(function () {
+					$('#alert').fadeOut(500);
+				}, 5000);
+				getviewrole(roleid);
+
+			} else {
+
+				$('#alert').text(data.msg);
+				$('#alert').prop('class', 'alert alert-danger');
+				$('#divadd').prop('style', 'top:218px;text-align:left;margin-bottom: 10px;');
+				$('#alert').show();
+				setTimeout(function () {
+					$('#alert').fadeOut(500);
+				}, 5000);
+			}
+
+		}
+	});
+}
+
+function chekusername() {
+	var keys = $('#uname').val();
+	$.ajax({
+		type: 'post',
+		url: '<?php echo base_url(); ?>index.php/usermanegement/checkusername/' + keys,
+		success: function (msg) {
+			var data = JSON.parse(msg);
+			if (data.status == 0) {
+
+				$('#uname').focus();
+
+				$('#error').show();
+				$('#error').prop('title', data.msg);
+				$('#error').prop('class', "glyphicon glyphicon-remove").css('color', 'red');
+
+			} else {
+				$('#error').hide();
+				$('#error').prop('title', data.msg);
+				$('#error').prop('class', "glyphicon glyphicon-ok").css('color', 'green');
+			}
+		}
+
+	});
+}
+
+function numberic(object) {
+	var value = object.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+	var intRegex = /^[+-]?[0-9]{1,9}(?:\.[0-9]{1,2})?$/;
+	if (!intRegex.test(value)) {
+		return false;
+	}
+}
+var options = {
+	beforeSubmit: showRequest,
+	success: showResponse,
+	dataType: 'json'
+};
+
+
+function showRequest(formData, jqForm, options) {
+	var uname = $('#uname').val();
+	var roleid = $('#roleid').val();
+	var pass = $('#passwd').val();
+	var passkonfirm = $('#konfirmpasswd').val();
+	if (pass != passkonfirm) {
+		alert('Confirm Password not match');
+		$('#konfirmpasswd').fokus();
+	}
+	if (uname == '') {
+		alert('Username Required');
+
+		$('#uname').focus();
+	}
+	if (roleid == '-') {
+		alert('Roleid Required');
+		$('#roleid').focus();
+	}
+	$('.loader').show();
+	return true;
+}
+
+function showResponse(data) {
+
+	$('.loader').hide();
+	if (data.status == 1) {
+		$('#umanagementform').resetForm();
+		$('#addModal').modal('hide')
+		alert(data.msg);
+		location.reload();
+	} else {
+		alert(data.msg);
+	}
+
+
+}
+
+function showpassword() {
+	var role = $('#roleid').val();
+	if (role == 7) {
+		$('.divpassword').show();
+	} else {
+		$('.divpassword').hide();
+	}
+}
+
 $(document).ready(function () {
 
 	/* FUnction banner JS */
@@ -174,9 +474,9 @@ $(document).ready(function () {
 
 				},
 				error: function (e) {
-					
+
 					document.getElementById('rpModal').style.display = 'none';
-					
+
 					swal.fire(
 						'Error',
 						'Oops, your data was not saved.', // had a missing comma
@@ -185,7 +485,7 @@ $(document).ready(function () {
 				}
 			});
 		}
-		
+
 	});
 
 	/* Edit data table */
@@ -194,9 +494,9 @@ $(document).ready(function () {
 		$('#bannerForm').parsley().reset();
 		document.getElementById("image_source_banner").required = false;
 		$("#title_banner_modal").text("Edit banner");
-	
+
 		var id = $(this).attr('data-value');
-	
+
 		event.preventDefault(); // prevent form submit
 		$.ajax({
 			url: 'banner/get_banner/' + id,
@@ -207,7 +507,7 @@ $(document).ready(function () {
 			success: function (data) {
 				document.getElementById('rpModal').style.display = 'none';
 				var data = JSON.parse(data);
-			
+
 				if (data.status != null) {
 					$('#preview_image').attr('style', 'display:block');
 					$('#bannerId').val(data.data.id);
@@ -219,7 +519,7 @@ $(document).ready(function () {
 				}
 			},
 			error: function (e) {
-				
+
 				document.getElementById('rpModal').style.display = 'none';
 				swal.fire(
 					'Error',
@@ -233,7 +533,7 @@ $(document).ready(function () {
 	/* Delete data table */
 	$('#dataTable tbody').on('click', '#bannerDelete', function () {
 		var id = $(this).attr('data-value');
-		   
+
 		event.preventDefault(); // prevent form submit
 		Swal.fire({
 			title: 'Delete',
@@ -266,7 +566,7 @@ $(document).ready(function () {
 						});
 					},
 					error: function (e) {
-						
+
 						document.getElementById('rpModal').style.display = 'none';
 						swal.fire(
 							'Error',
@@ -284,7 +584,7 @@ $(document).ready(function () {
 		$('#clientModal').modal('show');
 		$("#title_client_modal").text("Add client");
 		$('#clientForm').parsley().reset();
-		
+
 
 		$('#clientId').val(null);
 		$('#client_title').val(null);
@@ -292,7 +592,7 @@ $(document).ready(function () {
 
 	});
 
-	
+
 
 	$('#clientForm').parsley();
 	$('#clientForm').on('submit', function (e) {
@@ -361,7 +661,7 @@ $(document).ready(function () {
 				}
 			});
 		}
-		
+
 	});
 
 	/* Edit data table */
@@ -665,7 +965,7 @@ $(document).ready(function () {
 			},
 			success: function (data) {
 				var data = JSON.parse(data);
-
+				tinyMCE.activeEditor.setContent('');
 				document.getElementById('rpModal').style.display = 'none';
 				if (data.status == 1) {
 					$('.viewContactUs').hide();
@@ -692,7 +992,7 @@ $(document).ready(function () {
 		});
 
 	});
-	$('#cancelcontact').on('click',function(){
+	$('#cancelcontact').on('click', function () {
 		checkContactUs();
 	})
 
@@ -734,10 +1034,10 @@ $(document).ready(function () {
 							showConfirmButton: false,
 							timer: 1500
 						}).then((timer) => {
-							
+
 							checkContactUs();
 
-						
+
 						});
 
 					} else {
@@ -1143,5 +1443,5 @@ $(document).ready(function () {
 			}
 		});
 	});
-	
+
 });

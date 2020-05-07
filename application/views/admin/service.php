@@ -6,15 +6,22 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold" style="color:#18011B;">Data Service</h6>
-              <a href="#" class="btn btn-success" id="serviceAdd">
-                <span class="text">Add Service</span>
-              </a>
+
+
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <h6 class="m-0 font-weight-bold" style="color:#18011B;">Data Service</h6>
+              </div>
+              <div class="col-md-1 col-sm-6 col-xs-6">
+                <button href="#" class="btn btn-success btn-block btm-sm" id="serviceAdd">
+                  <i class="fa fa-plus"></i>
+
+                </button>
+              </div>
 
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered responsive nowrap" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>No</th>
@@ -35,19 +42,19 @@
                           <p><?php echo $row['meta_description'] ?></p>
                         </td>
                         <td width="30%">
-                          <img id="preview_image_list" width="200" alt="image preview" src="<?php if ($row['img_path'] != '') {
-                                                                                  echo base_url() . "/assets/admin/upload/service/" . $row['img_path'];
-                                                                                } else {
-                                                                                  echo base_url() . "/assets/admin/img/no_photo.jpg";
-                                                                                } ?>" />
+                          <img id="preview_image_list" class="img-fluid" alt="Responsive image" src="<?php if ($row['img_path'] != '') {
+                                                                                                        echo base_url() . "/assets/admin/upload/service/" . $row['img_path'];
+                                                                                                      } else {
+                                                                                                        echo base_url() . "/assets/admin/img/no_photo.jpg";
+                                                                                                      } ?>" />
                         </td>
                         <td width="25%"><?php echo $row['description']; ?></td>
                         <td align="center" width="10%">
-                          <button id="serviceEdit" style="width:80px;" class="btn btn-warning margin5" data-value="<?php echo $row['id']; ?>">
-                            Edit
+                          <button id="serviceEdit" class="btn btn-warning btn-sm margin5" data-value="<?php echo $row['id']; ?>">
+                            <i class="fa fa-edit"></i>
                           </button>
-                          <button id="serviceDelete" style="width:80px;" class="btn btn-danger margin5" data-value="<?php echo $row['id']; ?>">
-                            Delete
+                          <button id="serviceDelete" class="btn btn-danger btn-sm margin5" data-value="<?php echo $row['id']; ?>">
+                            <i class="fa fa-trash"></i>
                           </button>
                         </td>
                       </tr>

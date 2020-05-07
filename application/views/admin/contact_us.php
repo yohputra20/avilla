@@ -51,7 +51,9 @@
 
                                 </div>
                                 <div class="col-sm-6">
-                                    <button type="button" class="btn btn-primary btn-sm float-right" id="editbtnContactus">Edit</button>
+                                    <button type="button" class="btn btn-primary btn-sm float-right" id="editbtnContactus">
+                                    <i class="fa fa-edit"></i>
+                                    </button>
                                 </div>
                             </div>
 

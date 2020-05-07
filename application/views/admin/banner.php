@@ -8,7 +8,7 @@
          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
              <h6 class="m-0 font-weight-bold" style="color:#18011B;">Data Banner</h6>
              <a href="#" class="btn btn-success" id="bannerAdd">
-                 <span class="text">Add Banner</span>
+             <i class="fa fa-plus"></i>
              </a>
 
          </div>
@@ -35,11 +35,11 @@
                              <td align="center" width="10%">
                                  <button id="bannerEdit" style="width:80px;" class="btn btn-warning margin5"
                                      data-value="<?php echo $row['id']; ?>">
-                                     Edit
+                                     <i class="fa fa-edit"></i>
                                  </button>
                                  <button id="bannerDelete" style="width:80px;" class="btn btn-danger margin5"
                                      data-value="<?php echo $row['id']; ?>">
-                                     Delete
+                                     <i class="fa fa-trash"></i>
                                  </button>
                              </td>
                          </tr>

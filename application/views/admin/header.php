@@ -21,7 +21,8 @@
 
     <!-- Custom styles for this page -->
     <link href="<?php echo base_url(); ?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+    <link href="<?php echo base_url(); ?>assets/admin/vendor/datatables/responsive.dataTables.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/admin/vendor/datatables/responsive.bootstrap4.min.css" rel="stylesheet">
     <!-- Admin CSS -->
     <link href="<?php echo base_url(); ?>assets/admin/css/admin.css" rel="stylesheet">
     <!-- jquery 3.4.1-->
@@ -222,6 +223,8 @@
     <!-- Page level plugins -->
     <script src="<?php echo base_url(); ?>assets/admin/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/admin/vendor/datatables/dataTables.responsive.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/admin/vendor/datatables/responsive.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="<?php echo base_url(); ?>assets/admin/js/demo/datatables-demo.js"></script>
@@ -245,8 +248,6 @@
                 ' removeformat ',
         });
     </script>
-
-
     <!-- Admin JavaScript-->
     <script src="<?php echo base_url(); ?>assets/admin/js/admin.js"></script>
 

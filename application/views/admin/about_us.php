@@ -39,11 +39,11 @@
                         <td width="45%"><?php echo $row['description']; ?></td>
                         <td width="45%"><?php echo $row['vision_mission']; ?></td>
                         <td align="center" width="10%">
-                          <button id="about_usEdit" style="width:80px;" class="btn btn-warning margin5" data-value="<?php echo $row['id']; ?>">
-                              Edit
+                          <button id="about_usEdit" " class="btn btn-warning margin5" data-value="<?php echo $row['id']; ?>">
+                          <i class="fa fa-edit"></i>
                           </button>
-                          <button id="about_usDelete" style="width:80px;" class="btn btn-danger margin5" data-value="<?php echo $row['id']; ?>">
-                              Delete
+                          <button id="about_usDelete"  class="btn btn-danger margin5" data-value="<?php echo $row['id']; ?>">
+                          <i class="fa fa-trash"></i>
                           </button>
                         </td>
                     </tr>

@@ -220,4 +220,6 @@
     background: white;
     color: black;
   }
-  
+  @media all and (max-width:480px) {
+
+  }
