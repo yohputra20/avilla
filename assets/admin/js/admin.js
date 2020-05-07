@@ -1495,7 +1495,7 @@ $(document).ready(function () {
 						document.getElementById('rpModal').style.display = 'none';
 						swal.fire(
 							'Error',
-							'Oops, your data was not saved.', // had a missing comma
+							data.messages, // had a missing comma
 							'error'
 						)
 					}
