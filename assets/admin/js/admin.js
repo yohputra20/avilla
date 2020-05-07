@@ -1007,9 +1007,6 @@ $(document).ready(function () {
 
 
 		url = 'contact_us/save_contactus';
-
-
-
 		if (form.parsley().isValid()) {
 			$.ajax({
 				url: url,
@@ -1034,14 +1031,10 @@ $(document).ready(function () {
 							showConfirmButton: false,
 							timer: 1500
 						}).then((timer) => {
-
 							checkContactUs();
-
-
 						});
 
 					} else {
-
 						document.getElementById('rpModal').style.display = 'none';
 						swal.fire(
 							'Error',
@@ -1049,13 +1042,9 @@ $(document).ready(function () {
 							'error'
 						)
 					}
-
-
 				},
 				error: function (e) {
-
 					document.getElementById('rpModal').style.display = 'none';
-
 					swal.fire(
 						'Error',
 						'Oops, your data was not saved.', // had a missing comma
@@ -1276,10 +1265,6 @@ $(document).ready(function () {
 		tinyMCE.activeEditor.setContent('');
 	});
 
-	// tinyMCE.activeEditor.on('keyup', function () {
-	//     $('#parsley-id-9').attr('style', 'display:none');
-	// });
-
 	$('#about_usForm').parsley();
 	$('#about_usForm').on('submit', function (e) {
 		e.preventDefault();
@@ -1288,13 +1273,13 @@ $(document).ready(function () {
 		form.parsley().validate();
 		var formData = new FormData(this);
 		var id = $('#about_usId').val();
-		// alert(id);
+
 		if (id != '') {
 			url = 'about_us/edit_about_us';
-			// alert(url);
+
 		} else {
 			url = 'about_us/add_about_us';
-			// alert(url);
+
 		}
 
 		if (form.parsley().isValid()) {
@@ -1311,7 +1296,7 @@ $(document).ready(function () {
 				},
 				success: function (data) {
 					var data = JSON.parse(data);
-					// console.log(data.status);
+
 					document.getElementById('rpModal').style.display = 'none';
 					if (data.status == 1) {
 						Swal.fire({
@@ -1336,9 +1321,9 @@ $(document).ready(function () {
 
 				},
 				error: function (e) {
-					// window.location.href = 'home';
+
 					document.getElementById('rpModal').style.display = 'none';
-					// console.log(e.toString());
+
 					swal.fire(
 						'Error',
 						'Oops, your data was not saved.', // had a missing comma
@@ -1347,7 +1332,7 @@ $(document).ready(function () {
 				}
 			});
 		}
-		// about_usCreateUpdate(formData);
+
 	});
 
 	/* Edit data table */
@@ -1437,6 +1422,207 @@ $(document).ready(function () {
 				});
 			}
 		});
+	});
+
+
+	// function users
+	$('#userAdd').on('click', function (e) {
+		$('#userModal').modal('show');
+		$('#userForm').parsley().reset();
+		$("#title_user_modal").text("Add User");
+
+		$('#userId').val(null);
+		$('#username').val(null);
+		$('#currentpasswords').val(null);
+		$('#passwords').val(null);
+		$('#confirmpasswords').val(null);
+		$('.divusername').show();
+		$('.divpassword').show();
+		$('.divcurrentpassword').hide();
+
+
+	});
+
+	$('#userForm').parsley();
+	$('#userForm').on('submit', function (e) {
+		e.preventDefault();
+		var url;
+		var form = $(this);
+		form.parsley().validate();
+		var formData = new FormData(this);
+		var id = $('#userId').val();
+		var types = $('#typeedit').val();
+
+		if (id != '') {
+			if (types == "password") {
+				url = 'user/edit_password';
+			} else {
+				url = 'user/edit_user';
+			}
+		} else {
+			url = 'user/add_user';
+
+		}
+
+		if (form.parsley().isValid()) {
+			$.ajax({
+				url: url,
+				data: formData,
+				type: 'POST',
+				datatype: 'JSON',
+				async: false,
+				processData: false,
+				contentType: false,
+				beforeSend: function () {
+					document.getElementById('rpModal').style.display = 'block';
+				},
+				success: function (data) {
+					var data = JSON.parse(data);
+
+					document.getElementById('rpModal').style.display = 'none';
+					if (data.status == 1) {
+						Swal.fire({
+							position: 'center',
+							type: 'success',
+							title: 'Data has been saved',
+							showConfirmButton: false,
+							timer: 1500
+						}).then((timer) => {
+							window.location.href = 'user';
+						});
+					} else {
+
+						document.getElementById('rpModal').style.display = 'none';
+						swal.fire(
+							'Error',
+							'Oops, your data was not saved.', // had a missing comma
+							'error'
+						)
+					}
+
+
+				},
+				error: function (e) {
+
+					document.getElementById('rpModal').style.display = 'none';
+
+					swal.fire(
+						'Error',
+						'Oops, your data was not saved.', // had a missing comma
+						'error'
+					)
+				}
+			});
+		}
+
+	});
+
+	/* Edit data table */
+	$('#dataTable tbody').on('click', '#changePassword', function () {
+		$('#userModal').modal('show');
+		$('#userForm').parsley().reset();
+		$("#title_user_modal").text("Edit Password");
+		$("#typeedit").val('password');
+		var id = $(this).attr('data-value');
+		$("#username").prop('required',false);
+		$("#currentpasswords").prop('required',true);
+		$('#userId').val(id);
+		$('.divpassword').show();
+		$('.divcurrentpassword').show();
+		$('.divusername').hide();
+	});
+	$('#dataTable tbody').on('click', '#userEdit', function () {
+		$('#userModal').modal('show');
+		$('#userForm').parsley().reset();
+		$("#title_user_modal").text("Edit Username");
+		$("#typeedit").val('user');
+		var id = $(this).attr('data-value');
+		event.preventDefault(); // prevent form submit
+		$.ajax({
+			url: 'user/get_user/' + id,
+			type: 'POST',
+			beforeSend: function () {
+
+
+
+				document.getElementById('rpModal').style.display = 'block';
+			},
+			success: function (data) {
+				document.getElementById('rpModal').style.display = 'none';
+				var data = JSON.parse(data);
+				
+				$('.divpassword').hide();
+				$('.divcurrentpassword').hide();
+				$('.divusername').show();
+				if (data.status != null) {
+					$('#userId').val(data.data.id);
+					$('#username').val(data.data.username);
+					$("#currentpasswords").prop('required',false);
+					$("#passwords").prop('required',false);
+					$("#confirmpasswords").prop('required',false);
+
+				}
+			},
+			error: function (e) {
+				// console.log(e.toString());  
+				document.getElementById('rpModal').style.display = 'none';
+				swal.fire(
+					'Error',
+					'Oops, your data was not updated.', // had a missing comma
+					'error'
+				);
+			}
+		});
+	});
+
+});
+
+/* Delete data table */
+$('#dataTable tbody').on('click', '#userDelete', function () {
+	var id = $(this).attr('data-value');
+	// console.log('Record ID is', id);     
+	event.preventDefault(); // prevent form submit
+	Swal.fire({
+		title: 'Delete',
+		text: 'Are you sure want to delete this user?',
+		type: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes',
+		reverseButtons: true,
+		cancelButtonText: 'No'
+	}).then((result) => {
+		if (result.value) {
+			$.ajax({
+				url: 'user/delete_user/' + id,
+				type: 'POST',
+				beforeSend: function () {
+					document.getElementById('rpModal').style.display = 'block';
+				},
+				success: function (e) {
+					document.getElementById('rpModal').style.display = 'none';
+					Swal.fire({
+						position: 'center',
+						type: 'success',
+						title: 'Data has been saved',
+						showConfirmButton: false,
+						timer: 1500
+					}).then((timer) => {
+						window.location.href = 'user';
+					});
+				},
+				error: function (e) {
+					// console.log(e.toString());
+					document.getElementById('rpModal').style.display = 'none';
+					swal.fire(
+						'Error',
+						'Oops, your data was not deleted.', // had a missing comma
+						'error'
+					);
+				}
+			});
+		}
 	});
 
 });
