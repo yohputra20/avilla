@@ -19,7 +19,7 @@ class Service_model extends CI_Model
 
         return $result_array;
     }
-
+   
     public function serviceAdd($data)
     {
         $datetime = date('Y-m-d H:i:s');

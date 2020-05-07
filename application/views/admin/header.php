@@ -120,6 +120,19 @@
                     <span>Contact Us</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link nav-dropdown" href="">
+                    <i class="fas fa-fw fa-address-card"></i>
+                    <span>Setting</span></a>
+                <ul class="dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="user">
+                           
+                            <span>User</span></a>
+                    </li>
+                </ul>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -208,7 +221,9 @@
         </div>
     </div>
 
-    <?php if($content_modal!=""){ $this->load->view($content_modal);} ?>
+    <?php if ($content_modal != "") {
+        $this->load->view($content_modal);
+    } ?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="<?php echo base_url(); ?>assets/admin/vendor/jquery/jquery.min.js"></script>
