@@ -223,3 +223,12 @@
   @media all and (max-width:480px) {
 
   }
+
+.collapse-item-user{
+    color:white !important;
+
+}
+  .collapse-item-user:hover{
+      color:black !important;
+
+  }

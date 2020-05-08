@@ -24,7 +24,8 @@ class Contact_us extends CI_Controller{
             'contactus_data' => $contactus_data
         );
         $content['data_content'] = "admin/contact_us";
-        $content['content_modal'] = "admin/modal/service_modal";
+        // $content['content_modal'] = "admin/modal/service_modal";
+        $content['content_modal'] = "";
         
         $this->load->view('admin/header', $content);
     }
