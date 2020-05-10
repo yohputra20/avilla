@@ -16,31 +16,31 @@
                     <div class="col-md-12">
                       <input type="hidden" class="form-control" id="about_usId" name="about_usId" value="">
                         <div class="form-group">
-                            <label class="control-label col-sm-12" for="about_us_title">Title :</label>
+                            <label class="control-label col-sm-12" for="about_us_title">Title<span style="color:red">*</span> :</label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="about_us_title" value="" name="about_us_title" required="">                               
                             </div>
                         </div> 
                         <div class="form-group">
-                          <label class="control-label col-sm-12" for="product_title">Title Meta:</label>
+                          <label class="control-label col-sm-12" for="product_title">Title Meta<span style="color:red">*</span> :</label>
                           <div class="col-sm-12">
                             <input type="text" class="form-control" id="meta_title" value="" name="meta_title" required="">
                           </div>
                         </div>
                         <div class="form-group">
-                          <label class="control-label col-sm-12" for="product_title">Meta Description :</label>
+                          <label class="control-label col-sm-12" for="product_title">Meta Description<span style="color:red">*</span> :</label>
                           <div class="col-sm-12">
                             <input type="text" class="form-control" id="meta_desc" value="" name="meta_desc" required="">
                           </div>
                         </div>                       
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-12" for="gallert_desc">Description :</label>
+                            <label class="control-label col-sm-12" for="gallert_desc">Description<span style="color:red">*</span> :</label>
                             <div class="col-sm-12">
                             <textarea id="about_us_desc" name="about_us_desc" required=""></textarea>                               
                             </div>
                         </div>
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-12" for="gallert_desc">Vision & Mission :</label>
+                            <label class="control-label col-sm-12" for="gallert_desc">Vision & Mission<span style="color:red">*</span> :</label>
                             <div class="col-sm-12">
                             <textarea id="vision_mission" name="vision_mission" required=""></textarea>                               
                             </div>

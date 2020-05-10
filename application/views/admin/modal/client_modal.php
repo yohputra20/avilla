@@ -15,19 +15,19 @@
             <div class="col-md-12">
               <input type="hidden" class="form-control" id="clientId" name="clientId" value="">
               <div class="form-group">
-                <label class="control-label col-sm-12" for="client_title">Title :</label>
+                <label class="control-label col-sm-12" for="client_title">Title<span style="color:red">*</span> :</label>
                 <div class="col-sm-12">
                   <input type="text" class="form-control" id="client_title" value="" name="client_title" required="">
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-sm-12" for="client_title">Alt:</label>
+                <label class="control-label col-sm-12" for="client_title">Alt<span style="color:red">*</span> :</label>
                 <div class="col-sm-12">
                   <input type="text" class="form-control" id="client_meta_title" value="" name="meta_title" required="">
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-sm-12" for="client_title">Meta Description :</label>
+                <label class="control-label col-sm-12" for="client_title">Meta Description<span style="color:red">*</span> :</label>
                 <div class="col-sm-12">
                   <input type="text" class="form-control" id="client_meta_desc" value="" name="meta_desc" required="">
                 </div>
@@ -58,14 +58,14 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-sm-12" for="client_title">Order</label>
+                <label class="control-label col-sm-12" for="client_title">Urutan Letak :</label>
                 <div class="col-sm-12">
                   <input type="number" class="form-control" id="client_order" value="" min="1" max="10" maxlength="10" minlength="1" name="client_order" required="" style="width: 40%">
                 </div>
               </div>
             </div>
             <div class="form-group col-sm-12">
-              <label class="control-label col-sm-12" for="client_desc">Description :</label>
+              <label class="control-label col-sm-12" for="client_desc">Description<span style="color:red">*</span> :</label>
               <div class="col-sm-12">
                 <textarea id="client_desc" class="form-control" name="client_desc" required=""></textarea>
               </div>

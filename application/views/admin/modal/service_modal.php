@@ -16,19 +16,19 @@
             <div class="col-md-12">
               <input type="hidden" class="form-control" id="serviceId" name="serviceId" value="">
               <div class="form-group">
-                <label class="control-label col-sm-12" for="service_title">Title :</label>
+                <label class="control-label col-sm-12" for="service_title">Title<span style="color:red">*</span> :</label>
                 <div class="col-sm-12">
                   <input type="text" class="form-control" id="service_title" value="" name="service_title" required="">
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-sm-12" for="service_title">Title Meta:</label>
+                <label class="control-label col-sm-12" for="service_title">Title Meta<span style="color:red">*</span> :</label>
                 <div class="col-sm-12">
                   <input type="text" class="form-control" id="service_meta_title" value="" name="meta_title" required="">
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-sm-12" for="service_title">Meta Description :</label>
+                <label class="control-label col-sm-12" for="service_title">Meta Description<span style="color:red">*</span> :</label>
                 <div class="col-sm-12">
                   <input type="text" class="form-control" id="service_meta_desc" value="" name="meta_desc" required="">
                 </div>
@@ -60,7 +60,7 @@
               </div>
             </div>
             <div class="form-group col-sm-12">
-              <label class="control-label col-sm-12" for="service_desc">Description :</label>
+              <label class="control-label col-sm-12" for="service_desc">Description<span style="color:red">*</span> :</label>
               <div class="col-sm-12">
                 <textarea id="service_desc" class="form-control" name="service_desc" required=""></textarea>
               </div>

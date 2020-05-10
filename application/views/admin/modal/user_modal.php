@@ -18,7 +18,7 @@
                             <input type="hidden" class="form-control" id="userId" name="userId" value="">
                             <input type="hidden" class="form-control" id="typeedit" name="typeedit" value="">
                             <div class="form-group divusername">
-                                <label class="control-label col-sm-12" for="user_title">Username :</label>
+                                <label class="control-label col-sm-12" for="user_title">Username<span style="color:red">*</span> :</label>
                                 <div class="col-sm-12">
                                     <input type="text" class="form-control" id="username" value="" name="username" required="">
                                 </div>
@@ -31,13 +31,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-12" for="user_title">Password:</label>
+                                    <label class="control-label col-sm-12" for="user_title">Password<span style="color:red">*</span> :</label>
                                     <div class="col-sm-12">
                                         <input type="password" class="form-control" id="passwords" value="" name="passwords" required="">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-12" for="user_title">Confirmation Password :</label>
+                                    <label class="control-label col-sm-12" for="user_title">Confirmation Password<span style="color:red">*</span> :</label>
                                     <div class="col-sm-12">
                                         <input 
                                         type="password" 

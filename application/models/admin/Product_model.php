@@ -66,7 +66,7 @@ class Product_model extends CI_Model
                 return '0';
             }
         } else {
-            $image = $data['service_old_image'];
+            $image = $data['product_old_image'];
         }
         $update_data = array(
             'title' => $data['product_title'],
