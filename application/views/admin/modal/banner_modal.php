@@ -48,13 +48,13 @@
                           </div>
                         </div>
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-12" for="gallert_desc">Urutan Letak :</label>
+                            <label class="control-label col-sm-12" for="gallert_desc">Urutan Letak<span style="color:red">*</span> :</label>
                             <div class="col-sm-12">       
                             <input type="text" class="form-control" id="orderby" value="" name="orderby" required="">                                                    
                             </div>
                         </div>
                         <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-12" for="gallert_desc">Description :</label>
+                            <label class="control-label col-sm-12" for="gallert_desc">Description<span style="color:red">*</span> :</label>
                             <div class="col-sm-12">
                             <textarea id="banner_desc" name="banner_desc" required=""></textarea>                               
                             </div>

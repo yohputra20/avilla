@@ -1163,7 +1163,7 @@ $(document).ready(function () {
 		$('#productForm').parsley().reset();
 		imagearray = [];
 
-		$("#title_product_modal").text("Edit Commission");
+		$("#title_product_modal").text("Edit Product");
 		var id = $(this).attr('data-value');
 
 		event.preventDefault(); // prevent form submit
@@ -1177,15 +1177,19 @@ $(document).ready(function () {
 				var data = JSON.parse(data);
 
 				if (data.status == '1') {
-					$('#preview_image').attr('style', 'display:block');
+					
 					$('#productId').val(data.data.id);
 					$('#product_title').val(data.data.alt);
 					$('#product_meta_title').val(data.data.meta_title);
 					$('#product_meta_desc').val(data.data.meta_description);
 					$('#product_old_image').val(data.data.img_path);
-					$('#preview_image').attr('src', base_url + '/assets/admin/upload/product/' + data.data.img_path);
+					if(data.data.img_path){
+						$('#preview_image').attr('style', 'display:block');
+						$('#preview_image').attr('src', base_url + '/assets/admin/upload/product/' + data.data.img_path);
+					}
+					
 
-					tinyMCE.activeEditor.setContent(data.data[0].description);
+					tinyMCE.activeEditor.setContent(data.data.description);
 				}
 				document.getElementById('rpModal').style.display = 'none';
 			},
