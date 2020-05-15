@@ -50,7 +50,7 @@
                     
                         <div class="single-service">
                             <div class="hover_image_service_box">
-                                <img class="img_services" src="<?php echo base_url()."assets/admin/upload/service/".$row['img_path']; ?>"
+                                <img class="img_services bttrlazyloading" data-bttrlazyloading-sm-src="<?php echo base_url()."assets/admin/upload/service/".$row['img_path']; ?>"
                                     alt="<?php echo $row['meta_title']?>">
                             </div>
                             <br>
@@ -96,7 +96,7 @@
                             <a href="<?php echo base_url()."assets/admin/upload/product/".$row['img_path']; ?>"
                                 alt="<?php echo $row['alt']?>" class="zoom">
                                 <div class="portfolio-head">
-                                    <img src="<?php echo base_url()."assets/admin/upload/product/".$row['img_path']; ?>"
+                                    <img class="bttrlazyloading" data-bttrlazyloading-sm-src="<?php echo base_url()."assets/admin/upload/product/".$row['img_path']; ?>"
                                         alt="<?php echo $row['alt']?>" />
                                     <i class="fa fa-search"></i>
                                 </div>
@@ -222,7 +222,7 @@
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <a title="Lokasi PT Avilla Jaya Teknik" target="_blank" href="https://www.google.com/maps/place/PT+Avilla+Jaya+Teknik/@-6.1254101,106.7302827,16.75z/data=!4m5!3m4!1s0x2e6a1dc6db31b3d5:0x2bb145509be38a7e!8m2!3d-6.1254049!4d106.7295137">
-                        <img src="<?php echo base_url();?>assets/front/images/maps_avilla.png" class="img-responsive"
+                        <img data-bttrlazyloading-sm-src="<?php echo base_url();?>assets/front/images/maps_avilla.png" class="img-responsive bttrlazyloading"
                         style="border: 1px solid #dfdfdf;" />
                     </a>
                 </div>

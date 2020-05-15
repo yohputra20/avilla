@@ -57,7 +57,7 @@
     <!-- You Can Use 8 Different color Just remove bottom of the comment tag -->
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/front/css/skin/green.css">
-
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/front/css/bttrlazyloading.min.css">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166766177-1"></script>
     <script>
@@ -78,14 +78,14 @@
 
 
     <!-- Preloader -->
-    <div class="loader">
-        <div class="l-inner">
-            <div class="k-spinner">
-                <div class="k-bubble-1"></div>
-                <div class="k-bubble-2"></div>
-            </div>
-        </div>
-    </div>
+    <!--<div class="loader">-->
+    <!--    <div class="l-inner">-->
+    <!--        <div class="k-spinner">-->
+    <!--            <div class="k-bubble-1"></div>-->
+    <!--            <div class="k-bubble-2"></div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
     <!--/ End Preloader -->
 
 
@@ -140,6 +140,15 @@
 
     <!-- Main JS -->
     <script type="text/javascript" src="<?php echo base_url();?>assets/front/js/main.js"></script>
+
+    <script type="text/javascript" src="<?php echo base_url();?>assets/front/js/jquery.bttrlazyloading.min.js"></script>
+
+    <script>
+        $('.bttrlazyloading').bttrlazyloading({
+            delay: 500,
+            placeholder: '<?php echo base_url() ?>assets/front/images/loading_animate.gif'
+        });
+    </script>
 </body>
 
 </html>
