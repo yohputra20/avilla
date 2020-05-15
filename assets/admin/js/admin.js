@@ -1179,8 +1179,8 @@ $(document).ready(function () {
 				if (data.status == '1') {
 					
 					$('#productId').val(data.data.id);
-					$('#product_title').val(data.data.alt);
-					$('#product_meta_title').val(data.data.meta_title);
+					$('#product_title').val(data.data.title);
+					$('#product_meta_title').val(data.data.alt);
 					$('#product_meta_desc').val(data.data.meta_description);
 					$('#product_old_image').val(data.data.img_path);
 					if(data.data.img_path){

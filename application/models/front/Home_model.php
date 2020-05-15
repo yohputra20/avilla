@@ -12,4 +12,14 @@ class Home_model extends CI_Model
         return $query->result_array();
         
     }
+
+    public function get_data_by_slug($slug, $nama_table){
+        $this->db->select("*");
+        $this->db->from($nama_table);
+        $this->db->where("fdelete", "0");
+        $this->db->where("slug", $slug);
+        $query = $this->db->get();
+
+        return $query->row_array();
+    }
 }

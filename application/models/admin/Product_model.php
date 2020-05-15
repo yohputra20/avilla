@@ -39,6 +39,7 @@ class Product_model extends CI_Model
             'img_path' => $image,
             'meta_description' => $data['meta_desc'],
             'description' => $data['product_desc'],
+            'slug' => str_replace(" ","-",$data['product_title']),
             'fdelete' => '0',
             'createdDate' => $datetime,
             'createdBy' =>  $this->username,
@@ -74,6 +75,7 @@ class Product_model extends CI_Model
             'img_path' => $image,
             'meta_description' => $data['meta_desc'],
             'description' => $data['product_desc'],
+            'slug' => str_replace(" ","-",$data['product_title']),
             'modifiedBy' =>  $this->username,
             'modifiedDate' => $datetime,
         );
