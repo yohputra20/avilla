@@ -56,7 +56,7 @@
                             <br>
                             <h2><?php echo $row['title']; ?></h2>
 
-                            <?php $description = strlen($row['description']) > 200 ? substr($row['description'],0,50)."..." : $row['description'];
+                            <?php $description = strlen($row['description']) > 200 ? substr($row['description'],0,200)."..." : $row['description'];
                                   echo $description; ?>
                 
                             <?php if(strlen($row['description']) > 200) { ?>
@@ -105,11 +105,11 @@
                                 <h4><a href="#"><?php echo $row['title']; ?></a></h4>
                                 <p>
                                     <?php 
-                                    $description = strlen($row['description']) > 200 ? substr($row['description'],0,50)."..." : $row['description'];
+                                    $description = strlen($row['description']) > 200 ? substr($row['description'],0,200)."..." : $row['description'];
                                     echo $description; 
                                     ?>
                                 </p>
-                                <?php if(strlen($row['description']) > 2) { ?>
+                                <?php if(strlen($row['description']) > 200) { ?>
                                 <a href="<?php echo base_url();?>front/home_controllers/detail_page/product/<?php echo $row['slug']?>" title="Baca selengkapnya"><u>Baca selengkapnya </u></a>
                             <?php } ?>
                             </div>
