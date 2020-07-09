@@ -38,6 +38,7 @@ class Service_model extends CI_Model
             'img_path' => $image,
             'meta_description' => $data['meta_desc'],
             'description' => $data['service_desc'],
+            'slug' => str_replace(" ","-",$data['service_title']),
             'fdelete' => '0',
             'createdDate' => $datetime,
             'createdBy' =>  $this->username,
@@ -84,6 +85,7 @@ class Service_model extends CI_Model
             'meta_description' => $data['meta_desc'],
             'img_path' => $image,
             'description' => $data['service_desc'],
+            'slug' => str_replace(" ","-",$data['service_title']),
             'modifiedBy' =>  $this->username,
             'modifiedDate' => $datetime,
         );

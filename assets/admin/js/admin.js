@@ -1,3 +1,4 @@
+var base_url= $('#baseurl').val();
 var imgcounter = 0;
 var imagearray = [];
 $(document).on('focusin', function (e) { // for modal insert/edit link in tinyMCE
@@ -46,6 +47,16 @@ function productPreviewImage() {
 	};
 };
 
+function productPreviewDetailLogoImage() {
+
+	document.getElementById('previewlogo_image').style.display = 'block';
+	var oFReader = new FileReader();
+	oFReader.readAsDataURL(document.getElementById('image_source_productlogo').files[0]);
+
+	oFReader.onload = function (oFREvent) {
+		document.getElementById('previewlogo_image').src = oFREvent.target.result;
+	};
+};
 
 function showImgInfo() {
 	if (imgcounter <= 0) {
@@ -1177,17 +1188,17 @@ $(document).ready(function () {
 				var data = JSON.parse(data);
 
 				if (data.status == '1') {
-					
+
 					$('#productId').val(data.data.id);
-					$('#product_title').val(data.data.alt);
-					$('#product_meta_title').val(data.data.meta_title);
+					$('#product_title').val(data.data.title);
+					$('#product_meta_title').val(data.data.alt);
 					$('#product_meta_desc').val(data.data.meta_description);
 					$('#product_old_image').val(data.data.img_path);
-					if(data.data.img_path){
+					if (data.data.img_path) {
 						$('#preview_image').attr('style', 'display:block');
 						$('#preview_image').attr('src', base_url + '/assets/admin/upload/product/' + data.data.img_path);
 					}
-					
+
 
 					tinyMCE.activeEditor.setContent(data.data.description);
 				}
@@ -1253,6 +1264,107 @@ $(document).ready(function () {
 			}
 		});
 	});
+
+	$('#dataTable tbody').on('click', '#productList', function () {
+
+		var id = $(this).attr('data-value');
+		// location.replace("product/listprodukdetail/"+id);
+		$.ajax({
+			url: 'product/listprodukdetailview/' + id,
+			type: 'POST',
+			beforeSend: function () {
+				document.getElementById('rpModal').style.display = 'block';
+			},
+			success: function (e) {
+				document.getElementById('rpModal').style.display = 'none';
+				var data = JSON.parse(e);
+				$('.productdetail').html(data.data_content);
+				$('.modaldetail').html(data.content_modal);
+				getlistproductdetail();
+			},
+			error: function (e) {
+
+
+			}
+		});
+
+	});
+	$('#productDetailForm').parsley();
+	$('#productDetailForm').on('submit', function (e) {
+		e.preventDefault();
+		var url;
+		var form = $(this);
+		form.parsley().validate();
+		var formData = new FormData(this);
+		var selectimg = $('#selected_image').val();
+
+		var id = $('#productDetailId').val();
+
+		if (id != '') {
+			url = 'product/edit_productdetail';
+
+		} else {
+			url = 'product/add_productdetail';
+
+		}
+
+		if (form.parsley().isValid()) {
+			$.ajax({
+				url: url,
+				data: formData,
+				type: 'POST',
+				datatype: 'JSON',
+				async: false,
+				processData: false,
+				contentType: false,
+				beforeSend: function () {
+					document.getElementById('rpModal').style.display = 'block';
+				},
+				success: function (data) {
+					var data = JSON.parse(data);
+
+					document.getElementById('rpModal').style.display = 'none';
+					if (data.status == 1) {
+						Swal.fire({
+							position: 'center',
+							type: 'success',
+							title: 'Data has been saved',
+							showConfirmButton: false,
+							timer: 1500
+						}).then((timer) => {
+							window.location.href = 'product';
+						});
+					} else {
+						document.getElementById('rpModal').style.display = 'none';
+						swal.fire(
+							'Error',
+							'Oops, your data was not saved.', // had a missing comma
+							'error'
+						)
+					}
+
+				},
+				error: function (e) {
+
+					document.getElementById('rpModal').style.display = 'none';
+
+					swal.fire(
+						'Error',
+						'Oops, your data was not saved.', // had a missing comma
+						'error'
+					)
+				}
+			});
+		}
+
+	})
+
+	// $('#productDetailAdd').on('click', function (e) {
+
+
+	// });
+
+
 
 	/* ================================================================================================================= */
 
@@ -1508,11 +1620,8 @@ $(document).ready(function () {
 							'error'
 						)
 					}
-
-
 				},
 				error: function (e) {
-
 					document.getElementById('rpModal').style.display = 'none';
 
 					swal.fire(
@@ -1533,8 +1642,8 @@ $(document).ready(function () {
 		$("#title_user_modal").text("Edit Password");
 		$("#typeedit").val('password');
 		var id = $(this).attr('data-value');
-		$("#username").prop('required',false);
-		$("#currentpasswords").prop('required',true);
+		$("#username").prop('required', false);
+		$("#currentpasswords").prop('required', true);
 		$('#userId').val(id);
 		$('.divpassword').show();
 		$('.divcurrentpassword').show();
@@ -1559,16 +1668,16 @@ $(document).ready(function () {
 			success: function (data) {
 				document.getElementById('rpModal').style.display = 'none';
 				var data = JSON.parse(data);
-				
+
 				$('.divpassword').hide();
 				$('.divcurrentpassword').hide();
 				$('.divusername').show();
 				if (data.status != null) {
 					$('#userId').val(data.data.id);
 					$('#username').val(data.data.username);
-					$("#currentpasswords").prop('required',false);
-					$("#passwords").prop('required',false);
-					$("#confirmpasswords").prop('required',false);
+					$("#currentpasswords").prop('required', false);
+					$("#passwords").prop('required', false);
+					$("#confirmpasswords").prop('required', false);
 
 				}
 			},
@@ -1635,3 +1744,44 @@ $('#dataTable tbody').on('click', '#userDelete', function () {
 	});
 
 });
+
+function clickproductdetailadd() {
+
+	$('#productDetailModal').modal('show');
+	$('#productDetailForm').parsley().reset();
+
+	$("#title_productDetail_modal").text("Add Product Detail");
+	// var id = $('#productId').val();
+	$('#preview_image').attr('style', 'display:none');
+	$('#previewlogo_image').attr('style', 'display:none');
+	$('#productDetailId').val(null);
+	$('#productDetail_title').val(null);
+	$('#product_old_image').val(null);
+	$('#product_meta_title').val(null);
+	$('#product_meta_desc').val(null);
+	tinyMCE.activeEditor.setContent('');
+	$('#preview_image').attr('src', '');
+}
+
+function getlistproductdetail(){
+	var produkid=$('#product_id').val();
+	$('#dataTabledetailproduct').dataTable({
+		"sPaginationType": "full_numbers",
+
+		"iDisplayLength": 30,
+		"bDestroy": true,
+		"bLengthChange": false,
+		"aaSorting": [],
+		"bAutoWidth": false,
+		"bSortable": false,
+		"bSortClasses": true,
+		"responsive": true,
+		"sAjaxSource": base_url+ 'admin/product/listprodukdetaildata/'+produkid, //ambil jsonnya di controler usermanagement
+		// "fnServerParams": function (aoData) {
+		// 	aoData.push({
+		// 		'name': 'produk_id',
+		// 		'value': produkid
+		// 	});
+		// }
+	});
+}

@@ -108,6 +108,29 @@ class Product extends CI_Controller{
             ];
         }
         echo json_encode($balikan);
+    } 
+
+    public function listprodukdetailview($id){
+        // $getdetail['query'] = $this->product_model->getProdukDetail($id);
+        $content = array(
+            'username' => $this->session->userdata('username'),
+            // 'detaildata' => $getdetail
+        );
+        $content['product_id']=$id;
+        $content['data_content'] =  $this->load->view("admin/product_detail",$content,true);
+        $content['content_modal'] =  $this->load->view("admin/modal/productdetail_modal",$content,true);
+       
+        
+       echo json_encode($content);
+    }
+    public function listprodukdetaildata($id){
+        $getdetail = $this->product_model->getProdukDetail($id);
+        echo json_encode($getdetail);
+    }
+    public function add_productdetail(){
+        $data=$_POST;
+
+        $savedata=$this->product_model->insertProductDetail($data);
+        echo json_encode($savedata);
     }
 }
-?> 

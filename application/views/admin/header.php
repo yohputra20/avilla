@@ -134,10 +134,14 @@
             </li> -->
 
             <li class="nav-item">
-                <a class="nav-link <?php if($this->uri->segment(2) != "user"){echo "collapsed"; }?>" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link <?php if ($this->uri->segment(2) != "user") {
+                                        echo "collapsed";
+                                    } ?>" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-image"></i>
                     <span>Setting</span></a>
-                <div id="collapseTwo" class="collapse <?php if($this->uri->segment(2) == "user"){echo "show"; }?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse <?php if ($this->uri->segment(2) == "user") {
+                                                            echo "show";
+                                                        } ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="py-2 collapse-inner">
                         <a class="collapse-item collapse-item-user" href="user"><i class="fas fa-fw fa-user"></i> &nbsp;User</a>
                     </div>
@@ -195,7 +199,7 @@
                 <div class="container-fluid">
                     <?php $this->load->view($data_content); ?>
                 </div>
-                <!-- /.container-fluid -->
+                <input id="baseurl" type="hidden" value="<?php echo base_url(); ?>" <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->

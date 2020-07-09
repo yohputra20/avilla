@@ -29,6 +29,7 @@
                       <th>Meta</th>
                       <th>Image</th>
                       <th>Description</th>
+                      <th>Slug</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -49,6 +50,7 @@
                                                                                                       } ?>" />
                         </td>
                         <td width="25%"><?php echo $row['description']; ?></td>
+                        <!-- <td width="25%"><?php echo $row['slug']; ?></td> -->
                         <td align="center" width="10%">
                           <button id="serviceEdit" class="btn btn-warning btn-sm margin5" data-value="<?php echo $row['id']; ?>">
                             <i class="fa fa-edit"></i>

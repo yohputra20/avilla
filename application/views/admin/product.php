@@ -1,5 +1,5 @@
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid productdetail">
 
           <!-- Page Heading -->
 
@@ -43,6 +43,9 @@
                         </td>
                         <td width="30%"><?php echo $row['description']; ?></td>
                         <td align="center" width="5%">
+                        <button id="productList" class="btn btn-info margin5" data-value="<?php echo $row['id']; ?>">
+                            <i class="fa fa-list"></i>
+                          </button>
                           <button id="productEdit" class="btn btn-warning margin5" data-value="<?php echo $row['id']; ?>">
                             <i class="fa fa-edit"></i>
                           </button>
@@ -60,4 +63,5 @@
           </div>
 
         </div>
+        <div class="modaldetail"></div>
         <!-- /.container-fluid -->
