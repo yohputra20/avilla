@@ -47,7 +47,7 @@ function productPreviewImage() {
 	};
 };
 
-function productPreviewDetailLogoImage() {
+function productLogoImage() {
 
 	document.getElementById('previewlogo_image').style.display = 'block';
 	var oFReader = new FileReader();
@@ -1289,9 +1289,11 @@ $(document).ready(function () {
 		});
 
 	});
-	$('#productDetailForm').parsley();
+
+	// $('#productDetailForm').parsley();
 	$('#productDetailForm').on('submit', function (e) {
 		e.preventDefault();
+		console.log('dada')
 		var url;
 		var form = $(this);
 		form.parsley().validate();

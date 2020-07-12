@@ -278,12 +278,13 @@
                 ' removeformat ',
         });
     </script>
-    <!-- Admin JavaScript-->
-    <script src="<?php echo base_url(); ?>assets/admin/js/admin.js"></script>
-
     <!-- Parsley JS -->
     <script src="<?php echo base_url(); ?>assets/admin/js/parsley.js"></script>
     <script src="<?php echo base_url(); ?>assets/admin/js/parsley.min.js"></script>
+    <!-- Admin JavaScript-->
+    <script src="<?php echo base_url(); ?>assets/admin/js/admin.js"></script>
+
+    
 
 
 </body>

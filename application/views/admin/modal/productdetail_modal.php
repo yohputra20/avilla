@@ -32,16 +32,16 @@
                                 <label class="control-label col-sm-12" for="product_title">Logo<span style="color:red">*</span> :</label>
                                 <input type="hidden" class="form-control" id="productlogo_old_image" name="productlogo_old_image" value="">
                                 <div class="col-sm-2 image-upload">
-                                    <label for="image_source_product" class="form-control">
+                                    <label for="image_source_productlogo" class="form-control">
                                         <center>
                                             <i class="fa fa-camera" aria-hidden="true"></i>
                                         </center>
                                     </label>
                                 </div>
                                 <div class="col-sm-12">
-                                    <input class="fa fa-camera" style="display: none" type="file" id="image_source_productlogo" name="image_source_productlogo" onchange="productPreviewDetailLogoImage()" accept="image/jpeg,image/jpg,image/jpe,image/png,image/gif,image/webp,image/bmp,image/tiff" ref="input" />
+                                    <input class="fa fa-camera" style="display: none" type="file" id="image_source_productlogo" name="image_source_productlogo" onchange="productLogoImage()" accept="image/jpeg,image/jpg,image/jpe,image/png,image/gif,image/webp,image/bmp,image/tiff" ref="input" />
                                 </div>
-                                <div class="product-preview">
+                                <div class="product-previewlogo">
                                     <div class="col-sm-3">
                                     </div>
                                     <div class="col-sm-9">
@@ -84,7 +84,7 @@
                         <div class="form-group col-sm-12">
                             <label class="control-label col-sm-12" for="product_desc">Product Specification:</label>
                             <div class="col-sm-12">
-                                <input class='form_control' type="file" id="excel_product_spec" name="excel_product_spec" accept=".xls" ref="input">
+                                <input class='form_control' type="file" id="excel_product_spec" name="excel_product_spec" accept=".xls,.xlsx" ref="input">
                             </div>
                         </div>
                     </div>
