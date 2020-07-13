@@ -1264,33 +1264,33 @@ $(document).ready(function () {
 			}
 		});
 	});
-
+	getlistproductdetail();
 	$('#dataTable tbody').on('click', '#productList', function () {
 
 		var id = $(this).attr('data-value');
-		// location.replace("product/listprodukdetail/"+id);
-		$.ajax({
-			url: 'product/listprodukdetailview/' + id,
-			type: 'POST',
-			beforeSend: function () {
-				document.getElementById('rpModal').style.display = 'block';
-			},
-			success: function (e) {
-				document.getElementById('rpModal').style.display = 'none';
-				var data = JSON.parse(e);
-				$('.productdetail').html(data.data_content);
-				$('.modaldetail').html(data.content_modal);
-				getlistproductdetail();
-			},
-			error: function (e) {
+		location.replace(base_url + "admin/product/listprodukdetailview/"+id);
+		// $.ajax({
+		// 	url: 'product/listprodukdetailview/' + id,
+		// 	type: 'POST',
+		// 	beforeSend: function () {
+		// 		document.getElementById('rpModal').style.display = 'block';
+		// 	},
+		// 	success: function (e) {
+		// 		document.getElementById('rpModal').style.display = 'none';
+		// 		var data = JSON.parse(e);
+		// 		$('.productdetail').html(data.data_content);
+		// 		$('.modaldetail').html(data.content_modal);
+		// 		getlistproductdetail();
+		// 	},
+		// 	error: function (e) {
 
 
-			}
-		});
+		// 	}
+		// });
 
 	});
 
-	// $('#productDetailForm').parsley();
+	$('#productDetailForm').parsley();
 	$('#productDetailForm').on('submit', function (e) {
 		e.preventDefault();
 		console.log('dada')
@@ -1303,10 +1303,10 @@ $(document).ready(function () {
 		var id = $('#productDetailId').val();
 
 		if (id != '') {
-			url = 'product/edit_productdetail';
+			url = base_url+ 'admin/product/edit_productdetail';
 
 		} else {
-			url = 'product/add_productdetail';
+			url =base_url+ 'admin/product/add_productdetail';
 
 		}
 

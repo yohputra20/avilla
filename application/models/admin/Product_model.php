@@ -58,9 +58,12 @@ class Product_model extends CI_Model
             $query = $this->db->get('product');
             $result = $query->row_array();
 
-            if (file_exists("./assets/admin/upload/product/" . $result['img_path'])) {
-                unlink("./assets/admin/upload/product/" . $result['img_path']);
+            if($result['img_path']!=''){
+                if (file_exists("./assets/admin/upload/product/" . $result['img_path'])) {
+                    unlink("./assets/admin/upload/product/" . $result['img_path']);
+                }
             }
+           
 
             $image = $this->_uploadImage('product' . '_' . uniqid(), 'image_source_product');
             if ($image == '0') {
@@ -133,15 +136,15 @@ class Product_model extends CI_Model
 
     private function _uploadexcel($file_name, $excel_name)
     {
-        $this->load->library('upload'); // Load librari upload
+        // $this->load->library('upload'); // Load librari upload
 
-        $config['upload_path'] = './assets/upload/product/excel_spec';
-        $config['allowed_types'] = 'xlsx';
+        $config['upload_path'] = './assets/upload/product/excel_spec/';
+        $config['allowed_types'] = 'xlsx|csv|xls';
         $config['max_size']  = '2048';
         $config['overwrite'] = true;
         $config['file_name'] = $file_name;
 
-        $this->upload->initialize($config); // Load konfigurasi uploadnya
+        $this->load->library('upload', $config); // Load konfigurasi uploadnya
         if ($this->upload->do_upload($excel_name)) { // Lakukan upload dan Cek jika proses upload berhasil
             // Jika berhasil :
             $return = array('status' => '1', 'file' => $this->upload->data(), 'error' => '');
@@ -317,16 +320,26 @@ class Product_model extends CI_Model
         $datetime = date('Y-m-d H:i:s');
 
         if (!empty($_FILES['image_source_product']['name'])) {
-            $image = $this->_uploadImage('product' . '_' . uniqid(), 'image_source_product');
+            $image ='assets/admin/upload/product/'. $this->_uploadImage('product' . '_' . uniqid(), 'image_source_product');
             if ($image == '0') {
                 return '0';
             }
         } else {
             $image = $data['product_old_image'];
         }
+
+        if (!empty($_FILES['image_source_productlogo']['name'])) {
+            $imagelogo = $this->_uploadImage('logo' . '_' . uniqid(), 'image_source_product');
+            if ($imagelogo == '0') {
+                return '0';
+            }
+        } else {
+            $imagelogo = $data['productlogo_old_image'];
+        }
+        // echo json_encode($_FILES['excel_product_spec']);die();
         if (!empty($_FILES['excel_product_spec']['name'])) {
             $excelname= str_replace(" ", "_", $data['product_title']). '_' .uniqid();
-            $excel = $this->_uploadImage($excelname, 'excel_product_spec');
+            $excel =  $this->_uploadexcel($excelname, 'excel_product_spec');
             if ($excel == '0') {
                 return '0';
             }
@@ -339,9 +352,9 @@ class Product_model extends CI_Model
         $insert_data = array(
             'product_id'=>$data['productId'],
             'title' => $data['product_title'],
-            // 'slug' => $data['meta_title'],
+            'meta_title' => $data['meta_title'],
             'path_img' => $image,
-            'path_logo' => $data['meta_desc'],
+            'path_logo' => $imagelogo,
             'description' => $data['descdetail'],
             'slug' => str_replace(" ", "-", $data['product_title']),
             'path_spec'=>$excel,
@@ -349,6 +362,7 @@ class Product_model extends CI_Model
             'createdDate' => $datetime,
             'createdBy' =>  $this->username,
         );
+        echo json_encode($insert_data);die();
         $product_insert = $this->db->insert('productdetail', $insert_data);
         $insert_id = $this->db->insert_id();  
         if($product_insert==1 && $excelname!='' )  {

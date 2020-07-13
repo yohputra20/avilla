@@ -193,7 +193,12 @@
 .label_view{
     color: black;
 }
-
+#previewlogo_image{
+    display: none;
+    max-width: 300px;
+    max-height: 168px;
+    height: auto;
+}
 /* input[type="file"] {
     display: block;
   } */
