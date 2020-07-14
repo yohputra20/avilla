@@ -19,7 +19,7 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-12" for="product_title">Title<span style="color:red">*</span> :</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" id="product_title" value="" name="product_title" required="">
+                                    <input type="text" class="form-control" id="productDetail_title" value="" name="product_title" required="">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -41,7 +41,7 @@
                                 <div class="col-sm-12">
                                     <input class="fa fa-camera" style="display: none" type="file" id="image_source_productlogo" name="image_source_productlogo" onchange="productLogoImage()" accept="image/jpeg,image/jpg,image/jpe,image/png,image/gif,image/webp,image/bmp,image/tiff" ref="input" />
                                 </div>
-                                <div class="product-previewlogo">
+                                <div class="product-preview">
                                     <div class="col-sm-3">
                                     </div>
                                     <div class="col-sm-9">

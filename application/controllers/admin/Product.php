@@ -117,11 +117,18 @@ class Product extends CI_Controller{
             // 'detaildata' => $getdetail
         );
         $content['product_id']=$id;
-        $content['data_content'] =  $this->load->view("admin/product_detail",$content,true);
-        $content['content_modal'] =  $this->load->view("admin/modal/productdetail_modal",$content,true);
+        // $content['data_content'] =  $this->load->view("admin/product_detail",$content,true);
+        // $content['content_modal'] =  $this->load->view("admin/modal/productdetail_modal",$content,true);
        
+        // $content = array(
+        //     'username' => $this->session->userdata('username'),
+        //     'product_data' => $product_data
+        // );
+        $content['data_content'] = "admin/product_detail";
+        $content['content_modal'] = "admin/modal/productdetail_modal";
         
-       echo json_encode($content);
+        $this->load->view('admin/header', $content);
+    //    echo json_encode($content);
     }
     public function listprodukdetaildata($id){
         $getdetail = $this->product_model->getProdukDetail($id);

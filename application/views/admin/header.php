@@ -69,7 +69,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="home">
+                <a class="nav-link" href="<?php echo base_url();?>admin/home">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -79,35 +79,35 @@
 
             <!-- Nav Item - Product -->
             <li class="nav-item">
-                <a class="nav-link" href="product">
+                <a class="nav-link" href="<?php echo base_url();?>admin/product">
                     <i class="fas fa-fw fa-newspaper"></i>
                     <span>Product</span></a>
             </li>
 
             <!-- Nav Item - Service -->
             <li class="nav-item">
-                <a class="nav-link" href="service">
+                <a class="nav-link" href="<?php echo base_url();?>admin/service">
                     <i class="fas fa-fw fa-address-card"></i>
                     <span>Service</span></a>
             </li>
 
             <!-- Nav Item - Client -->
             <li class="nav-item">
-                <a class="nav-link" href="client">
+                <a class="nav-link" href="<?php echo base_url();?>admin/client">
                     <i class="fas fa-fw fa-address-card"></i>
                     <span>Client</span></a>
             </li>
 
             <!-- Nav Item - Banner -->
             <li class="nav-item">
-                <a class="nav-link" href="banner">
+                <a class="nav-link" href="<?php echo base_url();?>admin/banner">
                     <i class="fas fa-fw fa-suitcase"></i>
                     <span>Banner</span></a>
             </li>
 
             <!-- Nav Item - About Us -->
             <li class="nav-item">
-                <a class="nav-link" href="about_us">
+                <a class="nav-link" href="<?php echo base_url();?>admin/about_us">
                     <i class="fas fa-fw fa-image"></i>
                     <span>About Us</span></a>
             </li>
@@ -115,7 +115,7 @@
 
             <!-- Nav Item - Contact Us -->
             <li class="nav-item">
-                <a class="nav-link" href="contact_us">
+                <a class="nav-link" href="<?php echo base_url();?>admin/contact_us">
                     <i class="fas fa-fw fa-address-card"></i>
                     <span>Contact Us</span></a>
             </li>
