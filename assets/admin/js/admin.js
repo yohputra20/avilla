@@ -1334,7 +1334,8 @@ $(document).ready(function () {
 							showConfirmButton: false,
 							timer: 1500
 						}).then((timer) => {
-							window.location.href = 'product';
+							$('#productDetailModal').modal('hide');
+							getlistproductdetail();
 						});
 					} else {
 						document.getElementById('rpModal').style.display = 'none';
@@ -1360,11 +1361,53 @@ $(document).ready(function () {
 		}
 
 	})
+	$('#dataTable tbody').on('click', '#productDetailEdit', function () {
+		$('#productDetailModal').modal('show');
+		$('#productForm').parsley().reset();
+		imagearray = [];
 
-	// $('#productDetailAdd').on('click', function (e) {
+		$("#title_product_modal").text("Edit Product");
+		var id = $(this).attr('data-value');
+
+		event.preventDefault(); // prevent form submit
+		$.ajax({
+			url: 'product/get_product/' + id,
+			type: 'POST',
+			beforeSend: function () {
+				document.getElementById('rpModal').style.display = 'block';
+			},
+			success: function (data) {
+				var data = JSON.parse(data);
+
+				if (data.status == '1') {
+
+					$('#productId').val(data.data.id);
+					$('#product_title').val(data.data.title);
+					$('#product_meta_title').val(data.data.alt);
+					$('#product_meta_desc').val(data.data.meta_description);
+					$('#product_old_image').val(data.data.img_path);
+					if (data.data.img_path) {
+						$('#preview_image').attr('style', 'display:block');
+						$('#preview_image').attr('src', base_url + '/assets/admin/upload/product/' + data.data.img_path);
+					}
 
 
-	// });
+					tinyMCE.activeEditor.setContent(data.data.description);
+				}
+				document.getElementById('rpModal').style.display = 'none';
+			},
+			error: function (e) {
+
+				document.getElementById('rpModal').style.display = 'none';
+				swal.fire(
+					'Error',
+					'Oops, your data was not updated.', // had a missing comma
+					'error'
+				);
+			}
+		});
+	});
+
 
 
 

@@ -134,10 +134,38 @@ class Product extends CI_Controller{
         $getdetail = $this->product_model->getProdukDetail($id);
         echo json_encode($getdetail);
     }
+    public function getprodukdetaildata($detailid){
+        $getdetail = $this->product_model->getOneProdukDetail($detailid);
+        echo json_encode($getdetail);
+    }
     public function add_productdetail(){
         $data=$_POST;
 
         $savedata=$this->product_model->insertProductDetail($data);
         echo json_encode($savedata);
     }
+    public function edit_productdetail(){
+        $data=$_POST;
+
+        $savedata=$this->product_model->updateProductDetail($data);
+        echo json_encode($savedata);
+    }
+    public function deleteproductdetail($id){
+        $delete = $this->product_model->deleteProdukDetail($id);
+
+        if ($delete == 1) {
+            $balikan = [
+                'status' => '1',
+                'message' => 'success',
+                'data' => $delete
+            ];
+        }else {
+            $balikan = [
+                'status' => '0',
+                'message' => 'failed',
+                'data' => []
+            ];
+        }
+        echo json_encode($balikan);
+    } 
 }

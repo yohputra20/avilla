@@ -284,12 +284,13 @@ class Product_model extends CI_Model
         $this->db->order_by('modifiedDate', 'desc');
         $query = $this->db->get('productdetail');
         $result_array = $query->result_array();
+        // echo json_encode($result_array);die();
         $json['aaData'] = array();
         if (sizeof($result_array) > 0) {
             $x = 1;
             foreach ($result_array as $row) {
                 $row['path_img'] = $row['path_img'] != '' ? base_url() . "/assets/admin/upload/product/" . $row['path_img'] : base_url() . "/assets/admin/img/no_photo.jpg";
-                $row['path_img'] = $row['path_logo'] != '' ? base_url() . "/assets/admin/upload/product/" . $row['path_logo'] : base_url() . "/assets/admin/img/no_photo.jpg";
+                $row['path_logo'] = $row['path_logo'] != '' ? base_url() . "/assets/admin/upload/product/" . $row['path_logo'] : base_url() . "/assets/admin/img/no_photo.jpg";
                 $btndetail = ' <button id="productspecdetail" class="btn btn-info margin5" data-value="' . $row['id'] . '">
                 <i class="fa fa-list"></i>
             </button>';
@@ -302,9 +303,10 @@ class Product_model extends CI_Model
                 $json['aaData'][] = array(
                     $x,
                     $row['title'],
-                    $row['slug'],
-                    '<img id="preview_image_list" alt="image preview" width="400" src="' . $row['path_img'] . '" />',
-                    '<img id="preview_logo_list" alt="image preview" width="200" src="' . $row['path_logo'] . '" />',
+                    $row['meta_title'],
+                    '<img id="preview_image_list" alt="image preview" width="300" src="' . $row['path_img'] . '" />',
+                    '<img id="preview_logo_list" alt="image preview" width="100" src="' . $row['path_logo'] . '" />',
+                    '',
                     $btndetail . " " . $btnedit . " " . $btndelete
                 );
                 $x++;
@@ -362,7 +364,7 @@ class Product_model extends CI_Model
             'createdDate' => $datetime,
             'createdBy' =>  $this->username,
         );
-        echo json_encode($insert_data);die();
+        // echo json_encode($insert_data);die();
         $product_insert = $this->db->insert('productdetail', $insert_data);
         $insert_id = $this->db->insert_id();  
         if($product_insert==1 && $excelname!='' )  {
@@ -372,11 +374,108 @@ class Product_model extends CI_Model
             $balikan=$readexcel;
         }else{
             $balikan = array(
-                'status' => 0,
-                'msg' => 'File Excel tidak di upload'
+                'status' => 1,
+                'msg' => 'File Excel tidak ada data'
             );
-        } 
+        }
         
         return $balikan;
+    }
+    function getOneProdukDetail($detailProdukId){
+        $this->db->select('*');
+        $this->db->where('id', $detailProdukId);
+        $this->db->where('fdelete', '0');
+        $this->db->order_by('modifiedDate', 'desc');
+        $query = $this->db->get('productdetail');
+        $result_array = $query->row_array();
+        if(sizeof($result_array)>0){
+            $result_array['path_img']=$result_array['path_img']!='' ? base_url().$$result_array['path_img']: '' ;
+            $result_array['path_logo']=$result_array['path_logo']!='' ? base_url().$$result_array['path_logo']: '' ;
+            $balikan = array(
+                'status' => 1,
+                'data'=>$result_array,
+                'msg' => 'File Excel tidak ada data'
+            );
+        } else{
+            $balikan = array(
+                'status' => 0,
+                'msg' => 'File Excel tidak ada data'
+            );
+        }       
+        return $balikan;
+    }
+
+    function deleteProdukDetail($detailProdukId){
+        $datetime = date('Y-m-d H:i:s');
+        $delete_data = array(
+            'fdelete' => '1',
+            'modifiedDate' => $datetime,
+            'modifiedBy' =>  $this->username,
+        );
+
+        $this->db->where('id', $detailProdukId);
+        $delete = $this->db->update('productdetail', $delete_data);
+
+
+        return $delete;
+    }
+    function updateProductDetail($data){
+        $datetime = date('Y-m-d H:i:s');
+        if (!empty($_FILES['image_source_product']['name'])) {
+            $this->db->select('*');
+            $this->db->where('id', $data['productId']);
+            $query = $this->db->get('product');
+            $result = $query->row_array();
+
+            if($result['img_path']!=''){
+                if (file_exists("./assets/admin/upload/product/" . $result['img_path'])) {
+                    unlink("./assets/admin/upload/product/" . $result['img_path']);
+                }
+            }
+           
+
+            $image = $this->_uploadImage('product' . '_' . uniqid(), 'image_source_product');
+            if ($image == '0') {
+                return '0';
+            }
+        } else {
+            $image = $data['product_old_image'];
+        }
+
+        if (!empty($_FILES['image_source_productlogo']['name'])) {
+            $imagelogo = $this->_uploadImage('logo' . '_' . uniqid(), 'image_source_product');
+            if ($imagelogo == '0') {
+                return '0';
+            }
+        } else {
+            $imagelogo = $data['productlogo_old_image'];
+        }
+        // echo json_encode($_FILES['excel_product_spec']);die();
+        if (!empty($_FILES['excel_product_spec']['name'])) {
+            $excelname= str_replace(" ", "_", $data['product_title']). '_' .uniqid();
+            $excel =  $this->_uploadexcel($excelname, 'excel_product_spec');
+            if ($excel == '0') {
+                return '0';
+            }
+        } else {
+            $excel = '';
+            $excelname='';
+        }
+
+        $update_data = array(
+            'product_id'=>$data['productId'],
+            'title' => $data['product_title'],
+            'meta_title' => $data['meta_title'],
+            'path_img' => $image,
+            'path_logo' => $imagelogo,
+            'description' => $data['descdetail'],
+            'slug' => str_replace(" ", "-", $data['product_title']),
+            'path_spec'=>$excel,
+            'modifiedBy' =>  $this->username,
+            'modifiedDate' => $datetime,
+        );
+        $this->db->where('id', $data['productDetailId']);
+        $product_update = $this->db->update('productdetail', $update_data);
+        return $product_update;
     }
 }
