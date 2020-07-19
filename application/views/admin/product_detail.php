@@ -6,7 +6,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <a href="product" class="btn btn-primary btn-sm" id="backproduct">
+                    <a href="<?php echo base_url(); ?>admin/product" class="btn btn-primary btn-sm" id="backproduct">
                         back
                     </a>
 
@@ -40,4 +40,5 @@
             </div>
 
         </div>
+        <div class="divmodalspecdetail"></div>
         <!-- /.container-fluid -->
