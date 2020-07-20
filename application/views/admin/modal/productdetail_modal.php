@@ -5,7 +5,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title labelAdmin" id="title_product_modal"></h5>
+                <h5 class="modal-title labelAdmin" id="title_productdetail_modal"></h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -81,12 +81,12 @@
                                 <textarea id="descdetail" class="form-control" name="descdetail" rows="10"></textarea>
                             </div>
                         </div>
-                        <div class="form-group col-sm-12">
+                        <!-- <div class="form-group col-sm-12">
                             <label class="control-label col-sm-12" for="product_desc">Product Specification:</label>
                             <div class="col-sm-12">
                                 <input class='form_control' type="file" id="excel_product_spec" name="excel_product_spec" accept=".xls,.xlsx" ref="input">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
             </div>
             <div class="modal-footer" style="justify-content:center;">

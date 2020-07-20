@@ -1269,25 +1269,7 @@ $(document).ready(function () {
 
 		var id = $(this).attr('data-value');
 		location.replace(base_url + "admin/product/listprodukdetailview/"+id);
-		// $.ajax({
-		// 	url: 'product/listprodukdetailview/' + id,
-		// 	type: 'POST',
-		// 	beforeSend: function () {
-		// 		document.getElementById('rpModal').style.display = 'block';
-		// 	},
-		// 	success: function (e) {
-		// 		document.getElementById('rpModal').style.display = 'none';
-		// 		var data = JSON.parse(e);
-		// 		$('.productdetail').html(data.data_content);
-		// 		$('.modaldetail').html(data.content_modal);
-		// 		getlistproductdetail();
-		// 	},
-		// 	error: function (e) {
-
-
-		// 	}
-		// });
-
+		
 	});
 
 	$('#productDetailForm').parsley();
@@ -1334,7 +1316,8 @@ $(document).ready(function () {
 							showConfirmButton: false,
 							timer: 1500
 						}).then((timer) => {
-							window.location.href = 'product';
+							$('#productDetailModal').modal('hide');
+							getlistproductdetail();
 						});
 					} else {
 						document.getElementById('rpModal').style.display = 'none';
@@ -1360,14 +1343,180 @@ $(document).ready(function () {
 		}
 
 	})
+	$('#dataTabledetailproduct tbody').on('click', '#productDetailEdit', function () {
+		$('#productDetailModal').modal('show');
+		$('#productDetailForm').parsley().reset();
+		imagearray = [];
 
-	// $('#productDetailAdd').on('click', function (e) {
+		$("#title_productdetail_modal").text("Edit Product Detail");
+		var id = $(this).attr('data-value');
+
+		event.preventDefault(); // prevent form submit
+		$.ajax({
+			url:base_url+ 'admin/product/getprodukdetaildata/' + id,
+			type: 'POST',
+			beforeSend: function () {
+				document.getElementById('rpModal').style.display = 'block';
+			},
+			success: function (data) {
+				var data = JSON.parse(data);
+
+				if (data.status == '1') {
+
+					$('#productId').val(data.data.product_id);
+					$('#productDetailId').val(data.data.id);
+					$('#productDetail_title').val(data.data.title);
+					$('#product_meta_title').val(data.data.meta_title);
+					$('#productlogo_old_image').val(data.data.path_logo);
+					if (data.data.path_logo) {
+						$('#previewlogo_image').attr('style', 'display:block');
+						$('#previewlogo_image').attr('src', base_url + '/assets/admin/upload/product/' + data.data.path_logo);
+					}
+					$('#product_old_image').val(data.data.path_img);
+					if (data.data.path_img) {
+						$('#preview_image').attr('style', 'display:block');
+						$('#preview_image').attr('src', base_url + '/assets/admin/upload/product/' + data.data.path_img);
+					}
 
 
-	// });
+					tinyMCE.activeEditor.setContent(data.data.description);
+				}
+				document.getElementById('rpModal').style.display = 'none';
+			},
+			error: function (e) {
+
+				document.getElementById('rpModal').style.display = 'none';
+				swal.fire(
+					'Error',
+					'Oops, your data was not updated.', // had a missing comma
+					'error'
+				);
+			}
+		});
+	});
+
+	$('#dataTabledetailproduct tbody').on('click', '#productDetailDelete', function () {
+		var id = $(this).attr('data-value');
+
+		event.preventDefault(); // prevent form submit
+		Swal.fire({
+			title: 'Delete',
+			text: 'Are you sure want to delete this product detail?',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes',
+			reverseButtons: true,
+			cancelButtonText: 'No'
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					url: base_url +'admin/product/deleteproductdetail/' + id,
+					type: 'POST',
+					beforeSend: function () {
+						document.getElementById('rpModal').style.display = 'block';
+					},
+					success: function (e) {
+						document.getElementById('rpModal').style.display = 'none';
+						Swal.fire({
+							position: 'center',
+							type: 'success',
+							title: 'Data has been saved',
+							showConfirmButton: false,
+							timer: 1500
+						}).then((timer) => {
+							getlistproductdetail();
+						});
+					},
+					error: function (e) {
+
+						document.getElementById('rpModal').style.display = 'none';
+						swal.fire(
+							'Error',
+							'Oops, your data was not deleted.', // had a missing comma
+							'error'
+						);
+					}
+				});
+			}
+		});
+	});
+
+	$('#dataTabledetailproduct tbody').on('click', '#productspecdetailgenset', function () {
+		
+		imagearray = [];
+
+		$("#title_productdetail_modal").text("Edit Product Detail");
+		var id = $(this).attr('data-value');
+
+		event.preventDefault(); // prevent form submit
+		$.ajax({
+			url: base_url + 'admin/product/productdetailgenset/' + id,
+			type: 'POST',
+			beforeSend: function () {
+				document.getElementById('rpModal').style.display = 'block';
+			},
+			success: function (data) {
+				
+				$('.divmodalspecdetail').html(data);
+				document.getElementById('rpModal').style.display = 'none';
+				$('#productDetailSpecModal').modal('show')
+				$('#dataTabledetailproductspec').dataTable({
+					// 'responsive':true
+				});
+				
+				
+			},
+			error: function (e) {
+
+				document.getElementById('rpModal').style.display = 'none';
+				swal.fire(
+					'Error',
+					'Oops, your data was not updated.', // had a missing comma
+					'error'
+				);
+			}
+		});
+	});
 
 
+	$('#dataTabledetailproduct tbody').on('click', '#productspecdetailportable', function () {
 
+		imagearray = [];
+
+		// $("#title_productdetail_modal").text("Edit Product Detail");
+		var id = $(this).attr('data-value');
+
+		event.preventDefault(); // prevent form submit
+		$.ajax({
+			url: base_url + 'admin/product/productdetaillauntop/' + id,
+			type: 'POST',
+			beforeSend: function () {
+				document.getElementById('rpModal').style.display = 'block';
+			},
+			success: function (data) {
+
+				$('.divmodalspecdetail').html(data);
+				document.getElementById('rpModal').style.display = 'none';
+				$('#productDetailSpecModal').modal('show')
+				// $('#dataTabledetailproductspec').dataTable({
+				// 	// 'responsive':true
+				// });
+
+
+			},
+			error: function (e) {
+
+				document.getElementById('rpModal').style.display = 'none';
+				swal.fire(
+					'Error',
+					'Oops, your data was not updated.', // had a missing comma
+					'error'
+				);
+			}
+		});
+	});
 	/* ================================================================================================================= */
 
 	/* Function about_us JS */
