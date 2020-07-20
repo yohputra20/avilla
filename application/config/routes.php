@@ -71,5 +71,9 @@ $route['admin/service'] = 'admin/service';
 $route['admin/client'] = 'admin/client';
 $route['admin/contact_us'] = 'admin/contact_us';
 
+// front route
+$route['detail-produk/(:any)/(:any)'] = 'front/home_controllers/detail_page/$1/$2';
+$route['spesifikasi-produk/(:any)'] = 'front/home_controllers/spesifikasi_produk/$1';
+
 
 

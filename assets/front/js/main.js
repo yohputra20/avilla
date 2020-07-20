@@ -47,9 +47,11 @@ Version:	1.1
 	======================================*/ 
 	jQuery(window).on('scroll', function() {
         if ($(this).scrollTop() > 55) {
-            $('#header').addClass("sticky animated fadeInDown");
+			$('.header').addClass("sticky animated fadeInDown");
+			//$('.headerkontak').addClass("sticky animated fadeInDown headersub");
         } else {
-            $('#header').removeClass("sticky animated fadeInDown");
+			$('.header').removeClass("sticky animated fadeInDown");
+			//$('.headerkontak').removeClass("sticky animated fadeInDown headersub");
         }
     });
 
@@ -120,15 +122,15 @@ Version:	1.1
 	// Portfolio Carousel
 	======================================*/ 
 	$(".portfolio-carousel").owlCarousel({
-		loop:true,
-		autoplay:true,
+		loop:false,
+		autoplay:false,
 		autoplayHoverPause:true,
 		smartSpeed: 500,
 		margin:15,
-		nav:true,
+		nav:false,
 		dots:false,
-		items:3,
-		navText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+		items:2,
+		// navText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
 		responsive:{
 			300: {
                 items: 1,
@@ -140,7 +142,7 @@ Version:	1.1
                 items: 2,
             },
             1170: {
-                items: 3,
+                items: 2,
             },
 		}
 	});	

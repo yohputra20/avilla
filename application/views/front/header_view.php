@@ -1,5 +1,5 @@
   <!-- Start Header -->
-  <header id="header">
+  <header id="header" class="header" style="padding-bottom:0;border-bottom:#919191;">
       <div class="container">
           <div class="row">
               <div class="col-md-4 col-sm-12 col-xs-12">
@@ -17,14 +17,43 @@
                           <div class="mobile-nav"></div>
                           <div class="collapse navbar-collapse">
                               <ul class="nav navbar-nav menu">
-                                  <li <?php if($menu_active == "home") {echo 'class="active"';}?>><a href="<?php echo base_url();?>">Home</a>
+                                  <li <?php if($menu_active == "home") {echo 'class="active"';}?>><a
+                                          href="<?php echo base_url();?>">Beranda</a>
                                   </li>
-                                  <li <?php if($menu_active == "services") {echo 'class="active"';}?>><a href="<?php echo base_url();?>#service">Services</a></li>
-                                  <li <?php if($menu_active == "product") {echo 'class="active"';}?>><a href="<?php echo base_url();?>#portfolio">Product</a></li>
-                                  <li <?php if($menu_active == "client") {echo 'class="active"';}?>><a href="<?php echo base_url();?>#clients">Client</a></li>
-                                  <li><a href="<?php echo base_url();?>#about-us">About</a>
+                                  <li <?php if($menu_active == "services") {echo 'class="active"';}?>><a
+                                          href="<?php echo base_url();?>#service">Layanan</a></li>
+                                  <li <?php if($menu_active == "product") {echo 'class="active"';}?>><a
+                                          href="<?php echo base_url();?>#portfolio">Produk</a></li>
+                                  <li <?php if($menu_active == "client") {echo 'class="active"';}?>><a
+                                          href="<?php echo base_url();?>#clients">Klien</a></li>
+                                  <li><a href="<?php echo base_url();?>#about-us">Tentang</a>
                                   </li>
-                                  <li><a href="<?php echo base_url();?>#contact">Contact</a></li>
+                                  <li><a href="<?php echo base_url();?>#contact">Kontak</a></li>
+                              </ul>
+                          </div>
+                      </nav>
+                      <!--/ End Main Menu -->
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="row" style="background-color:#919191; color:white;border-bottom:#919191; margin:0;">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="nav-area">
+                      <!-- Main Menu -->
+                      <nav class="mainmenu">
+                          <!-- <div class="mobile-nav"></div> -->
+                          <div>
+                              <ul class="nav navbar-nav menu menukontak" style="margin:0;">
+                                  <div class="col-md-3 col-sm-6 col-xs-6" style="padding:0;">
+                                      KLIK HUBUNGI
+                                  </div>
+                                  <div class="col-md-9 col-sm-6 col-xs-6" style="padding:0;">
+                                      <i class="fa fa-phone"></i>&nbsp;<a href="tel:+622152394859" style="color:white;">021-52394859</a>
+                                      &nbsp;&nbsp;&nbsp;
+                                      <i class="fa fa-whatsapp"></i>&nbsp;<a href="https://api.whatsapp.com/send?phone=6281390411533&text=Saya%20ingin%20bertanya%20tentang" target="_blank" style="color:white;">0813-9041-1533</a>
+                                  </div>
                               </ul>
                           </div>
                       </nav>
@@ -33,6 +62,8 @@
               </div>
 
           </div>
-      </div>
   </header>
+
+
+
   <!--/ End Header -->
