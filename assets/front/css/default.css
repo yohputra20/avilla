@@ -708,3 +708,10 @@ ul li {
 .single-service:hover .img_services {
 	transform: scale(1.2);
 }
+.dropdown-item{
+	background: white !important;
+	padding-left:10px;
+}
+.dropdown-menu a::before{
+	background: white !important;
+}

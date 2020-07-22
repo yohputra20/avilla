@@ -8,6 +8,7 @@ class Home_controllers extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('front/home_model');
+		// $this->load->model('admin/product_model');
 	}
 
 	public function index()
@@ -45,13 +46,13 @@ class Home_controllers extends CI_Controller
 			$arr_sub_detail = array();
 			$data_sub_detail = $this->home_model->get_detail_produk($content['data_detail']['id'], "by_id_produk");
 
-			if($data_sub_detail[0]['product_id'] == "2"){ // JIKA GENSET PORTABLE
+			if($data_sub_detail[0]['product_id'] == "1"){ // JIKA GENSET PORTABLE
 				foreach ($data_sub_detail as $value) {
 					$data_spesifikasi = $this->home_model->get_spesifikasi_produk($value['id']);
 					$value['spesifikasi'] = $data_spesifikasi;
 					array_push($arr_sub_detail, $value);
 				}
-				$content['data_sub_detail'] = $arr_sub_detail;
+				$content['data_sub_detail'] = $data_sub_detail;
 			}else{
 				//array_push($arr_sub_detail, $data_sub_detail);
 				$content['data_sub_detail'] = $data_sub_detail;
@@ -77,8 +78,8 @@ class Home_controllers extends CI_Controller
 		$content['footer'] = "front/footer_view";
 		$content['content_section'] = "front/spesifikasi_produk_view";
 
-		$content['data_spesifikasi'] = $this->home_model->get_spesifikasi_produk($param);
-
+		// $content['data_spesifikasi'] = $this->home_model->get_spesifikasi_produk($param);
+		$content['data_spesifikasi']=$this->home_model->getdetailSpec($param);
 		//echo json_encode($content['data_spesifikasi']);exit();
 		
 		$content['title_content'] = "Spesifikasi Produk";

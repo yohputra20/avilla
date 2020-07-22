@@ -57,4 +57,58 @@ class Home_model extends CI_Model
         return $query->result_array();
         
     }
+    public function getdetailSpec($detailid)
+    {
+        $this->db->select('*');
+        $this->db->where('id', $detailid);
+        $this->db->where('fdelete', '0');
+        $this->db->order_by('modifiedDate', 'desc');
+        $query = $this->db->get('productdetail');
+        $result_array = $query->row_array();
+        // $checkproduct = $this->getOneProdukDetail($detailid);
+        $title = '';
+        $image = '';
+        $logo = '';
+        $desc = '';
+        $productspec = array();
+        $opentype = 0;
+        $silenttype = 0;
+        if (sizeof($result_array)>0) {
+            $title = $result_array['title'];
+            $desc = $result_array['description'];
+            $image = ($result_array['path_img'] == '' ? '' : base_url() . '/assets/admin/upload/product/' . $result_array['path_img']);
+            $logo = ($result_array['path_logo'] == '' ? '' : base_url() . '/assets/admin/upload/product/' . $result_array['path_logo']);
+            $this->db->select('*');
+            $this->db->where('produkdetail_id', $detailid);
+            $this->db->where('fdelete', '0');
+// $this->db->order_by('modifiedDate', 'desc');
+            $query = $this->db->get('productspecifikasi');
+            $result_array = $query->result_array();
+            if (sizeof($result_array) > 0) {
+                foreach ($result_array as $row) {
+                    if ($row['ot_l'] != null && $row['ot_w'] != null && $row['ot_h'] != null && $row['ot_weight'] != null) {
+                        $opentype = 1;
+                    }
+                    if ($row['ot_l'] != null && $row['ot_w'] != null && $row['ot_h'] != null && $row['ot_weight'] != null) {
+                        $silenttype = 1;
+                    }
+
+                }
+            }
+            $productspec = $result_array;
+        }
+
+        $balikan = array(
+            'title' => $title,
+            'image' => $image,
+            'logo' => $logo,
+            'desc' => $desc,
+            'productspec' => $productspec,
+            'opentype' => $opentype,
+            'silenttype' => $silenttype,
+            'categori' => 'genset',
+        );
+        return $balikan;
+    }
+
 }

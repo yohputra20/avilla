@@ -22,8 +22,17 @@
                                   </li>
                                   <li <?php if($menu_active == "services") {echo 'class="active"';}?>><a
                                           href="<?php echo base_url();?>#service">Layanan</a></li>
-                                  <li <?php if($menu_active == "product") {echo 'class="active"';}?>><a
-                                          href="<?php echo base_url();?>#portfolio">Produk</a></li>
+                                  <li <?php if($menu_active == "product") {echo 'class="active dropdown"';}?>>
+                                  
+                                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Produk
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<?php echo base_url();?>detail-produk/product/genset" >Genset</a>
+          <a class="dropdown-item" href="<?php echo base_url();?>detail-produk/product/portable-genset" >Portable Genset</a>
+          
+        </div>
+                                        </li>
                                   <li <?php if($menu_active == "client") {echo 'class="active"';}?>><a
                                           href="<?php echo base_url();?>#clients">Klien</a></li>
                                   <li><a href="<?php echo base_url();?>#about-us">Tentang</a>
