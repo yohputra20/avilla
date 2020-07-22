@@ -32,7 +32,7 @@
             </div>
 
 
-            <div class="col-md-7 col-sm-12 col-xs-12">
+            <div class="col-md-7 col-sm-12 col-xs-12" style="padding-top:20px;">
                 <!-- Single blog -->
                 <!-- <div class="single-blog">
                     <div class="blog-content"> -->
@@ -51,10 +51,10 @@
         <!-- JIKA PRODUK GENSET -->
         <?php if($data_sub_detail[0]['product_id'] == "1") { ?>
 
-        <div class="row">
+        <div class="row" style="margin-bottom:30px">
             <?php foreach($data_sub_detail as $row) { ?>
             <a href="<?php echo base_url();?>spesifikasi-produk/<?php echo $row['id']?>">
-                <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="col-md-3 col-sm-6 col-xs-6">
                     <div class="single-blog">
                         <div class="blog-content">
                             <center>
@@ -75,7 +75,7 @@
         </div>
         <!-- JIKA PRODUK GENSET PORTABLE -->
         <?php } else { ?>
-        <div class="row rowlist" style="font-size: smaller;">
+        <div class="row rowlist" style="font-size: smaller; margin-bottom:30px">
             <?php foreach($data_sub_detail as $row) { ?>
             <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="single-blog" style="height: 95%;">
