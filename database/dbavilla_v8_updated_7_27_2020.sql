@@ -2,18 +2,19 @@
 -- Host:                         127.0.0.1
 -- Server version:               5.7.24 - MySQL Community Server (GPL)
 -- Server OS:                    Win64
--- HeidiSQL Version:             9.2.0.4947
+-- HeidiSQL Version:             9.5.0.5196
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
 
 -- Dumping database structure for dbavilla
 CREATE DATABASE IF NOT EXISTS `dbavilla` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `dbavilla`;
-
 
 -- Dumping structure for table dbavilla.about
 CREATE TABLE IF NOT EXISTS `about` (
@@ -32,7 +33,6 @@ CREATE TABLE IF NOT EXISTS `about` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table dbavilla.about: ~6 rows (approximately)
-DELETE FROM `about`;
 /*!40000 ALTER TABLE `about` DISABLE KEYS */;
 INSERT INTO `about` (`id`, `meta_title`, `meta_description`, `title`, `description`, `vision_mission`, `fdelete`, `created_date`, `created_by`, `modified_date`, `modified_by`) VALUES
 	(1, '0', NULL, 'fasfsa', '<p>asfsdfds</p>', '', 1, '2020-01-16 11:52:55', '', '2020-01-16 11:53:03', ''),
@@ -42,7 +42,6 @@ INSERT INTO `about` (`id`, `meta_title`, `meta_description`, `title`, `descripti
 	(5, '0', NULL, 'About', '<p>BA Princeton; Economics</p>\r\n<p>Masters in Fine Art Otis College</p>\r\n<p>Worked in New York Gallery World</p>\r\n<p>Asst to boutique hotelier Ian Schraeger</p>\r\n<p>Worked for Getty furniture designer Roy McMakin</p>\r\n<p>One time Hotel owner: Hotel Oloffson, Port-au-Prince,</p>\r\n<p>Haiti (Hotel from Graham Greene book, The Comedians) which still exists.</p>\r\n<p>All custom furniture and interior design for producer Barry Levinson&rsquo;s house and Vidal Sassoon&rsquo;s house working under Larry Totah.</p>', '', 1, '2020-01-20 14:16:21', '', '2020-01-21 09:08:11', ''),
 	(6, 'PT. Avilla Jaya Teknik is a company founded with t', 'PT. Avilla Jaya Teknik is a company founded with the purpose of providing top quality products and service to each of our customer', 'ABOUT', '<p>PT. Avilla Jaya Teknik is a company founded with the purpose of providing top quality<br />products and service to each of our customer.</p>\r\n<p>We are focused on providing products and services maintenance related to diesel backup power system.</p>\r\n<p>PT. Avilla Jaya Teknik is filled by high dedication and integrity human resources that put our customer satisfaction as our top priority.</p>', '<p><span class="fontstyle0">Our Vision :</span></p>\r\n<p><span class="fontstyle2">Bring high satisfaction to every products and services that our company provide.</span></p>\r\n<p><span class="fontstyle2"><span class="fontstyle0">Our Mision:</span></span></p>\r\n<ul>\r\n<li><span class="fontstyle0">To provide product quality with the best value</span></li>\r\n<li><span class="fontstyle0">To delivers service on time</span></li>\r\n<li style="text-align: justify;"><span class="fontstyle0">To support our customer business growth</span></li>\r\n</ul>', 0, '2020-01-21 09:08:57', '', '2020-05-10 13:19:48', '');
 /*!40000 ALTER TABLE `about` ENABLE KEYS */;
-
 
 -- Dumping structure for table dbavilla.banner
 CREATE TABLE IF NOT EXISTS `banner` (
@@ -58,19 +57,18 @@ CREATE TABLE IF NOT EXISTS `banner` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dbavilla.banner: ~1 rows (approximately)
-DELETE FROM `banner`;
+-- Dumping data for table dbavilla.banner: ~0 rows (approximately)
 /*!40000 ALTER TABLE `banner` DISABLE KEYS */;
 INSERT INTO `banner` (`id`, `img_path`, `description`, `orderby`, `fdelete`, `createdDate`, `createdBy`, `modifiedDate`, `modifiedBy`) VALUES
 	(1, 'banner_5ead7f5551a9c.png', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1, 0, '2020-05-02 21:09:32', 'adminputra', '2020-05-02 21:25:57', 'adminputra');
 /*!40000 ALTER TABLE `banner` ENABLE KEYS */;
-
 
 -- Dumping structure for table dbavilla.client
 CREATE TABLE IF NOT EXISTS `client` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) DEFAULT NULL,
   `logo_path` varchar(255) DEFAULT NULL,
+  `img_path` varchar(255) DEFAULT NULL,
   `description` text,
   `alt` varchar(255) DEFAULT NULL,
   `meta_description` varchar(255) DEFAULT NULL,
@@ -84,16 +82,14 @@ CREATE TABLE IF NOT EXISTS `client` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table dbavilla.client: ~5 rows (approximately)
-DELETE FROM `client`;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` (`id`, `title`, `logo_path`, `description`, `alt`, `meta_description`, `order_by`, `fdelete`, `createdDate`, `createdBy`, `modifiedDate`, `modifiedBy`) VALUES
-	(1, 'PT. Bank Mandiri', 'client_5ead9093e21a2.png', '<p>bank mandiri</p>', 'bank mandiri', 'bank mandiri', 1, 0, '2020-05-02 22:24:03', 'adminputra', NULL, NULL),
-	(2, 'Hoka Hoka Bento', 'client_5ead90dfa937b.png', '<p>Hoka Hoka Bento</p>', 'hoka hoka bento', 'hoka hoka bento', 2, 0, '2020-05-02 22:25:19', 'adminputra', NULL, NULL),
-	(3, 'Kementerian Kesehatan', 'client_5ead9101afffb.png', '<p>Kementerian Kesehatan</p>', 'Kementerian Kesehatan', 'Kementerian Kesehatan', 1, 0, '2020-05-02 22:25:53', 'adminputra', NULL, NULL),
-	(4, 'Ibis Hotels', 'client_5ead91275dd05.png', '<p>Ibis Hotels</p>', 'Ibis Hotels', 'Ibis Hotels', 4, 0, '2020-05-02 22:26:31', 'adminputra', NULL, NULL),
-	(5, 'Maxone', 'client_5ead914cc5121.png', '<p>Maxone</p>', 'Maxone', 'Maxone', 3, 0, '2020-05-02 22:27:08', 'adminputra', NULL, NULL);
+INSERT INTO `client` (`id`, `title`, `logo_path`, `img_path`, `description`, `alt`, `meta_description`, `order_by`, `fdelete`, `createdDate`, `createdBy`, `modifiedDate`, `modifiedBy`) VALUES
+	(1, 'PT. Bank Mandiri', 'client_5ead9093e21a2.png', NULL, '<p>bank mandiri</p>', 'bank mandiri', 'bank mandiri', 1, 0, '2020-05-02 22:24:03', 'adminputra', NULL, NULL),
+	(2, 'Hoka Hoka Bento', 'client_5ead90dfa937b.png', NULL, '<p>Hoka Hoka Bento</p>', 'hoka hoka bento', 'hoka hoka bento', 2, 0, '2020-05-02 22:25:19', 'adminputra', NULL, NULL),
+	(3, 'Kementerian Kesehatan', 'client_5ead9101afffb.png', NULL, '<p>Kementerian Kesehatan</p>', 'Kementerian Kesehatan', 'Kementerian Kesehatan', 1, 0, '2020-05-02 22:25:53', 'adminputra', NULL, NULL),
+	(4, 'Ibis Hotels', 'client_5ead91275dd05.png', NULL, '<p>Ibis Hotels</p>', 'Ibis Hotels', 'Ibis Hotels', 4, 0, '2020-05-02 22:26:31', 'adminputra', NULL, NULL),
+	(5, 'Maxone', 'client_5ead914cc5121.png', NULL, '<p>Maxone</p>', 'Maxone', 'Maxone', 3, 0, '2020-05-02 22:27:08', 'adminputra', NULL, NULL);
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
-
 
 -- Dumping structure for table dbavilla.contactus
 CREATE TABLE IF NOT EXISTS `contactus` (
@@ -108,13 +104,28 @@ CREATE TABLE IF NOT EXISTS `contactus` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dbavilla.contactus: ~1 rows (approximately)
-DELETE FROM `contactus`;
+-- Dumping data for table dbavilla.contactus: ~0 rows (approximately)
 /*!40000 ALTER TABLE `contactus` DISABLE KEYS */;
 INSERT INTO `contactus` (`id`, `title`, `description`, `fdelete`, `createdDate`, `createdBy`, `modifiedDate`, `modifiedBy`) VALUES
 	(1, 'fsfsdf', '<table style="border-collapse: collapse; width: 100%;">\r\n<tbody>\r\n<tr>\r\n<td style="width: 100%;"><span class="fontstyle2"><span class="fontstyle0">PT. Avilla Jaya Teknik</span></span></td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<table style="border-collapse: collapse; width: 100%;" border="0">\r\n<tbody>\r\n<tr style="height: 22px;">\r\n<td style="width: 100%; height: 22px;"><span class="fontstyle2">Ruko Sedayu Square Blok J No 6</span></td>\r\n</tr>\r\n<tr style="height: 22px;">\r\n<td style="width: 100%; height: 22px;"><span class="fontstyle2">Jl. Outer Ring Road Lingkar Luar Cengkareng</span></td>\r\n</tr>\r\n<tr style="height: 22px;">\r\n<td style="width: 100%; height: 22px;"><span class="fontstyle2">Jakarta Barat 11730</span></td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p>&nbsp;</p>\r\n<table class="NormalTable" style="border-collapse: collapse; width: 100%;">\r\n<tbody>\r\n<tr>\r\n<td width="108"><span class="fontstyle2">Mobile </span></td>\r\n<td width="550"><span class="fontstyle2">: 0813 - 9041 - 1533 (Marketing)</span></td>\r\n</tr>\r\n<tr>\r\n<td width="108"><span class="fontstyle2">Phone </span></td>\r\n<td width="550"><span class="fontstyle2">: 021 - 52394859</span></td>\r\n</tr>\r\n<tr>\r\n<td width="108"><span class="fontstyle2">Email </span></td>\r\n<td width="550"><span class="fontstyle2">: marketing.avillajayateknik@gmail.com</span></td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>', 0, '2020-05-01 17:34:58', 'adminavilla', '2020-07-26 17:55:05', 'adminweb');
 /*!40000 ALTER TABLE `contactus` ENABLE KEYS */;
 
+-- Dumping structure for table dbavilla.pictureproduct
+CREATE TABLE IF NOT EXISTS `pictureproduct` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `path_img` varchar(255) DEFAULT NULL,
+  `createdDate` datetime DEFAULT NULL,
+  `createdBy` varchar(50) DEFAULT NULL,
+  `modifiedDate` datetime DEFAULT NULL,
+  `modifiedBy` varchar(50) DEFAULT NULL,
+  `fdeleted` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table dbavilla.pictureproduct: ~0 rows (approximately)
+/*!40000 ALTER TABLE `pictureproduct` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pictureproduct` ENABLE KEYS */;
 
 -- Dumping structure for table dbavilla.product
 CREATE TABLE IF NOT EXISTS `product` (
@@ -134,13 +145,11 @@ CREATE TABLE IF NOT EXISTS `product` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table dbavilla.product: ~2 rows (approximately)
-DELETE FROM `product`;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
 INSERT INTO `product` (`id`, `title`, `description`, `img_path`, `alt`, `meta_description`, `fdelete`, `slug`, `createdDate`, `createdBy`, `modifiedDate`, `modifiedBy`) VALUES
 	(1, 'Genset', '<p>Genset model Silent Type</p>', 'product_5f1d69b8d58f8.jpg', 'genset', 'macam macam genset', 0, 'Genset', '2020-05-01 14:16:22', NULL, '2020-07-26 18:38:04', 'adminweb'),
 	(2, 'Portable Genset', '<p>adsadas</p>', 'product_5f0c04609eaca.png', 'portable genset', 'portable genset', 0, 'Portable-Genset', '2020-07-13 13:51:12', 'adminweb', NULL, NULL);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
-
 
 -- Dumping structure for table dbavilla.productdetail
 CREATE TABLE IF NOT EXISTS `productdetail` (
@@ -163,32 +172,30 @@ CREATE TABLE IF NOT EXISTS `productdetail` (
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table dbavilla.productdetail: ~21 rows (approximately)
-DELETE FROM `productdetail`;
 /*!40000 ALTER TABLE `productdetail` DISABLE KEYS */;
 INSERT INTO `productdetail` (`id`, `product_id`, `meta_title`, `path_img`, `title`, `path_logo`, `slug`, `description`, `path_spec`, `orderby`, `fdelete`, `createdDate`, `createdby`, `modifiedDate`, `modifiedBy`) VALUES
 	(1, 1, 'perkins genset', '', 'PERKINS', 'logo_5f1d51cbe47d3.png', 'PERKINS', '', '', 1, 0, '2020-07-15 16:57:23', 'adminweb', '2020-07-26 16:50:03', 'adminweb'),
 	(2, 1, 'genset_kubota', '', 'KUBOTA', 'logo_5f1d5b495efcb.jpeg', 'KUBOTA', '', '', 3, 0, '2020-07-15 17:03:44', 'adminweb', '2020-07-26 17:30:33', 'adminweb'),
-	(3, 1, 'genset himuinsa mitsubishi', '', 'HIMUINSA MITSUBISHI', '', 'HIMUINSA-MITSUBISHI', '', '', 4, 0, '2020-07-15 17:10:31', 'adminweb', NULL, NULL),
+	(3, 1, 'genset himuinsa mitsubishi', '', 'HIMUINSA MITSUBISHI', 'logo_5f1e573884df8.jpeg', 'HIMUINSA-MITSUBISHI', '', '', 4, 0, '2020-07-15 17:10:31', 'adminweb', '2020-07-27 11:25:28', 'adminweb'),
 	(4, 1, 'genset cummins usa', '', 'CUMMINS USA', 'logo_5f1d5476b3401.jpeg', 'CUMMINS-USA', '', '', NULL, 1, '2020-07-15 17:17:03', 'adminweb', '2020-07-26 17:01:26', 'adminweb'),
-	(5, 1, 'genset cummins', '', 'CUMMINS', '', 'CUMMINS', '', '', 2, 0, '2020-07-15 21:26:09', 'adminweb', NULL, NULL),
-	(6, 2, 'Launtop Gasoline Generator LT1200CL', 'LT1200CL.png', 'Launtop Gasoline Generator LT1200CL', NULL, 'Launtop-Gasoline-Generator-LT1200CL', 'Launtop Gasoline Generator\r\nMax. AC Output: 1000 Watts\r\nEngine Speed: 3000 rpm\r\nVoltage: 240V\r\nFrequency: 50 Hz\r\nFuel Tank Capacity: 5 Liter\r\nEngine Starting System: Coil Start\r\n Power :900-1000 watt', NULL, NULL, 0, '2020-07-16 14:21:57', NULL, NULL, NULL),
-	(11, 2, 'Launtop Gasoline Generator LT3000LBE', 'LT3000LBE.png', 'Launtop Gasoline Generator LT3000LBE', NULL, 'Launtop-Gasoline-Generator-LT3000LBE', 'Launtop Gasoline Generator                          Kapasitas maksimum: 2.5 kW/2500 Watt Kapasitas rata-rata: 2.2 kW/2200 Watt Sistem starter: Elektrik dan tarik Phase: 1 Phase Konsumsi bahan bakar: 1.34 liter/jam Kapasitas tangki bahan bakar: 15 liter Dimensi: 62 x 47 x 53 cm Power :2300-2500 watt', NULL, NULL, 0, '2020-07-16 14:27:52', NULL, NULL, NULL),
-	(12, 2, 'Launtop Gasoline Generator LT5000LBE', 'LT5000LBE.png', 'Launtop Gasoline Generator LT5000LBE', NULL, 'Launtop-Gasoline-Generator-LT5000LBE', 'Launtop Gasoline Generator                     Kapasitas maksimum: 5 kW/5000 Watt Kapasitas rata -rata: 4.5 kW/4500 Watt Sistem starter: elektrik dan tarik Phase: 1 Phase Konsumsi bahan bakar: 2.61 liter/jam Kapasitas tangki bahan bakar: 25 liter Dimensi: 72 x 53 x 61 cm Power :4000-4500 watt', NULL, NULL, 0, '2020-07-16 14:27:52', NULL, NULL, NULL),
-	(13, 2, 'Launtop Gasoline Generator LT6500LBE', 'LT6500LBE.png', 'Launtop Gasoline Generator LT6500LBE', NULL, 'Launtop-Gasoline-Generator-LT6500LBE', 'Launtop Gasoline Generator                  Kapasitas maksimum: 6 kW/6000 Watt Kapasitas rata-rata : 5.5 kW/5500 Watt Sistem starter: elektrik dan tarik Phase: 1 Phase Konsumsi bahan bakar: 2.86 liter/jam Kapasitas tangki bahan bakar: 25 liter Dimensi: 72 x 53 x 61 cm Power :5000-5500 watt', NULL, NULL, 0, '2020-07-16 14:27:52', NULL, NULL, NULL),
-	(14, 2, 'Launtop Gasoline Generator LT7500LBE', 'LT7500LBE.png', 'Launtop Gasoline Generator LT7500LBE', NULL, 'Launtop-Gasoline-Generator-LT7500LBE', 'Launtop Gasoline Generator                   Kapasitas maksimum: 7 kW/7000 Watt Kapasitas rata-rata : 6 5 kW/6500 Watt Sistem starter: elektrik dan tarik Phase: 1 Phase Konsumsi bahan bakar: 2.99 liter/jam Kapasitas tangki bahan bakar: 25 liter Dimensi: 72 x 53 x 61 cm Power :6000-6500 watt', NULL, NULL, 0, '2020-07-16 14:27:52', NULL, NULL, NULL),
-	(15, 2, 'Launtop Gasoline Generator LT7500S', 'LT7500S.png', 'Launtop Gasoline Generator LT7500S', NULL, 'Launtop-Gasoline-Generator-LT7500S', 'Launtop Gasoline Generator                     Kapasitas maksimum: 6.6 kW/6600 Watt Kapasitas rata-rata: 6 kW/6000 Watt Sistem starter: elektrik  Phase: 1 Phase Konsumsi bahan bakar: 2.94 liter/jam Kapasitas tangki bahan bakar: 15 liter Dimensi: 100 x 52 x 74 cm Power :5500-6000 watt', NULL, NULL, 0, '2020-07-16 14:42:35', NULL, NULL, NULL),
-	(16, 2, 'Launtop Gasoline Generator LT11000S', 'LT11000S.png', 'Launtop Gasoline Generator LT11000S', NULL, 'Launtop-Gasoline-Generator-LT11000S', 'Sistem starter: elektrik  Phase: 1 Phase Konsumsi bahan bakar: 4.33 liter/jam Kapasitas tangki bahan bakar: 25 liter  Power :8500-9000 watt', NULL, NULL, 0, '2020-07-16 14:42:35', NULL, NULL, NULL),
+	(5, 1, 'genset cummins', '', 'CUMMINS', 'logo_5f1e54f253bc6.jpeg', 'CUMMINS', '', '', 2, 0, '2020-07-15 21:26:09', 'adminweb', '2020-07-27 11:15:46', 'adminweb'),
+	(6, 2, 'Launtop Gasoline Generator LT1200CL', 'LT1200CL.png', 'Launtop Gasoline Generator LT1200CL', '', 'Launtop-Gasoline-Generator-LT1200CL', '<p>Launtop Gasoline Generator<br />Max. AC Output: 1000 Watts<br />Engine Speed: 3000 rpm<br />Voltage: 240V<br />Frequency: 50 Hz<br />Fuel Tank Capacity: 5 Liter<br />Engine Starting System: Coil Start<br />Power :900-1000 watt</p>', '', NULL, 0, '2020-07-16 14:21:57', NULL, '2020-07-27 09:53:58', 'adminweb'),
+	(11, 2, 'Launtop Gasoline Generator LT3000LBE', 'LT3000LBE.png', 'Launtop Gasoline Generator LT3000LBE', '', 'Launtop-Gasoline-Generator-LT3000LBE', '<p>Launtop Gasoline Generator<br />Kapasitas maksimum: 2.5 kW/2500 Watt<br />Kapasitas rata-rata: 2.2 kW/2200 Watt<br />Sistem starter: Elektrik dan tarik<br />Phase: 1<br />Phase Konsumsi bahan bakar: 1.34 liter/jam<br />Kapasitas tangki bahan bakar: 15 liter<br />Dimensi: 62 x 47 x 53 cm<br />Power :2300-2500 watt</p>', '', NULL, 0, '2020-07-16 14:27:52', NULL, '2020-07-27 09:42:21', 'adminweb'),
+	(12, 2, 'Launtop Gasoline Generator LT5000LBE', 'LT5000LBE.png', 'Launtop Gasoline Generator LT5000LBE', '', 'Launtop-Gasoline-Generator-LT5000LBE', '<p>Launtop Gasoline Generator <br />Kapasitas maksimum: 5 kW/5000 Watt <br />Kapasitas rata -rata: 4.5 kW/4500 Watt <br />Sistem starter: elektrik dan tarik <br />Phase: 1 <br />Phase Konsumsi bahan bakar: 2.61 liter/jam <br />Kapasitas tangki bahan bakar: 25 liter <br />Dimensi: 72 x 53 x 61 cm <br />Power :4000-4500 watt</p>', '', NULL, 0, '2020-07-16 14:27:52', NULL, '2020-07-27 09:55:37', 'adminweb'),
+	(13, 2, 'Launtop Gasoline Generator LT6500LBE', 'LT6500LBE.png', 'Launtop Gasoline Generator LT6500LBE', '', 'Launtop-Gasoline-Generator-LT6500LBE', '<p>Launtop Gasoline Generator <br />Kapasitas maksimum: 6 kW/6000 Watt <br />Kapasitas rata-rata : 5.5 kW/5500 Watt <br />Sistem starter: elektrik dan tarik <br />Phase: 1 Phase <br />Konsumsi bahan bakar: 2.86 liter/jam <br />Kapasitas tangki bahan bakar: 25 liter <br />Dimensi: 72 x 53 x 61 cm <br />Power : 5000-5500 watt</p>', '', NULL, 0, '2020-07-16 14:27:52', NULL, '2020-07-27 10:02:38', 'adminweb'),
+	(14, 2, 'Launtop Gasoline Generator LT7500LBE', 'LT7500LBE.png', 'Launtop Gasoline Generator LT7500LBE', '', 'Launtop-Gasoline-Generator-LT7500LBE', '<p>Launtop Gasoline Generator <br />Kapasitas maksimum: 7 kW/7000 Watt <br />Kapasitas rata-rata : 6 5 kW/6500 Watt <br />Sistem starter: elektrik dan tarik <br />Phase: 1 Phase <br />Konsumsi bahan bakar: 2.99 liter/jam<br />Kapasitas tangki bahan bakar: 25 liter <br />Dimensi: 72 x 53 x 61 cm <br />Power :6000-6500 watt</p>', '', NULL, 0, '2020-07-16 14:27:52', NULL, '2020-07-27 09:59:48', 'adminweb'),
+	(15, 2, 'Launtop Gasoline Generator LT7500S', 'LT7500S.png', 'Launtop Gasoline Generator LT7500S', '', 'Launtop-Gasoline-Generator-LT7500S', '<p>Launtop Gasoline Generator<br />Kapasitas maksimum: 6.6 kW/6600 Watt<br />Kapasitas rata-rata: 6 kW/6000 Watt<br />Sistem starter: elektrik<br />Phase: 1 Phase<br />Konsumsi bahan bakar: 2.94 liter/jam<br />Kapasitas tangki bahan bakar: 15 liter<br />Dimensi: 100 x 52 x 74 cm<br />Power :5500-6000 watt</p>', '', NULL, 0, '2020-07-16 14:42:35', NULL, '2020-07-27 10:08:58', 'adminweb'),
+	(16, 2, 'Launtop Gasoline Generator LT11000S', 'LT11000S.png', 'Launtop Gasoline Generator LT11000S', '', 'Launtop-Gasoline-Generator-LT11000S', '<p>Sistem starter: elektrik <br />Phase: 1 Phase <br />Konsumsi bahan bakar: 4.33 liter/jam <br />Kapasitas tangki bahan bakar: 25 liter <br />Power :8500-9000 watt</p>', '', NULL, 0, '2020-07-16 14:42:35', NULL, '2020-07-27 10:07:35', 'adminweb'),
 	(17, 2, 'Launtop Gasoline Generator LT11000S-3', 'LT11000S-3.png', 'Launtop Gasoline Generator LT11000S-3', NULL, 'Launtop-Gasoline-Generator-LT11000S-3', 'Launtop Gasoline Generator                       Sistem starter: elektrik Phase: 3 Phase Konsumsi bahan bakar: 4.33 liter/jam Kapasitas tangki bahan bakar: 25 liter Dimensi: 99 x 65 x 94.5 cm Power :8500-9000 watt', NULL, NULL, 0, '2020-07-16 14:42:35', NULL, NULL, NULL),
 	(18, 2, 'Launtop Gasoline Generator LT13000S', 'LT13000S.png', 'Launtop Gasoline Generator LT13000S', NULL, 'Launtop-Gasoline-Generator-LT13000S', 'Launtop Gasoline Generator                   Kapasitas maksimum: 11 kW/11000 Watt Kapasitas rata-rata : 10.5 kW/10500 Watt Sistem starter: elektrik  Phase: 1 Phase Konsumsi bahan bakar: 4.72 liter/jam Kapasitas tangki bahan bakar: 25 liter Dimensi: 99 x 65 x 94.5 cm Power :10000-11000 watt', NULL, NULL, 0, '2020-07-16 14:42:35', NULL, NULL, NULL),
 	(22, 2, 'Launtop Gasoline Generator LDG7500S', 'LDG7500S.png', 'Launtop Gasoline Generator LDG7500S', NULL, 'Launtop-Gasoline-Generator-LDG7500S', 'Launtop Diesel Generator Voltage: 240V Frequency: 50 Hz Max. AC Output: 5.5 kW Starting System: Electric Displacement: 474cc Engine Speed: 3000rpm Fuel Tank Capacity: 25L Power :5500-6000 watt', NULL, NULL, 0, '2020-07-16 14:42:35', NULL, NULL, NULL),
 	(23, 2, 'Launtop Gasoline Generator LDG12SA', 'LDG12SA.png', 'Launtop Gasoline Generator LDG12SA', NULL, 'Launtop-Gasoline-Generator-LDG12SA', 'Launtop Diesel Generator Engine Displacement: 954cc Engine Starting System: Electric Voltage: 380V Frequency: 50 Hz Max. AC Output: 11000 watts Fuel Tank Capacity: 53 Liter Power :10000-11000 watt', NULL, NULL, 0, '2020-07-16 14:42:35', NULL, NULL, NULL),
-	(24, 2, 'Launtop Gasoline Generator LDG12SA-3', 'LDG12SA-3.png', 'Launtop Gasoline Generator LDG12SA-3', '', 'Launtop-Gasoline-Generator-LDG12SA-3', '<p>Launtop Diesel Generator</p>\r\n<p>Engine Displacement: 954cc</p>\r\n<p>Engine Starting System: Electric</p>\r\n<p>Voltage: 380 V</p>\r\n<p>Frequency: 50 Hz Max. AC</p>\r\n<p>Output: 11000 Watts</p>\r\n<p>Fuel Tank Capacity: 53 Liter</p>\r\n<p>Power :10000-11000 watt</p>', '', NULL, 0, '2020-07-16 14:42:35', NULL, '2020-07-19 19:43:36', 'adminweb'),
+	(24, 2, 'Launtop Gasoline Generator LDG12SA-3', 'LDG12SA-3.png', 'Launtop Gasoline Generator LDG12SA-3', '', 'Launtop-Gasoline-Generator-LDG12SA-3', '<p>Launtop Diesel Generator<br />Engine Displacement: 954cc<br />Engine Starting System: Electric<br />Voltage: 380 V<br />Frequency: 50 Hz Max. AC<br />Output: 11000 Watts<br />Fuel Tank Capacity: 53 Liter<br />Power :10000-11000 watt</p>', '', NULL, 0, '2020-07-16 14:42:35', NULL, '2020-07-27 10:11:52', 'adminweb'),
 	(25, 2, 'Launtop Gasoline Generator LT13000S-3', 'LT13000S-3.png', 'Launtop Gasoline Generator LT13000S-3', NULL, 'Launtop-Gasoline-Generator-LT13000S-3', 'Launtop Gasoline Generator                         Sistem starter: elektrik  Phase: 3 Phase Konsumsi bahan bakar: 4.72 liter/jam Kapasitas tangki bahan bakar: 25 liter Dimensi: 99 x 65 x 94.5 cm Power :10000-10500 watt', NULL, NULL, 0, '2020-07-16 14:44:52', NULL, NULL, NULL),
 	(26, 2, 'Launtop Gasoline Generator LH13000S', 'LH13000S.png', 'Launtop Gasoline Generator LH13000S', NULL, 'Launtop-Gasoline-Generator-LH13000S', 'Launtop Gasoline Generator  Kapasitas maksimum: 13.75 kVA/11 kW Phase: 1 Phase Kapasitas tangki bahan bakar: 25 liter Power :10000-11000 watt', NULL, NULL, 0, '2020-07-16 14:44:52', NULL, NULL, NULL),
 	(27, 2, 'Launtop Gasoline Generator LH13000S-3', 'LH13000S-3.png', 'Launtop Gasoline Generator LH13000S-3', NULL, 'Launtop-Gasoline-Generator-LH13000S-3', 'Launtop Gasoline Generator              Phase: 3 Phase Kapasitas tangki bahan bakar: 25 liter Power :10000-11000 watt', NULL, NULL, 0, '2020-07-16 14:44:52', NULL, NULL, NULL),
 	(28, 1, 'testmesta', 'product_5f12cf1bb63061.png', 'test', 'logo_5f12d77608748.png', 'test', '<p>dadad</p>', '', NULL, 1, '2020-07-18 16:58:31', 'adminweb', '2020-07-18 18:15:11', 'adminweb');
 /*!40000 ALTER TABLE `productdetail` ENABLE KEYS */;
-
 
 -- Dumping structure for table dbavilla.productspecifikasi
 CREATE TABLE IF NOT EXISTS `productspecifikasi` (
@@ -219,7 +226,6 @@ CREATE TABLE IF NOT EXISTS `productspecifikasi` (
 ) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table dbavilla.productspecifikasi: ~103 rows (approximately)
-DELETE FROM `productspecifikasi`;
 /*!40000 ALTER TABLE `productspecifikasi` DISABLE KEYS */;
 INSERT INTO `productspecifikasi` (`id`, `produkdetail_id`, `model`, `engine`, `outputKvaPrp`, `outputKvaEsp`, `outputKwPrp`, `outputKwEsp`, `loadFuel`, `ot_l`, `ot_w`, `ot_h`, `ot_weight`, `st_l`, `st_w`, `st_h`, `st_weight`, `path_img`, `fdelete`, `createdDate`, `createdBy`, `modifiedDate`, `modifiedBy`) VALUES
 	(2, 5, 'TC30', '4B3.9-G2', 27.00, 30.00, 22.00, 24.00, 6.70, 1800, 820, 1355, 805, 2396, 1056, 1700, 1171, NULL, 0, '2020-07-16 07:31:39', NULL, NULL, NULL),
@@ -327,7 +333,6 @@ INSERT INTO `productspecifikasi` (`id`, `produkdetail_id`, `model`, `engine`, `o
 	(105, 2, 'APK37', 'V300-T-E2BG2', 37.00, 40.00, 29.60, 32.00, 5.80, NULL, NULL, NULL, NULL, 1850, 815, 1010, 750, NULL, 0, '2020-07-16 09:34:22', NULL, NULL, NULL);
 /*!40000 ALTER TABLE `productspecifikasi` ENABLE KEYS */;
 
-
 -- Dumping structure for table dbavilla.service
 CREATE TABLE IF NOT EXISTS `service` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -346,14 +351,12 @@ CREATE TABLE IF NOT EXISTS `service` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table dbavilla.service: ~3 rows (approximately)
-DELETE FROM `service`;
 /*!40000 ALTER TABLE `service` DISABLE KEYS */;
 INSERT INTO `service` (`id`, `meta_title`, `img_path`, `meta_description`, `title`, `description`, `fdelete`, `createdDate`, `slug`, `createdBy`, `modifiedDate`, `modifiedBy`) VALUES
 	(1, 'preventive maintenance', 'service_5ead8594a03d1.png', 'maintenance genset dengan garansi 5th', 'Preventive Maintenance', '<p><span class="fontstyle0">Scheduled planned maintenance to prevent any breakdown or failures that can result in loss of operation and opportunity cost.</span> </p>', 0, '2020-04-30 07:31:04', '', 'adminavilla', '2020-05-02 21:37:08', 'adminputra'),
 	(2, 'corrective maintenance', 'service_5ead8628cfcb0.png', 'corrective maintenance', 'Corrective Maintenance', '<p><span class="fontstyle0">Identify problem and repair failure generator set to be able to operate as soon as possible</span> </p>', 0, '2020-05-02 21:39:36', '', 'adminputra', NULL, NULL),
 	(3, 'maintenance genset', 'service_5f0c003631cdd.png', 'maintenance genset dengan garansi 5th', 'test service 1', '<p>dasdjasdjas</p>', 0, '2020-07-13 13:33:26', 'test-service-1', 'adminweb', NULL, NULL);
 /*!40000 ALTER TABLE `service` ENABLE KEYS */;
-
 
 -- Dumping structure for table dbavilla.troles
 CREATE TABLE IF NOT EXISTS `troles` (
@@ -368,13 +371,11 @@ CREATE TABLE IF NOT EXISTS `troles` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table dbavilla.troles: ~2 rows (approximately)
-DELETE FROM `troles`;
 /*!40000 ALTER TABLE `troles` DISABLE KEYS */;
 INSERT INTO `troles` (`roleId`, `roleName`, `isDeleted`, `createdDate`, `createdby`, `modifiedDate`, `modifiedBy`) VALUES
 	(1, 'Superadmin', 0, '2020-05-02 13:50:04', 'system', NULL, NULL),
 	(2, 'Admin', 0, '2020-05-02 13:50:31', 'system', NULL, NULL);
 /*!40000 ALTER TABLE `troles` ENABLE KEYS */;
-
 
 -- Dumping structure for table dbavilla.user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -393,7 +394,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table dbavilla.user: ~4 rows (approximately)
-DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `username`, `password`, `created_date`, `created_by`, `modified_date`, `modified_by`, `roleId`, `fdelete`) VALUES
 	(1, 'administratorAvilla', '5c960b9f6b61143a48ab85c512d52b17', '2020-01-06 00:00:00', '', '2020-05-07 14:20:29', 'adminavilla', 2, 0),
@@ -401,7 +401,6 @@ INSERT INTO `user` (`id`, `username`, `password`, `created_date`, `created_by`, 
 	(3, 'superadmin', '$2y$10$WkiCprWcJkHqmRJVIEq3IeQYZ5r4fLN29S1WTl2Y4eV./TPh5tGNS', '2020-05-07 13:56:00', 'adminavilla', NULL, NULL, 2, 0),
 	(4, '', '$2y$10$YEc68/K/qD4VA8/Xb7PnPOANrKtCarNiF6ttinRF.msEtLPycHeha', '2020-05-07 14:08:42', 'adminavilla', '2020-05-07 14:15:19', 'adminavilla', 2, 1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
-
 
 -- Dumping structure for table dbavilla.visitlog
 CREATE TABLE IF NOT EXISTS `visitlog` (
@@ -415,9 +414,9 @@ CREATE TABLE IF NOT EXISTS `visitlog` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table dbavilla.visitlog: ~0 rows (approximately)
-DELETE FROM `visitlog`;
 /*!40000 ALTER TABLE `visitlog` DISABLE KEYS */;
 /*!40000 ALTER TABLE `visitlog` ENABLE KEYS */;
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

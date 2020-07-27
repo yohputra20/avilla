@@ -37,7 +37,6 @@ class Home_controllers extends CI_Controller
 		$content['header'] = "front/header_view";
 		$content['footer'] = "front/footer_view";
 		$content['content_section'] = "front/detailpage_view";
-
 		if($typepage == "service"){
 			$content['title_content'] = "Services";
 			$content['menu_active'] = "services";

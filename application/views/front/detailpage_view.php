@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h2><?php echo $title_content; ?></h2>
-              
+
             </div>
         </div>
     </div>
@@ -14,157 +14,142 @@
 <!-- Start blog -->
 <section id="blog" class="single section page">
     <div class="container" style="background-color: white;">
-    <div class="row" style="padding-top: 20px;padding-bottom: 20px;">
+        <div class="row" style="padding-top: 20px;padding-bottom: 20px;">
             <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                <!-- Single blog -->
-                <!-- <div class="single-blog">
-                    <div class="blog-content"> -->
-                        <!-- <h2><?php echo $data_detail['title']; ?></h2> -->
-                      
-                    <!-- </div>
-                </div> -->
-                <!--/ End Single blog -->
 
             </div>
 
         </div>
         <div class="row" style="padding-top: 20px;padding-bottom: 20px;">
             <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                <!-- Single blog -->
-                <!-- <div class="single-blog">
-                    <div class="blog-head"> -->
-                        <img src="<?php echo $path_image.$data_detail['img_path']; ?>" style="height:500px"
-                            alt="<?php if(isset($data_detail['meta_title'])){echo $data_detail['meta_title'];}else {$data_detail['alt'];}; ?>">
-                    <!-- </div>
-
-                </div> -->
-                <!--/ End Single blog -->
+                <img src="<?php echo $path_image . $data_detail['img_path']; ?>" style="height:500px" alt="<?php if (isset($data_detail['meta_title'])) {
+                                                                                                                echo $data_detail['meta_title'];
+                                                                                                            } else {
+                                                                                                                $data_detail['alt'];
+                                                                                                            }; ?>">
 
             </div>
-</div>
-<div class="row" style="padding-top: 20px;padding-bottom: 20px;">
+        </div>
+        <div class="row" style="padding-top: 20px;padding-bottom: 20px;">
             <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                <!-- Single blog -->
-                <!-- <div class="single-blog">
-                    <div class="blog-content"> -->
-                        
-                        <?php echo $data_detail['description']; ?>
-                    <!-- </div>
-                </div> -->
-                <!--/ End Single blog -->
+                <?php echo $data_detail['description']; ?>
 
             </div>
 
         </div>
-       
+
         <!-- JIKA PRODUK GENSET -->
-        <?php if($data_sub_detail[0]['product_id'] == "1") { ?>
- <div class="row" style="padding-top: 20px;">
-            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                <!-- Single blog -->
-                <!-- <div class="single-blog">
-                    <div class="blog-content"> -->
-                        
-                        <h3 style="margin-bottom:0px">Powered by :</h3>
-                    <!-- </div>
-                </div> -->
-                <!--/ End Single blog -->
+        <?php if ($data_sub_detail[0]['product_id'] == "1") { ?>
+            <div class="row" style="padding-top: 20px;">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                    <h3 style="margin-bottom:0px">Powered by :</h3>
+
+                </div>
 
             </div>
+            <div class="row align-center" style="
+            margin-left:15%;margin-right:15%;padding-bottom: 20px;">
+                <?php foreach ($data_sub_detail as $row) { ?>
+                    <a href="<?php echo base_url(); ?>spesifikasi-produk/<?php echo $row['id'] ?>">
+                        <div class="col-md-6 col-sm-6 col-xs-6 text-center">
+                            <div class="single-blog detailblog">
 
-        </div>
-        <div class="row align-center"  style="width:80%;padding-top: 20px;padding-bottom: 20px;">
-            <?php foreach($data_sub_detail as $row) { ?>
-            <a href="<?php echo base_url();?>spesifikasi-produk/<?php echo $row['id']?>">
-                <div class="col-md-6 col-sm-6 col-xs-6 text-center">
-                    <div class="single-blog">
-                       
-                        <div class="blog-content">
-                           
-                            <?php if($row['path_logo'] != "") { ?>
-                            <img src="<?php echo base_url()."assets/admin/upload/product/".$row['path_logo']; ?>"  style="height:80px"
-                                alt="<?php if(isset($row['meta_title'])){echo $row['meta_title'];}else {$row['title'];}; ?>">
-                            <?php } else { ?>
-                            <img src="<?php echo base_url()."assets/front/images/no_image.png"; ?>" style="height:80px"
-                                alt="<?php if(isset($row['meta_title'])){echo $row['meta_title'];}else {$row['title'];}; ?>">
-                            <?php } ?>
-                        </div>
-                         <div class="blog-footer" style="background-color:#919191;color:#fff;height:20%">
-                             <center>
-                                <h5 style="margin:0px;padding:3%"><?php echo ucwords($row['title']); ?></h5>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <?php } ?>
-        </div>
-        <!-- JIKA PRODUK GENSET PORTABLE -->
-        <?php } else { ?>
-        <div class="row rowlist" style="font-size: smaller;">
-            <?php foreach($data_sub_detail as $row) { ?>
-            <div class="col-md-6 col-sm-6 col-xs-6">
-                <div class="single-blog" style="height: 95%;">
-                    <div class="blog-content">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <?php if($row['path_img'] != "") { ?>
-                                <?php  if(@fclose(@fopen(base_url()."assets/admin/upload/product/".$row['path_img'],"r")) ) {  ?>
-                                <img src="<?php echo base_url()."assets/admin/upload/product/".$row['path_img']; ?>"
-                                    alt="<?php if(isset($row['meta_title'])){echo $row['meta_title'];}else {$row['title'];}; ?>">
-                                <?php } else { ?>
-                                <img src="<?php echo base_url()."assets/front/images/no_image.png"; ?>"
-                                    alt="<?php if(isset($row['meta_title'])){echo $row['meta_title'];}else {$row['title'];}; ?>">
-                                <?php } ?>
+                                <div class="blog-content">
 
-                                <?php } else { ?>
-                                <img src="<?php echo base_url()."assets/front/images/no_image.png"; ?>"
-                                    alt="<?php if(isset($row['meta_title'])){echo $row['meta_title'];}else {$row['title'];}; ?>">
-                                <?php } ?>
+                                    <?php if ($row['path_logo'] != "") { ?>
+                                        <img src="<?php echo base_url() . "assets/admin/upload/product/" . $row['path_logo']; ?>" style="height:80px" alt="<?php if (isset($row['meta_title'])) {
+                                                                                                                                                        }; ?>">
+                                    <?php } else { ?>
+                                        <img src="<?php echo base_url() . "assets/front/images/no_image.png"; ?>" style="height:80px" alt="<?php if (isset($row['meta_title'])) {
+                                                                                                                                                echo $row['meta_title'];
+                                                                                                                                            }; ?>">
+                                    <?php } ?>
+                                </div>
+                                <div class="blog-footer" style="background-color:#919191;color:#fff;height:20%">
+                                    <center>
+                                        <h5 style="margin:0px;padding:3%"><?php echo ucwords($row['title']); ?></h5>
+                                    </center>
+                                </div>
                             </div>
-                            <div class="col-md-5 col-sm-5 col-xs-5">
+                        </div>
+                    </a>
+                <?php } ?>
+            </div>
+            <!-- JIKA PRODUK GENSET PORTABLE -->
+        <?php } else { ?>
+            <div class="row rowlist" style="font-size: smaller;">
+                <?php foreach ($data_sub_detail as $row) { ?>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="single-blog" style="height: 320px;margin-top:10px;margin-bottom:10px">
+                            <div class="blog-content">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                        <?php if ($row['path_img'] != "") { ?>
+                                            <?php if (@fclose(@fopen(base_url() . "assets/admin/upload/product/" . $row['path_img'], "r"))) {  ?>
+                                                <img src="<?php echo base_url() . "assets/admin/upload/product/" . $row['path_img']; ?>" alt="<?php if (isset($row['meta_title'])) {
+                                                                                                                                                echo $row['meta_title'];
+                                                                                                                                            } else {
+                                                                                                                                                $row['title'];
+                                                                                                                                            }; ?>">
+                                            <?php } else { ?>
+                                                <img src="<?php echo base_url() . "assets/front/images/no_image.png"; ?>" alt="<?php if (isset($row['meta_title'])) {
+                                                                                                                                    echo $row['meta_title'];
+                                                                                                                                } else {
+                                                                                                                                    $row['title'];
+                                                                                                                                }; ?>">
+                                            <?php } ?>
 
-                            <h4><?php echo (isset($row['title']) ? $row['title'] : "-");?>
-                                </h4>
-                                <p style="font-size: small;"><?php echo (isset($row['description']) ? $row['description'] : "-");?>
-                                </p>
-                                
-<!-- 
+                                        <?php } else { ?>
+                                            <img src="<?php echo base_url() . "assets/front/images/no_image.png"; ?>" alt="<?php if (isset($row['meta_title'])) {
+                                                                                                                                echo $row['meta_title'];
+                                                                                                                            } else {
+                                                                                                                                $row['title'];
+                                                                                                                            }; ?>">
+                                        <?php } ?>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+
+                                        <h4><?php echo (isset($row['title']) ? $row['title'] : "-"); ?>
+                                        </h4>
+                                        <p style="font-size: small;"><?php echo (isset($row['description']) ? $row['description'] : "-"); ?>
+                                        </p>
+
+                                        <!-- 
                                 <div class="row">
                                     <div class="col-md-6 col-sm-64 col-xs-6">
-                                        <p><?php echo (isset($row['spesifikasi'][0]['outputKvaPrp']) ? $row['spesifikasi'][0]['outputKvaPrp'] : "-");?>
+                                        <p><?php echo (isset($row['spesifikasi'][0]['outputKvaPrp']) ? $row['spesifikasi'][0]['outputKvaPrp'] : "-"); ?>
                                         </p>
-                                        <p><?php echo (isset($row['spesifikasi'][0]['outputKvaEsp']) ? $row['spesifikasi'][0]['outputKvaEsp'] : "-");?>
+                                        <p><?php echo (isset($row['spesifikasi'][0]['outputKvaEsp']) ? $row['spesifikasi'][0]['outputKvaEsp'] : "-"); ?>
                                         </p>
-                                        <p><?php echo (isset($row['spesifikasi'][0]['outputKwPrp']) ? $row['spesifikasi'][0]['outputKwPrp'] : "-");?>
+                                        <p><?php echo (isset($row['spesifikasi'][0]['outputKwPrp']) ? $row['spesifikasi'][0]['outputKwPrp'] : "-"); ?>
                                         </p>
-                                        <p><?php echo (isset($row['spesifikasi'][0]['outputKwEsp']) ? $row['spesifikasi'][0]['outputKwEsp'] : "-");?>
+                                        <p><?php echo (isset($row['spesifikasi'][0]['outputKwEsp']) ? $row['spesifikasi'][0]['outputKwEsp'] : "-"); ?>
                                         </p>
-                                        <p><?php echo (isset($row['spesifikasi'][0]['loadFuel']) ? $row['spesifikasi'][0]['loadFuel'] : "-");?>
+                                        <p><?php echo (isset($row['spesifikasi'][0]['loadFuel']) ? $row['spesifikasi'][0]['loadFuel'] : "-"); ?>
                                         </p>
                                     </div>
                                     <div class="col-md-6 col-sm-64 col-xs-6">
-                                        <p><?php echo (isset($row['spesifikasi'][0]['ot_l']) ? $row['spesifikasi'][0]['ot_l'] : "-");?>
+                                        <p><?php echo (isset($row['spesifikasi'][0]['ot_l']) ? $row['spesifikasi'][0]['ot_l'] : "-"); ?>
                                         </p>
-                                        <p><?php echo (isset($row['spesifikasi'][0]['ot_w']) ? $row['spesifikasi'][0]['ot_w'] : "-");?>
+                                        <p><?php echo (isset($row['spesifikasi'][0]['ot_w']) ? $row['spesifikasi'][0]['ot_w'] : "-"); ?>
                                         </p>
-                                        <p><?php echo (isset($row['spesifikasi'][0]['ot_h']) ? $row['spesifikasi'][0]['ot_h'] : "-");?>
+                                        <p><?php echo (isset($row['spesifikasi'][0]['ot_h']) ? $row['spesifikasi'][0]['ot_h'] : "-"); ?>
                                         </p>
-                                        <p><?php echo (isset($row['spesifikasi'][0]['ot_weight']) ? $row['spesifikasi'][0]['ot_weight'] : "-");?>
+                                        <p><?php echo (isset($row['spesifikasi'][0]['ot_weight']) ? $row['spesifikasi'][0]['ot_weight'] : "-"); ?>
                                         </p>
-                                        <p><?php echo (isset($row['spesifikasi'][0]['st_l']) ? $row['spesifikasi'][0]['st_l'] : "-");?>
+                                        <p><?php echo (isset($row['spesifikasi'][0]['st_l']) ? $row['spesifikasi'][0]['st_l'] : "-"); ?>
                                         </p>
                                     </div>
                                 </div> -->
 
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-
                     </div>
-                </div>
+                <?php } ?>
             </div>
-            <?php } ?>
-        </div>
         <?php } ?>
     </div>
 

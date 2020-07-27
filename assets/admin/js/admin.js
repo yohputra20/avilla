@@ -1367,6 +1367,7 @@ $(document).ready(function () {
 					$('#productDetailId').val(data.data.id);
 					$('#productDetail_title').val(data.data.title);
 					$('#product_meta_title').val(data.data.meta_title);
+					$('#sorting').val(data.data.orderby);
 					$('#productlogo_old_image').val(data.data.path_logo);
 					if (data.data.path_logo!='') {
 						$('#previewlogo_image').attr('style', 'display:block');
@@ -1914,6 +1915,7 @@ function clickproductdetailadd() {
 	$('#product_old_image').val(null);
 	$('#product_meta_title').val(null);
 	$('#product_meta_desc').val(null);
+	$('#sorting').val(null);
 	tinyMCE.activeEditor.setContent('');
 	$('#preview_image').attr('src', '');
 }

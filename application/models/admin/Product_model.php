@@ -277,7 +277,7 @@ class Product_model extends CI_Model
         $this->db->select('*');
         $this->db->where('product_id', $id);
         $this->db->where('fdelete', '0');
-        $this->db->order_by('modifiedDate', 'desc');
+        $this->db->order_by('orderby', 'asc');
         $query = $this->db->get('productdetail');
         $result_array = $query->result_array();
         // echo json_encode($result_array);die();
@@ -363,6 +363,7 @@ class Product_model extends CI_Model
             'description' => $data['descdetail'],
             'slug' => str_replace(" ", "-", $data['product_title']),
             'path_spec' => $excel,
+            'orderby' => isset($data['sorting'])?$data['sorting']: 1,
             'fdelete' => '0',
             'createdDate' => $datetime,
             'createdBy' => $this->username,
@@ -500,6 +501,7 @@ class Product_model extends CI_Model
             'path_logo' => $imagelogo,
             'description' => $data['descdetail'],
             'slug' => str_replace(" ", "-", $data['product_title']),
+            'orderby' => isset($data['sorting'])?$data['sorting']: 1,
             'path_spec' => $excel,
             'modifiedBy' => $this->username,
             'modifiedDate' => $datetime,
