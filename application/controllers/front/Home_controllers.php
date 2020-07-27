@@ -81,7 +81,7 @@ class Home_controllers extends CI_Controller
 		$content['data_spesifikasi']=$this->home_model->getdetailSpec($param);
 		//echo json_encode($content['data_spesifikasi']);exit();
 		
-		$content['title_content'] = "Spesifikasi Produk";
+		$content['title_content'] = "Product Specification";
 		$content['menu_active'] = "product";
 		$content['path_image'] = base_url()."assets/admin/upload/product/";
 		
