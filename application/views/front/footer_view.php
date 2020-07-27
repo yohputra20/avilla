@@ -9,7 +9,7 @@
                      <div class="logo">
                          <a href="index.html">Avilla</a>
                          <br>
-                         <span style="font-size: 25px;">Sustainable Solution</span>
+                         <span style="font-size: 25px;color:#fff">Sustainable Solution</span>
                      </div>
                      <!--/ End Logo -->
                      <!-- Social -->

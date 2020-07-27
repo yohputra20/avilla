@@ -56,7 +56,7 @@
                         <div class="form-group col-sm-12">
                             <label class="control-label col-sm-12" for="gallert_desc">Description<span style="color:red">*</span> :</label>
                             <div class="col-sm-12">
-                            <textarea id="banner_desc" name="banner_desc" required=""></textarea>                               
+                            <textarea id="banner_desc" name="banner_desc"></textarea>                               
                             </div>
                         </div>
                     </div>

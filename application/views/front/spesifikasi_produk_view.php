@@ -50,17 +50,23 @@
         <?php $opentype = $data_spesifikasi['opentype'];
         $silenttype = $data_spesifikasi['silenttype'];
         $productspec = $data_spesifikasi['productspec'];
+        $padding="padding-top:70px;";
+        $padddingimg="";
+        if(strtolower($data_spesifikasi['title'])=='kubota'|| strtolower($data_spesifikasi['title'])=='perkins'){
+            $padding="padding-top:50px;";
+            $padddingimg="padding-top:35px;";
+        }
         ?>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6" style="padding-top:50px;">
+                    <div class="col-md-6 col-sm-6 col-xs-6" style="<?php echo $padding; ?>;vertical-align: bottom">
                         <h5><?php echo (sizeof($productspec) > 0 ? (substr($productspec[0]['model'], 0, 2) == "AP" ? 'APK' : substr($productspec[0]['model'], 0, 2)) : ''); ?> Series Specifications</h5>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4 text-right" style="padding-top:50px;">
+                    <div class="col-md-4 col-sm-4 col-xs-4 text-right" style="<?php echo $padding; ?>vertical-align: bottom">
                         <h5>Powered By</h5>
                     </div>
-                    <div class="col-md-2 col-sm-2 col-xs-2" style="padding-top:35px;">
+                    <div class="col-md-2 col-sm-2 col-xs-2" style="<?php echo $padddingimg; ?>">
                         <?php if ($data_spesifikasi['logo'] != "") { ?>
                             <img style="min-height:40px" src="<?php echo $data_spesifikasi['logo']; ?>" alt="<?php if (isset($data_sub_detail[0]['meta_title'])) {
                                                                                                                     echo $data_spesifikasi['logo'];
@@ -74,11 +80,11 @@
                                                                                                                 $data_sub_detail[0]['title'];
                                                                                                             }; ?>">
                         <?php } ?>
-
                     </div>
-                    <div class="blog-content">
+                    </div>
+                    <div class="row">
 
-                        <!-- <div class="table-responsive"> -->
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="overflow-x:auto;">
                         <table class="table table-bordered responsive nowrap" style="text-align:center;font-size:smaller" id="dataTabledetailproductspec" width="100%" cellspacing="1">
                             <thead style="text-align:center;    background-color: aliceblue;">
                                 <tr>
@@ -166,7 +172,7 @@
                                 } ?>
                             </tbody>
                         </table>
-                        <!-- </div> -->
+                        </div>
 
 
 
