@@ -39,7 +39,7 @@ class Home_controllers extends CI_Controller
 		$content['content_section'] = "front/detailpage_view";
 
 		if($typepage == "service"){
-			$content['title_content'] = "Layanan";
+			$content['title_content'] = "Services";
 			$content['menu_active'] = "services";
 			$content['path_image'] = base_url()."assets/admin/upload/service/";
 		}else if($typepage == "product"){
@@ -59,7 +59,7 @@ class Home_controllers extends CI_Controller
 			}
 
 			
-			$content['title_content'] = "Produk";
+			$content['title_content'] = "Product";
 			$content['menu_active'] = "product";
 			$content['path_image'] = base_url()."assets/admin/upload/product/";
 		}

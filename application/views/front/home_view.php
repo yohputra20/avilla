@@ -33,135 +33,13 @@
 </section>
 <!--/ End Slider -->
 
-<!-- Start Service -->
-<section id="service" class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
-                <div class="section-title center">
-                    <h2>Layanan</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Single Service -->
-            <?php $delay=4; foreach($data_service as $row) { ?>
-            <div class="col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="0.<?php echo $delay?>s">
-
-                <div class="single-service">
-                    <div class="hover_image_service_box">
-                        <img class="img_services bttrlazyloading"
-                            data-bttrlazyloading-sm-src="<?php echo base_url()."assets/admin/upload/service/".$row['img_path']; ?>"
-                            alt="<?php echo $row['meta_title']?>">
-                    </div>
-                    <br>
-                    <h2><?php echo $row['title']; ?></h2>
-
-                    <?php $description = strlen($row['description']) > 200 ? substr($row['description'],0,200)."..." : $row['description'];
-                                  echo $description; ?>
-
-                    <?php if(strlen($row['description']) > 200) { ?>
-                    <br>
-                    <a href="<?php echo base_url();?>front/home_controllers/detail_page/service/<?php echo $row['slug']?>"
-                        title="Baca selengkapnya"><u>Baca selengkapnya </u></a>
-                    <?php } ?>
-
-
-                </div>
-
-            </div>
-            <?php $delay += 2; } ?>
-
-        </div>
-    </div>
-</section>
-<!--/ End Service -->
-
-
-<!-- Start Products -->
-<section id="portfolio" class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
-                <div class="section-title center">
-                    <h2>Produk</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="portfolio-carousel">
-                    <!-- Single Portfolio -->
-
-                    <?php foreach($data_product as $row) { ?>
-                    <div class="portfolio-single">
-                        <a href="<?php echo base_url()."assets/admin/upload/product/".$row['img_path']; ?>"
-                            alt="<?php echo $row['alt']?>" class="zoom">
-                            <div class="portfolio-head">
-                                <img class="bttrlazyloading"
-                                    data-bttrlazyloading-sm-src="<?php echo base_url()."assets/admin/upload/product/".$row['img_path']; ?>"
-                                    alt="<?php echo $row['alt']?>" />
-                                <i class="fa fa-search"></i>
-                            </div>
-                        </a>
-                        <div class="text">
-                            <h4><?php echo $row['title']; ?></h4>
-                            <p>
-                                <?php 
-                                    $description = strlen($row['description']) > 200 ? substr($row['description'],0,200)."..." : $row['description'];
-                                    echo $description; 
-                                    ?>
-                            </p>
-                            <?php //if(strlen($row['description']) > 200) { ?>
-                            <a href="<?php echo base_url();?>detail-produk/product/<?php echo strtolower($row['slug']); ?>"
-                                title="Baca selengkapnya"><u>Baca selengkapnya </u></a>
-                            <?php //} ?>
-                        </div>
-                    </div>
-                    <?php } ?>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--/ End Products -->
-
-<!-- Start Client -->
-<section id="clients" class="section wow fadeIn">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
-                <div class="section-title center">
-                    <h2>Klien</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="clients-carousel">
-                    <!-- Single Clients -->
-
-                    <?php foreach($data_client as $row) { ?>
-                    <div class="single-client">
-                        <img src="<?php echo base_url()."assets/admin/upload/client/".$row['logo_path']; ?>"
-                            alt="<?php echo $row['alt']?>" class="img-responsive">
-                    </div>
-                    <?php } ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--/ End Client -->
-
 <!-- Start About Us -->
 <section id="about-us" class="section about-us">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
                 <div class="section-title center">
-                    <h2 class="h2about">Tentang Kami</h2>
+                    <h2 class="h2about">About Us</h2>
                 </div>
             </div>
         </div>
@@ -207,6 +85,130 @@
     </div>
 </section>
 <!--/ End About Us -->
+
+
+
+<!-- Start Products -->
+<section id="portfolio" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
+                <div class="section-title center">
+                    <h2>Product</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="portfolio-carousel">
+                    <!-- Single Portfolio -->
+
+                    <?php foreach($data_product as $row) { ?>
+                    <div class="portfolio-single">
+                        <a href="<?php echo base_url()."assets/admin/upload/product/".$row['img_path']; ?>"
+                            alt="<?php echo $row['alt']?>" class="zoom">
+                            <div class="portfolio-head">
+                                <img class="bttrlazyloading"
+                                    data-bttrlazyloading-sm-src="<?php echo base_url()."assets/admin/upload/product/".$row['img_path']; ?>"
+                                    alt="<?php echo $row['alt']?>" />
+                                <i class="fa fa-search"></i>
+                            </div>
+                        </a>
+                        <div class="text">
+                            <h4><?php echo $row['title']; ?></h4>
+                            <p>
+                                <?php 
+                                    $description = strlen($row['description']) > 200 ? substr($row['description'],0,200)."..." : $row['description'];
+                                    echo $description; 
+                                    ?>
+                            </p>
+                            <?php //if(strlen($row['description']) > 200) { ?>
+                            <a href="<?php echo base_url();?>detail-produk/product/<?php echo strtolower($row['slug']); ?>"
+                                title="Baca selengkapnya"><u>Baca selengkapnya </u></a>
+                            <?php //} ?>
+                        </div>
+                    </div>
+                    <?php } ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Products -->
+<!-- Start Service -->
+<section id="service" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
+                <div class="section-title center">
+                    <h2>Services</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Single Service -->
+            <?php $delay=4; foreach($data_service as $row) { ?>
+            <div class="col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="0.<?php echo $delay?>s">
+
+                <div class="single-service">
+                    <div class="hover_image_service_box">
+                        <img class="img_services bttrlazyloading"
+                            data-bttrlazyloading-sm-src="<?php echo base_url()."assets/admin/upload/service/".$row['img_path']; ?>"
+                            alt="<?php echo $row['meta_title']?>">
+                    </div>
+                    <br>
+                    <h2><?php echo $row['title']; ?></h2>
+
+                    <?php $description = strlen($row['description']) > 200 ? substr($row['description'],0,200)."..." : $row['description'];
+                                  echo $description; ?>
+
+                    <?php if(strlen($row['description']) > 200) { ?>
+                    <br>
+                    <a href="<?php echo base_url();?>front/home_controllers/detail_page/service/<?php echo $row['slug']?>"
+                        title="Baca selengkapnya"><u>Baca selengkapnya </u></a>
+                    <?php } ?>
+
+
+                </div>
+
+            </div>
+            <?php $delay += 2; } ?>
+
+        </div>
+    </div>
+</section>
+<!--/ End Service -->
+
+<!-- Start Client -->
+<section id="clients" class="section wow fadeIn">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
+                <div class="section-title center">
+                    <h2>Client</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="clients-carousel">
+                    <!-- Single Clients -->
+
+                    <?php foreach($data_client as $row) { ?>
+                    <div class="single-client">
+                        <img src="<?php echo base_url()."assets/admin/upload/client/".$row['logo_path']; ?>"
+                            alt="<?php echo $row['alt']?>" class="img-responsive">
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Client -->
+
+
 
 <!-- Contact Us -->
 <section id="contact" class="section" style="border-top:1px solid #d2cccc; background:white;">

@@ -133,12 +133,13 @@
                                     <td><?php echo $ps['model']; ?></td>
                                     <td><?php echo $ps['engine']; ?></td>
 
-                                    <td><?php echo $ps['outputKvaPrp']; ?></td>
-                                    <td><?php echo $ps['outputKvaEsp']; ?></td>
-                                    <td><?php echo $ps['outputKwPrp']; ?></td>
-                                    <td><?php echo $ps['outputKwEsp']; ?></td>
+                                    <td><?php echo (strpos($ps['outputKvaPrp'], ".00") ? number_format($ps['outputKvaPrp'], 0, '.', '') :  number_format($ps['outputKvaPrp'], 1, '.', '')) ; ?></td>
+                                    <td><?php echo (strpos($ps['outputKvaEsp'], ".00") ? number_format($ps['outputKvaEsp'], 0, '.', '') : number_format($ps['outputKvaEsp'], 1, '.', ''));
+ ?></td>
+                                    <td><?php echo (strpos($ps['outputKwPrp'], ".00") ? number_format($ps['outputKwPrp'], 0, '.', '') : number_format($ps['outputKwPrp'], 1, '.', '')); ?></td>
+                                    <td><?php echo (strpos($ps['outputKwEsp'], ".00") ? number_format($ps['outputKwEsp'], 0, '.', '') : number_format($ps['outputKwEsp'], 1, '.', '')); ?></td>
 
-                                      <td><?php echo $ps['loadFuel']; ?></td>
+                                      <td><?php echo (strpos($ps['loadFuel'], ".00") ? number_format($ps['loadFuel'], 0, '.', '') :(substr($ps['loadFuel'],-1)=='0'? number_format($ps['loadFuel'], 1, '.', '') : number_format($ps['loadFuel'], 2, '.', ''))); ?></td>
                                      <?php if ($opentype == 1) {?>
                                     <td><?php echo $ps['ot_l']; ?></td>
                                     <td><?php echo $ps['ot_w']; ?></td>

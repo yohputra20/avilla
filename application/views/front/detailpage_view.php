@@ -4,10 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h2><?php echo $title_content; ?></h2>
-                <ul>
-                    <li><a href="index.html">Beranda</a></li>
-                    <li class="active"><a href="#"><?php echo $title_content; ?></a></li>
-                </ul>
+              
             </div>
         </div>
     </div>
@@ -17,12 +14,26 @@
 <!-- Start blog -->
 <section id="blog" class="single section page">
     <div class="container" style="background-color: white;">
-        <div class="row" style="padding-top: 20px;">
-            <div class="col-md-5 col-sm-12 col-xs-12">
+    <div class="row" style="padding-top: 20px;padding-bottom: 20px;">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                <!-- Single blog -->
+                <!-- <div class="single-blog">
+                    <div class="blog-content"> -->
+                        <!-- <h2><?php echo $data_detail['title']; ?></h2> -->
+                      
+                    <!-- </div>
+                </div> -->
+                <!--/ End Single blog -->
+
+            </div>
+
+        </div>
+        <div class="row" style="padding-top: 20px;padding-bottom: 20px;">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                 <!-- Single blog -->
                 <!-- <div class="single-blog">
                     <div class="blog-head"> -->
-                        <img src="<?php echo $path_image.$data_detail['img_path']; ?>"
+                        <img src="<?php echo $path_image.$data_detail['img_path']; ?>" style="height:500px"
                             alt="<?php if(isset($data_detail['meta_title'])){echo $data_detail['meta_title'];}else {$data_detail['alt'];}; ?>">
                     <!-- </div>
 
@@ -30,16 +41,13 @@
                 <!--/ End Single blog -->
 
             </div>
-
-
-            <div class="col-md-7 col-sm-12 col-xs-12">
+</div>
+<div class="row" style="padding-top: 20px;padding-bottom: 20px;">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                 <!-- Single blog -->
                 <!-- <div class="single-blog">
                     <div class="blog-content"> -->
-                        <h2><?php echo $data_detail['title']; ?></h2>
-                        <div class="meta">
-                            <span><i class="fa fa-calender"></i><?php echo $data_detail['modifiedDate']; ?></span>
-                        </div>
+                        
                         <?php echo $data_detail['description']; ?>
                     <!-- </div>
                 </div> -->
@@ -48,25 +56,43 @@
             </div>
 
         </div>
+       
         <!-- JIKA PRODUK GENSET -->
         <?php if($data_sub_detail[0]['product_id'] == "1") { ?>
+ <div class="row" style="padding-top: 20px;">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                <!-- Single blog -->
+                <!-- <div class="single-blog">
+                    <div class="blog-content"> -->
+                        
+                        <h3 style="margin-bottom:0px">Powered by :</h3>
+                    <!-- </div>
+                </div> -->
+                <!--/ End Single blog -->
 
-        <div class="row">
+            </div>
+
+        </div>
+        <div class="row align-center"  style="width:80%;padding-top: 20px;padding-bottom: 20px;">
             <?php foreach($data_sub_detail as $row) { ?>
             <a href="<?php echo base_url();?>spesifikasi-produk/<?php echo $row['id']?>">
-                <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-center">
                     <div class="single-blog">
+                       
                         <div class="blog-content">
-                            <center>
-                                <h5><?php echo ucwords($row['title']); ?></h5>
-                            </center>
+                           
                             <?php if($row['path_logo'] != "") { ?>
-                            <img src="<?php echo base_url().$row['path_logo']; ?>"
+                            <img src="<?php echo base_url()."assets/admin/upload/product/".$row['path_logo']; ?>"  style="height:80px"
                                 alt="<?php if(isset($row['meta_title'])){echo $row['meta_title'];}else {$row['title'];}; ?>">
                             <?php } else { ?>
-                            <img src="<?php echo base_url()."assets/front/images/no_image.png"; ?>"
+                            <img src="<?php echo base_url()."assets/front/images/no_image.png"; ?>" style="height:80px"
                                 alt="<?php if(isset($row['meta_title'])){echo $row['meta_title'];}else {$row['title'];}; ?>">
                             <?php } ?>
+                        </div>
+                         <div class="blog-footer" style="background-color:#919191;color:#fff;height:20%">
+                             <center>
+                                <h5 style="margin:0px;padding:3%"><?php echo ucwords($row['title']); ?></h5>
+                            </center>
                         </div>
                     </div>
                 </div>

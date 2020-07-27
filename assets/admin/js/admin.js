@@ -1368,14 +1368,18 @@ $(document).ready(function () {
 					$('#productDetail_title').val(data.data.title);
 					$('#product_meta_title').val(data.data.meta_title);
 					$('#productlogo_old_image').val(data.data.path_logo);
-					if (data.data.path_logo) {
+					if (data.data.path_logo!='') {
 						$('#previewlogo_image').attr('style', 'display:block');
 						$('#previewlogo_image').attr('src', base_url + '/assets/admin/upload/product/' + data.data.path_logo);
+					} else {
+						$('#preview_image').attr('style', 'display:none');
 					}
 					$('#product_old_image').val(data.data.path_img);
-					if (data.data.path_img) {
+					if (data.data.path_img!='') {
 						$('#preview_image').attr('style', 'display:block');
 						$('#preview_image').attr('src', base_url + '/assets/admin/upload/product/' + data.data.path_img);
+					}else{
+						$('#preview_image').attr('style', 'display:none');
 					}
 
 

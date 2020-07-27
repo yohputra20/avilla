@@ -38,6 +38,7 @@ class Home_model extends CI_Model
         $this->db->select("*");
         $this->db->from("productdetail");
         $this->db->where("fdelete", "0");
+        // $this->db->orderBy('orderby','asc');
         if($type == "by_id_produk"){
             $this->db->where("product_id", $product_id);
         }else{
