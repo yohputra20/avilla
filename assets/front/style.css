@@ -2544,16 +2544,12 @@ Version:	1.1
 	background-image: url("../admin/img/icon_tab_browser.png") !important;
 	background-size: contain !important;
 }
-
 .headersub {
 	top: 9%;
 }
 
 .menukontak {
-	width: 85%;
-	float: right;
-	padding-left: 5%;
-	padding-right: 5%;
+	width: 40%;
 }
 .menukontak a:hover {
 	color: yellow;
@@ -2571,13 +2567,11 @@ Version:	1.1
 
 .rowmargin {
 	margin: 0;
-}
-
-.rowlist {
+  }
+  .rowlist {
 	display: flex !important;
 	flex-wrap: wrap;
-}
-
-.rowlist > [class*="col-"] {
+  }
+  .rowlist > [class*="col-"] {
 	margin: 0 -0.3px;
-}
+  }
