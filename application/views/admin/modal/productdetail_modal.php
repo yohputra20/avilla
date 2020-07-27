@@ -81,6 +81,12 @@
                                 <textarea id="descdetail" class="form-control" name="descdetail" rows="10"></textarea>
                             </div>
                         </div>
+                        <div class="form-group">
+                                <label class="control-label col-sm-12" for="product_title">Urutan Letak<span style="color:red">*</span> :</label>
+                                <div class="col-sm-12">
+                                    <input type="number" class="form-control" id="sorting" value="" name="sorting" required="">
+                                </div>
+                            </div>
                         <!-- <div class="form-group col-sm-12">
                             <label class="control-label col-sm-12" for="product_desc">Product Specification:</label>
                             <div class="col-sm-12">

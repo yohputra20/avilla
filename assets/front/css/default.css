@@ -38,7 +38,7 @@ a {
 }
 img {
 	max-width: 100%;
-	display: block;
+	/* display: block; */
 }
 a:hover,
 a:focus {
@@ -711,7 +711,18 @@ ul li {
 .dropdown-item{
 	background: white !important;
 	padding-left:10px;
+	padding-right:10px;
 }
 .dropdown-menu a::before{
 	background: white !important;
+}
+.dropdown-menu a:hover {
+	color: #919191 !important;
+}
+.blog-content{
+	 display:block;
+	 margin:auto;
+}
+.dropdown-menu{
+	min-width: 200px;
 }
