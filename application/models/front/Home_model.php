@@ -112,4 +112,14 @@ class Home_model extends CI_Model
         return $balikan;
     }
 
+    function getSpesifikasiProdukFooter($product_id){
+        $this->db->select("*");
+        $this->db->from("productdetail");
+        $this->db->where("fdelete", "0");
+        $this->db->where("product_id", $product_id);
+        $this->db->limit(6);  
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
 }

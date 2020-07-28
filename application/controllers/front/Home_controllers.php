@@ -20,6 +20,9 @@ class Home_controllers extends CI_Controller
 		$content['data_about'] = $this->home_model->get_data("about");
 		$content['data_contactus'] = $this->home_model->get_data("contactus");
 		
+		$data_sub_detail = $this->home_model->getSpesifikasiProdukFooter("1"); // GET SPESIFIKASI FOR DATA FOOTER
+		$content['data_produk_spesifikasi'] = $data_sub_detail;
+		//echo json_encode($data_sub_detail);exit();
 		$content['header'] = "front/header_view";
 		$content['footer'] = "front/footer_view";
 		$content['content_section'] = "front/home_view";
