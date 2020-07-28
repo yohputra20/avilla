@@ -2542,7 +2542,7 @@ Version:	1.1
 	background-repeat: no-repeat !important;
 	background-position: center center !important;
 	background-image: url("../admin/img/icon_tab_browser.png") !important;
-	background-size: contain !important;
+	background-size: auto !important;
 }
 .headersub {
 	top: 9%;

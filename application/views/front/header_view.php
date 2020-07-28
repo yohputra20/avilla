@@ -21,9 +21,8 @@
                                           href="<?php echo base_url();?>">Home</a>
                                   </li>
                                   <li><a href="<?php echo base_url();?>#about-us">About Us</a>
-                                  <li <?php if($menu_active == "services") {echo 'class="active"';}?>><a
-                                          href="<?php echo base_url();?>#service">Service</a></li>
-                                  <li <?php if($menu_active == "product") {echo 'class="active dropdown"';}?>>
+                                
+                                  <li> <?php if($menu_active == "product") {echo 'class="active dropdown"';}?>
 
                                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

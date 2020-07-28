@@ -37,7 +37,7 @@
 <section id="about-us" class="section about-us">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
+            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn" style="background-color:#ffffff94">
                 <div class="section-title center">
                     <h2 class="h2about">About Us</h2>
                 </div>
