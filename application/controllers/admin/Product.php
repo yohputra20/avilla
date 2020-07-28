@@ -196,4 +196,8 @@ class Product extends CI_Controller
         $contentview = $this->load->view("admin/modal/productdetail_spec_modal", $getdetailspec, true);
         echo $contentview;
     }
+    public function getcountproductdetail(){
+        $getproduct = $this->product_model->ProductData();
+        echo sizeof($getproduct);
+    }
 }

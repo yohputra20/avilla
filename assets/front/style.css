@@ -2575,3 +2575,6 @@ Version:	1.1
   .rowlist > [class*="col-"] {
 	margin: 0 -0.3px;
   }
+  .imglogofooter{
+	filter: brightness(2);
+  }

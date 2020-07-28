@@ -156,120 +156,128 @@ class Product_model extends CI_Model
     {
         $datetime = date('Y-m-d H:i:s');
         $excelreader = new PHPExcel_Reader_Excel2007();
-        $loadexcel = $excelreader->load('assets/upload/product/excel_spec' . $data['filename'] . ".xlsx"); // Load file yang tadi diupload ke folder excel
-        $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
-        // echo json_encode(sizeof($sheet));die();
-        if (sizeof($sheet) > 0) {
-            $x = 2;
-            foreach ($sheet as $row) {
-                $model = '';
-                $engine = '';
-                $outputKvaPrp = '';
-                $outputKvaEsp = '';
-                $outputKwPrp = '';
-                $outputKwEsp = '';
-                $loadfuel = '';
-                $ot_l = '';
-                $ot_w = '';
-                $ot_h = '';
-                $ot_weight = '';
-                $st_l = '';
-                $st_w = '';
-                $st_h = '';
-                $st_weight = '';
-                $ismodel = false;
-                $isop = false;
-                $isst = false;
-
-                if ($x > 2) {
-                    if ($x == 3 && strtolower(trim($row['B'])) == 'model') { //kolomprovinsi
-                        $ismodel = true;
+        if($data['filename']!=''){
+            $loadexcel = $excelreader->load('assets/upload/product/excel_spec/' . $data['filename'] . ".xlsx"); // Load file yang tadi diupload ke folder excel
+            $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
+            // echo json_encode(sizeof($sheet));die();
+            if (sizeof($sheet) > 0) {
+                $x = 2;
+                foreach ($sheet as $row) {
+                    $model = '';
+                    $engine = '';
+                    $outputKvaPrp = '';
+                    $outputKvaEsp = '';
+                    $outputKwPrp = '';
+                    $outputKwEsp = '';
+                    $loadfuel = '';
+                    $ot_l = '';
+                    $ot_w = '';
+                    $ot_h = '';
+                    $ot_weight = '';
+                    $st_l = '';
+                    $st_w = '';
+                    $st_h = '';
+                    $st_weight = '';
+                    $ismodel = false;
+                    $isop = false;
+                    $isst = false;
+    
+                    if ($x > 2) {
+                        if ($x == 3 && strtolower(trim($row['B'])) == 'model') { //kolomprovinsi
+                            $ismodel = true;
+                        }
+                        if ($x == 3 && strtoupper(trim($row['I'])) == 'SILENT TYPE') { //kolomprovinsi
+                            $isop = false;
+                        } else if ($x == 3 && strtoupper(trim($row['I'])) == 'OPEN TYPE') {
+                            $isop = true;
+                        }
+    
+                        if ($x == 3 && strtoupper(trim($row['M'])) == 'SILENT TYPE') {
+                            $isst = true;
+                        }
+    
+                        if ($x > 6 && $isop == false && $ismodel == true && $isst = false) {
+                            $insert_data = array(
+                                'productdetail_id' => $data['productdetail_id'],
+                                'model' => $row['B'],
+                                'engine' => $row['C'],
+                                'outputKvaPrp' => $row['D'],
+                                'outputKvaEsp' => $row['E'],
+                                'outputKwPrp' => $row['F'],
+                                'outputKwEsp' => $row['G'],
+                                'loadFuel' => $row['H'],
+                                'st_l' => $row['I'],
+                                'st_w' => $row['J'],
+                                'st_h' => $row['K'],
+                                'st_weight' => $row['L'],
+                                'fdelete' => '0',
+                                'createdDate' => $datetime,
+                                'createdBy' => $this->username,
+                            );
+                        } else if ($x > 6 && $isop == true && $ismodel == true && $isst = true) {
+                            $insert_data = array(
+                                'productdetail_id' => $data['productdetail_id'],
+                                'model' => $row['B'],
+                                'engine' => $row['C'],
+                                'outputKvaPrp' => $row['D'],
+                                'outputKvaEsp' => $row['E'],
+                                'outputKwPrp' => $row['F'],
+                                'outputKwEsp' => $row['G'],
+                                'loadFuel' => $row['H'],
+                                'ot_l' => $row['I'],
+                                'ot_w' => $row['J'],
+                                'ot_h' => $row['K'],
+                                'ot_weight' => $row['L'],
+                                'st_l' => $row['M'],
+                                'st_w' => $row['N'],
+                                'st_h' => $row['O'],
+                                'st_weight' => $row['P'],
+                                'fdelete' => '0',
+                                'createdDate' => $datetime,
+                                'createdBy' => $this->username,
+                            );
+                        } else if ($x > 6 && $isop == true && $ismodel == true && $isst = false) {
+                            $insert_data = array(
+                                'productdetail_id' => $data['productdetail_id'],
+                                'model' => $row['B'],
+                                'engine' => $row['C'],
+                                'outputKvaPrp' => $row['D'],
+                                'outputKvaEsp' => $row['E'],
+                                'outputKwPrp' => $row['F'],
+                                'outputKwEsp' => $row['G'],
+                                'loadFuel' => $row['H'],
+                                'ot_l' => $row['I'],
+                                'ot_w' => $row['J'],
+                                'ot_h' => $row['K'],
+                                'ot_weight' => $row['L'],
+    
+                                'fdelete' => '0',
+                                'createdDate' => $datetime,
+                                'createdBy' => $this->username,
+                            );
+                        }
+                        $product_insert = $this->db->insert('productspecifikasi', $insert_data);
+    
                     }
-                    if ($x == 3 && strtoupper(trim($row['I'])) == 'SILENT TYPE') { //kolomprovinsi
-                        $isop = false;
-                    } else if ($x == 3 && strtoupper(trim($row['I'])) == 'OPEN TYPE') {
-                        $isop = true;
-                    }
-
-                    if ($x == 3 && strtoupper(trim($row['M'])) == 'SILENT TYPE') {
-                        $isst = true;
-                    }
-
-                    if ($x > 6 && $isop == false && $ismodel == true && $isst = false) {
-                        $insert_data = array(
-                            'productdetail_id' => $data['productdetail_id'],
-                            'model' => $row['B'],
-                            'engine' => $row['C'],
-                            'outputKvaPrp' => $row['D'],
-                            'outputKvaEsp' => $row['E'],
-                            'outputKwPrp' => $row['F'],
-                            'outputKwEsp' => $row['G'],
-                            'loadFuel' => $row['H'],
-                            'st_l' => $row['I'],
-                            'st_w' => $row['J'],
-                            'st_h' => $row['K'],
-                            'st_weight' => $row['L'],
-                            'fdelete' => '0',
-                            'createdDate' => $datetime,
-                            'createdBy' => $this->username,
-                        );
-                    } else if ($x > 6 && $isop == true && $ismodel == true && $isst = true) {
-                        $insert_data = array(
-                            'productdetail_id' => $data['productdetail_id'],
-                            'model' => $row['B'],
-                            'engine' => $row['C'],
-                            'outputKvaPrp' => $row['D'],
-                            'outputKvaEsp' => $row['E'],
-                            'outputKwPrp' => $row['F'],
-                            'outputKwEsp' => $row['G'],
-                            'loadFuel' => $row['H'],
-                            'ot_l' => $row['I'],
-                            'ot_w' => $row['J'],
-                            'ot_h' => $row['K'],
-                            'ot_weight' => $row['L'],
-                            'st_l' => $row['M'],
-                            'st_w' => $row['N'],
-                            'st_h' => $row['O'],
-                            'st_weight' => $row['P'],
-                            'fdelete' => '0',
-                            'createdDate' => $datetime,
-                            'createdBy' => $this->username,
-                        );
-                    } else if ($x > 6 && $isop == true && $ismodel == true && $isst = false) {
-                        $insert_data = array(
-                            'productdetail_id' => $data['productdetail_id'],
-                            'model' => $row['B'],
-                            'engine' => $row['C'],
-                            'outputKvaPrp' => $row['D'],
-                            'outputKvaEsp' => $row['E'],
-                            'outputKwPrp' => $row['F'],
-                            'outputKwEsp' => $row['G'],
-                            'loadFuel' => $row['H'],
-                            'ot_l' => $row['I'],
-                            'ot_w' => $row['J'],
-                            'ot_h' => $row['K'],
-                            'ot_weight' => $row['L'],
-
-                            'fdelete' => '0',
-                            'createdDate' => $datetime,
-                            'createdBy' => $this->username,
-                        );
-                    }
-                    $product_insert = $this->db->insert('productspecifikasi', $insert_data);
-
+                    $x++;
                 }
-                $x++;
+                $balikan = array(
+                    'status' => 1,
+                    'msg' => 'Data berhasi di simpan',
+                );
+            } else {
+                $balikan = array(
+                    'status' => 0,
+                    'msg' => 'File Excel tidak ada data',
+                );
             }
+        }else{
             $balikan = array(
                 'status' => 1,
-                'msg' => 'Data berhasi di simpan',
-            );
-        } else {
-            $balikan = array(
-                'status' => 0,
                 'msg' => 'File Excel tidak ada data',
-            );
+            ); 
         }
+        
         return $balikan;
     }
     public function getProdukDetail($id)
@@ -345,9 +353,11 @@ class Product_model extends CI_Model
         // echo json_encode($_FILES['excel_product_spec']);die();
         if (!empty($_FILES['excel_product_spec']['name'])) {
             $excelname = str_replace(" ", "_", $data['product_title']) . '_' . uniqid();
-            $excel = $this->_uploadexcel($excelname, 'excel_product_spec');
-            if ($excel == '0') {
-                return '0';
+            $getexcel = $this->_uploadexcel($excelname, 'excel_product_spec');
+            if ($getexcel['status'] == '0') {
+                return $getexcel['error'];
+            }else{
+                $excel=$getexcel['file'];
             }
         } else {
             $excel = '';
@@ -368,7 +378,7 @@ class Product_model extends CI_Model
             'createdDate' => $datetime,
             'createdBy' => $this->username,
         );
-        // echo json_encode($insert_data);die();
+        echo json_encode($insert_data);die();
         $product_insert = $this->db->insert('productdetail', $insert_data);
         $insert_id = $this->db->insert_id();
         if ($product_insert == 1 && $excelname != '') {
@@ -484,9 +494,11 @@ class Product_model extends CI_Model
         // echo json_encode($_FILES['excel_product_spec']);die();
         if (!empty($_FILES['excel_product_spec']['name'])) {
             $excelname = str_replace(" ", "_", $data['product_title']) . '_' . uniqid();
-            $excel = $this->_uploadexcel($excelname, 'excel_product_spec');
-            if ($excel == '0') {
-                return '0';
+            $getexcel = $this->_uploadexcel($excelname, 'excel_product_spec');
+            if ($getexcel['status'] == '0') {
+                return $getexcel['error'];
+            }else{
+                $excel=$getexcel['file'];
             }
         } else {
             $excel = '';

@@ -57,10 +57,10 @@ CREATE TABLE IF NOT EXISTS `banner` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dbavilla.banner: ~0 rows (approximately)
+-- Dumping data for table dbavilla.banner: ~1 rows (approximately)
 /*!40000 ALTER TABLE `banner` DISABLE KEYS */;
 INSERT INTO `banner` (`id`, `img_path`, `description`, `orderby`, `fdelete`, `createdDate`, `createdBy`, `modifiedDate`, `modifiedBy`) VALUES
-	(1, 'banner_5ead7f5551a9c.png', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>', 1, 0, '2020-05-02 21:09:32', 'adminputra', '2020-05-02 21:25:57', 'adminputra');
+	(1, 'banner_5ead7f5551a9c.png', '<p>&nbsp;test</p>', 1, 0, '2020-05-02 21:09:32', 'adminputra', '2020-07-27 18:40:26', 'adminweb');
 /*!40000 ALTER TABLE `banner` ENABLE KEYS */;
 
 -- Dumping structure for table dbavilla.client
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `contactus` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dbavilla.contactus: ~0 rows (approximately)
+-- Dumping data for table dbavilla.contactus: ~1 rows (approximately)
 /*!40000 ALTER TABLE `contactus` DISABLE KEYS */;
 INSERT INTO `contactus` (`id`, `title`, `description`, `fdelete`, `createdDate`, `createdBy`, `modifiedDate`, `modifiedBy`) VALUES
 	(1, 'fsfsdf', '<table style="border-collapse: collapse; width: 100%;">\r\n<tbody>\r\n<tr>\r\n<td style="width: 100%;"><span class="fontstyle2"><span class="fontstyle0">PT. Avilla Jaya Teknik</span></span></td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<table style="border-collapse: collapse; width: 100%;" border="0">\r\n<tbody>\r\n<tr style="height: 22px;">\r\n<td style="width: 100%; height: 22px;"><span class="fontstyle2">Ruko Sedayu Square Blok J No 6</span></td>\r\n</tr>\r\n<tr style="height: 22px;">\r\n<td style="width: 100%; height: 22px;"><span class="fontstyle2">Jl. Outer Ring Road Lingkar Luar Cengkareng</span></td>\r\n</tr>\r\n<tr style="height: 22px;">\r\n<td style="width: 100%; height: 22px;"><span class="fontstyle2">Jakarta Barat 11730</span></td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p>&nbsp;</p>\r\n<table class="NormalTable" style="border-collapse: collapse; width: 100%;">\r\n<tbody>\r\n<tr>\r\n<td width="108"><span class="fontstyle2">Mobile </span></td>\r\n<td width="550"><span class="fontstyle2">: 0813 - 9041 - 1533 (Marketing)</span></td>\r\n</tr>\r\n<tr>\r\n<td width="108"><span class="fontstyle2">Phone </span></td>\r\n<td width="550"><span class="fontstyle2">: 021 - 52394859</span></td>\r\n</tr>\r\n<tr>\r\n<td width="108"><span class="fontstyle2">Email </span></td>\r\n<td width="550"><span class="fontstyle2">: marketing.avillajayateknik@gmail.com</span></td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>', 0, '2020-05-01 17:34:58', 'adminavilla', '2020-07-26 17:55:05', 'adminweb');

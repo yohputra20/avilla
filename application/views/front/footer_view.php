@@ -7,16 +7,15 @@
                  <div class="col-md-12 col-sm-12 col-xs-12 ">
                      <!-- Logo -->
                      <div class="logo">
-                         <a href="index.html">Avilla</a>
-                         <br>
-                         <span style="font-size: 25px;color:#fff">Sustainable Solution</span>
+                         <a href="<?php echo base_url(); ?>">
+                             <img class="imglogofooter" src="<?php echo base_url(); ?>assets/admin/img/logo_front.png" style="width: 170px;" />
+                         </a>
+
                      </div>
                      <!--/ End Logo -->
                      <!-- Social -->
                      <ul class="social">
-                         <li><a target="_blank" title="Instagram PT Avilla Jaya Teknik"
-                                 href="https://www.instagram.com/avillapower/?igshid=xixzaweoyhyk"><i
-                                     class="fa fa-instagram"></i></a></li>
+                         <li><a target="_blank" title="Instagram PT Avilla Jaya Teknik" href="https://www.instagram.com/avillapower/?igshid=xixzaweoyhyk"><i class="fa fa-instagram"></i></a></li>
                      </ul>
                      <!--/ End Social -->
                  </div>

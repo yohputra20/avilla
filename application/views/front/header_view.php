@@ -67,13 +67,13 @@
                                   KLIK HUBUNGI
                               </div>
                               <div class="col-md-9 col-sm-6 col-xs-6" style="padding:0;">
-                                  <div class="col-md-4 col-sm-12 col-xs-12" style="padding:0;">
+                                  <div class="col-md-4 col-sm-12 col-xs-12" style="padding:0px 5px 0px 0px;">
                                       <i class="fa fa-phone"></i>&nbsp;<a href="tel:+622152394859"
                                           style="color:white;">021-52394859</a>
                                   </div>
 
                                   <div class="col-md-8 col-sm-12 col-xs-12" style="padding:0;">
-                                      <i class="fa fa-whatsapp"></i>&nbsp;<a
+                                  <i class="fa fa-phone"></i> <i class="fa fa-whatsapp"></i>&nbsp;<a
                                           href="https://api.whatsapp.com/send?phone=6281390411533&text=Saya%20ingin%20bertanya%20tentang"
                                           target="_blank" style="color:white;">0813-9041-1533</a>
                                   </div>
