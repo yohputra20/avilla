@@ -22,13 +22,13 @@ class Home_controllers extends CI_Controller
 		
 		$data_sub_detail = $this->home_model->getSpesifikasiProdukFooter("1"); // GET SPESIFIKASI FOR DATA FOOTER
 		$content['data_produk_spesifikasi'] = $data_sub_detail;
-		//echo json_encode($data_sub_detail);exit();
+
 		$content['header'] = "front/header_view";
 		$content['footer'] = "front/footer_view";
 		$content['content_section'] = "front/home_view";
 		
 		$content['menu_active'] = "Beranda";
-		
+		// echo json_encode($content['data_contactus']);exit();		
 		$this->load->view('front/template_view', $content);
 	}
 
@@ -40,6 +40,9 @@ class Home_controllers extends CI_Controller
 		$content['header'] = "front/header_view";
 		$content['footer'] = "front/footer_view";
 		$content['content_section'] = "front/detailpage_view";
+			
+		$data_sub_detail = $this->home_model->getSpesifikasiProdukFooter("1"); // GET SPESIFIKASI FOR DATA FOOTER
+		$content['data_produk_spesifikasi'] = $data_sub_detail;
 		if($typepage == "service"){
 			$content['title_content'] = "Services";
 			$content['menu_active'] = "services";
@@ -64,6 +67,10 @@ class Home_controllers extends CI_Controller
 			$content['title_content'] = "Product";
 			$content['menu_active'] = "product";
 			$content['path_image'] = base_url()."assets/admin/upload/product/";
+		}else if($typepage == "client"){
+			$content['title_content'] = "Clients";
+			$content['menu_active'] = "clients";
+			$content['path_image'] = base_url()."assets/admin/upload/client/";
 		}
 		$this->load->view('front/template_view', $content);
 	}
@@ -75,7 +82,8 @@ class Home_controllers extends CI_Controller
 		$content['data_about'] = $this->home_model->get_data("about");
 		$content['data_contactus'] = $this->home_model->get_data("contactus");
 		$content['data_detail'] = $this->home_model->get_header_produk($data_sub_detail[0]['product_id'], "product");
-
+		$data_sub_detail = $this->home_model->getSpesifikasiProdukFooter("1"); // GET SPESIFIKASI FOR DATA FOOTER
+		$content['data_produk_spesifikasi'] = $data_sub_detail;
 		$content['header'] = "front/header_view";
 		$content['footer'] = "front/footer_view";
 		$content['content_section'] = "front/spesifikasi_produk_view";

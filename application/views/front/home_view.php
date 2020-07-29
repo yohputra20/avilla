@@ -89,7 +89,7 @@
 
 
 <!-- Start Products -->
-<section id="portfolio" class="section">
+<section id="product" class="section">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
@@ -181,7 +181,7 @@
 <!--/ End Service -->
 
 <!-- Start Client -->
-<section id="clients" class="section wow fadeIn">
+<section id="clients" class="section wow fadeIn" style="border-top:1px solid #d2cccc; background:white;">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
@@ -195,12 +195,13 @@
                 <div class="clients-carousel">
                     <!-- Single Clients -->
 
-                    <?php foreach($data_client as $row) { ?>
+                    <?php $o=0; foreach($data_client as $row) {  if($o<6) {?>
                     <div class="single-client">
                         <img src="<?php echo base_url()."assets/admin/upload/client/".$row['logo_path']; ?>"
                             alt="<?php echo $row['alt']?>" class="img-responsive">
                     </div>
-                    <?php } ?>
+                    <?php }; 
+                    $o++; } ?>
                 </div>
             </div>
         </div>

@@ -89,6 +89,8 @@ function checkContactUs() {
 				$('#contacusId').val(data.data.id);
 				$('#contactusTitle').text(data.data.title);
 				$('#contactUsBody').html(data.data.description);
+				$('#telpcontactus').html(data.data.telp);
+				$('#whatsappcontactus').html(data.data.whatsapp);
 			} else {
 				$('.viewContactUs').hide();
 				$('.editContactUs').show();
@@ -986,6 +988,8 @@ $(document).ready(function () {
 					$('#contactus_title').val(data.data.title);
 					console.log(data.data.description);
 					tinyMCE.activeEditor.setContent(data.data.description);
+					$('#telp').val(data.data.telp);
+				$('#whatsapp').val(data.data.whatsapp);
 				} else {
 
 					$('.viewContactUs').show();
