@@ -2600,3 +2600,11 @@ Version:	1.1
 	text-decoration: none;
 	color:white;
   }
+  .imglogoproduct{
+	height: 80px;
+}
+  @media screen and (max-width: 768px) {
+.imglogoproduct{
+	height: 50px;
+}
+  }
