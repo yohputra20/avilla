@@ -39,7 +39,7 @@
                      </div>
                  </div>
 
-                 <div class="col-md-4 col-sm-12 col-xs-12 " style="margin-bottom:30px">
+                 <div class="col-md-4 col-sm-12 col-xs-12 " >
                      <div class="row">
                          <div class="col-md-12 col-sm-12 col-xs-12 text-left">
                              <!-- <h4 class="titlefooter">Contact Us</h4>
@@ -57,7 +57,7 @@
                      </ul>
                  </div>
 
-                 <div class="col-md-4 col-sm-12 col-xs-12 ">
+                 <div class="col-md-4 col-sm-12 hidden-xs ">
                      <div class="row">
                          <div class="col-md-12 col-sm-12 col-xs-12 text-left">
                              <h4 class="titlefooter">Menu</h4>
