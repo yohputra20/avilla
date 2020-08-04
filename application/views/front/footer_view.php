@@ -23,7 +23,7 @@
                                      <?php if ($row['path_logo'] != "") {
 
                                         ?>
-                                         <img class="" src="<?php echo base_url() . "assets/admin/upload/product/" . $row['path_logo']; ?>" style="width: 170px;" alt="<?php if (isset($row['meta_title'])) {
+                                         <img class="" src="<?php echo base_url() . "assets/admin/upload/product/" . $row['path_logo']; ?>" style="height: 55px;display: block;margin-left: auto;margin-right: auto;" alt="<?php if (isset($row['meta_title'])) {
                                                                                                                                                                                     }; ?>">
                                      <?php } else { ?>
                                          <img class="" src="<?php echo base_url() . "assets/front/images/no_image.png"; ?>" style="width: 170px;" alt="<?php if (isset($row['meta_title'])) {
