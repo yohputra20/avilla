@@ -8,8 +8,8 @@
 
                      <div class="row">
                          <div class="col-md-12 col-sm-12 col-xs-12 text-left">
-                             <h4 class="titlefooter">Powered By</h4>
-                             <hr class="linefotter">
+                             <h4 class="titlefooter">Product</h4>
+                          
                          </div>
                      </div>
                      <div class="row">
@@ -38,30 +38,11 @@
 
                      </div>
                  </div>
-
-                 <div class="col-md-4 col-sm-12 col-xs-12 " >
-                     <div class="row">
-                         <div class="col-md-12 col-sm-12 col-xs-12 text-left">
-                             <!-- <h4 class="titlefooter">Contact Us</h4>
-                             <hr class="linefotter"> -->
-                         </div>
-                     </div>
-                     <div class="logo">
-                         <a href="<?php echo base_url(); ?>">
-                             <img class="imglogofooter" src="<?php echo base_url(); ?>assets/admin/img/logo_front.png" style="width: 200px;" />
-                         </a>
-
-                     </div>
-                     <ul class="social">
-                         <li><a target="_blank" title="Instagram PT Avilla Jaya Teknik" href="https://www.instagram.com/avillapower/?igshid=xixzaweoyhyk"><i class="fa fa-instagram" style="font-size:30px;"></i></a></li>
-                     </ul>
-                 </div>
-
                  <div class="col-md-4 col-sm-12 hidden-xs ">
                      <div class="row">
                          <div class="col-md-12 col-sm-12 col-xs-12 text-left">
                              <h4 class="titlefooter">Menu</h4>
-                             <hr class="linefotter">
+                            
                          </div>
                      </div>
                      <div class="row">
@@ -78,6 +59,26 @@
                      </div>
 
                  </div>
+                 <div class="col-md-4 col-sm-12 col-xs-12 " >
+                     <div class="row">
+                         <div class="col-md-12 col-sm-12 col-xs-12 text-left">
+                             <h4 class="titlefooter">Follow us on instagram</h4>
+                         
+                         </div>
+                     </div>
+                     
+                     <ul class="social">
+                         <li><a target="_blank" title="Instagram PT Avilla Jaya Teknik" href="https://www.instagram.com/avillapower/?igshid=xixzaweoyhyk"><i class="fa fa-instagram" style="font-size:30px;"></i></a></li>
+                     </ul>
+                     <div class="logo">
+                         <a href="<?php echo base_url(); ?>">
+                             <img class="imglogofooter" src="<?php echo base_url(); ?>assets/admin/img/logo_front.png" style="width: 200px;" />
+                         </a>
+
+                     </div>
+                 </div>
+
+                
              </div>
          </div>
      </div>
