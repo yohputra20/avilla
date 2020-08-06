@@ -59,14 +59,14 @@
         ?>
         <div class="row" style="margin-top:40px">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="row align-items-end">
-                    <div class="col-md-6 col-sm-5 col-xs-5" style="min-height:50px">
+                <div class="row align-items-end" style="display: flex;">
+                    <div class="col-md-6 col-sm-5 col-xs-5" style="display:inline-block;align-self:flex-end">
                         <h5><?php echo (sizeof($productspec) > 0 ? (substr($productspec[0]['model'], 0, 2) == "AP" ? 'APK' : substr($productspec[0]['model'], 0, 2)) : ''); ?> Series Specifications</h5>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4 text-right" style="min-height:50px">
+                    <div class="col-md-4 col-sm-4 col-xs-4 text-right" style="display:inline-block;align-self:flex-end">
                         <h5>Powered By</h5>
                     </div>
-                    <div class="col-md-2 col-sm-3 col-xs-3 " style="padding-left:0px" >
+                    <div class="col-md-2 col-sm-3 col-xs-3 " style="padding-left:0px;display:inline-block;align-self:flex-end" >
                         <?php if ($data_spesifikasi['logo'] != "") { ?>
                             <img style="max-height:50px" src="<?php echo $data_spesifikasi['logo']; ?>" alt="<?php if (isset($data_sub_detail[0]['meta_title'])) {
                                                                                                                     echo $data_spesifikasi['logo'];
