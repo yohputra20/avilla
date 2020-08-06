@@ -137,17 +137,17 @@
 
     <!-- Bootstrap JS -->
     <script type="text/javascript" src="<?php echo base_url();?>assets/front/js/bootstrap.min.js"></script>
-
+ <script src="<?php echo base_url() ?>assets/front/js/jqBootstrapValidation.js"></script>
     <!-- Main JS -->
     <script type="text/javascript" src="<?php echo base_url();?>assets/front/js/main.js"></script>
 
     <script type="text/javascript" src="<?php echo base_url();?>assets/front/js/jquery.bttrlazyloading.min.js"></script>
 
     <script>
-        $('.bttrlazyloading').bttrlazyloading({
-            delay: 500,
-            placeholder: '<?php echo base_url() ?>assets/front/images/loading_animate.gif'
-        });
+        // $('.bttrlazyloading').bttrlazyloading({
+        //     delay: 500,
+        //     placeholder: '<?php echo base_url() ?>assets/front/images/loading_animate.gif'
+        // });
     </script>
 </body>
 

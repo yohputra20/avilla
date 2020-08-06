@@ -89,7 +89,7 @@
                 <div class="row rowlist" style="font-size: smaller;">
                     <?php foreach ($data_sub_detail as $row) { ?>
                         <div class="col-md-6 col-sm-12 col-xs-12">
-                            <div class="single-blog" style="margin-top:10px;margin-bottom:10px">
+                            <div class="single-blog productlautop" style="margin-top:10px;margin-bottom:10px">
                                 <div class="blog-content">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-12 col-xs-12">

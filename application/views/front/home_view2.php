@@ -222,53 +222,71 @@ $description = strlen($row['description']) > 200 ? substr($row['description'], 0
                 </div>
             </div>
         </div>
-                          
-
-        <!-- Google Map -->
-        <div class="row">
-            <!-- Contact Form -->
-
-                    <div class="col-md-6 col-sm-12 col-xs-12" style="margin-bottom:30px">
-                      <div class="row" style="margin-bottom:30px">
-                        <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:30px">
+                           <div class="row" style="margin-bottom:50px">
+                        <div class="col-md-6 col-sm-12 col-xs-12" style="margin-bottom:30px">
                        <h4>Office : </h4> 
                                 <?php echo $data_contactus[0]['description']; ?>
                     
                             </div>
-                            </div>
-                              <div class="row" style="margin-bottom:50px">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                        <div class="col-md-6 col-sm-12 col-xs-12">
                          <h4>Contact Info : </h4> 
-                              <?php 
+                               <i class="fa fa-phone fa-lg"></i> <?php 
                                $telplink = "+62" . substr($data_contactus[0]['telp'], 1);
                                 $telp = substr($data_contactus[0]['telp'], 0, 3) . "-" . substr($data_contactus[0]['telp'], 3);
-                                if( $data_contactus[0]['telp']!=''){
-                               echo ' <i class="fa fa-phone fa-lg"></i> <a href="tel:'.$telplink.'" style="color:black">'.  $telp ."</a>"; 
-                                }
+
+                               echo '<a href="tel:'.$telplink.'" style="color:black">'.  $telp ."</a>"; 
+                               
                                ?><br>
-                               <?php 
+                                <i class="fa fa-whatsapp fa-lg"></i> <?php 
                                 $whatsappsend = "62" . substr($data_contactus[0]['whatsapp'], 1);
                                 $whatsappshow = substr($data_contactus[0]['whatsapp'], 0, 4) . "-" . substr($data_contactus[0]['whatsapp'], 4, 4) . "-" . substr($data_contactus[0]['whatsapp'], 8);
-                                if( $data_contactus[0]['whatsapp']!=''){
-                                echo '  <i class="fa fa-whatsapp fa-lg"></i><a target="_blank" style="color:black" href="https://api.whatsapp.com/send?phone='. $whatsappsend.'&text=Saya%20ingin%20bertanya%20tentang">'.$whatsappshow.'</a>' ; 
-                                }
-                                if( $data_contactus[0]['email']!=''){
 
+                                echo '<a target="_blank" style="color:black" href="https://api.whatsapp.com/send?phone='. $whatsappsend.'&text=Saya%20ingin%20bertanya%20tentang">'.$whatsappshow.'</a>' ; 
                                 
                                 ?><br>
                                  <i class="fa fa fa-envelope fa-lg"></i> <?php echo $data_contactus[0]['email']; ?><br>
-                                 <?php } ?>
                         </div>
                     </div>
 
-</div>
+        <!-- Google Map -->
+        <div class="row">
+            <!-- Contact Form -->
+            <form id="contactForm" name="sentMessage" novalidate="novalidate">
+
+                    <div class="col-md-6 col-sm-12 col-xs-12" style="margin-bottom:30px">
+                        <div class="form-group">
+                            <input class="form-control" id="name" type="text" placeholder="Nama" required="required" data-validation-required-message="Nama harus di isi">
+                            <p class="help-block text-warning"></p>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="email" type="email" placeholder="Email" required="required" data-validation-required-message="Email harus di isi">
+                            <p class="help-block text-warning"></p>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="phone" type="number" inputmode="numeric" pattern="[0-9]*" placeholder="Telp" required="required" data-validation-required-message="Telp harus di isi">
+                            <p class="help-block text-warning"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control" rows="15" id="message" placeholder="Pesan" required="required" data-validation-required-message="Pesan Harus Di isi"></textarea>
+                            <p class="help-block text-warning"></p>
+                        </div>
+                        <div class="text-center">
+                            <div id="success"></div>
+                            <button class="btn btn-contactus btn-md btn-block" id="sendMessageButton" type="submit">Kirim</button>
+                        </div>
+                    </div>
+
+            </form>
+
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <a title="Lokasi PT Avilla Jaya Teknik" target="_blank"
                             href="https://www.google.com/maps/place/PT+Avilla+Jaya+Teknik/@-6.1254101,106.7302827,16.75z/data=!4m5!3m4!1s0x2e6a1dc6db31b3d5:0x2bb145509be38a7e!8m2!3d-6.1254049!4d106.7295137">
                             <img src="<?php echo base_url(); ?>assets/front/images/maps_avilla.png"
-                                class="img-responsive bttrlazyloading" style="border: 1px solid #dfdfdf;" />
+                                class="img-responsive bttrlazyloading" style="border: 1px solid #dfdfdf;height:auto !important" />
                         </a>
                     </div>
                     </div>

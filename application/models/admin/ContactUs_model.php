@@ -30,6 +30,7 @@ class ContactUs_model extends CI_Model
             'description' => $data['contactus_desc'],
             'telp'=>isset($data['telp']) ?$data['telp']: '' ,
             'whatsapp'=>isset($data['whatsapp']) ?$data['whatsapp']: '' ,
+            'email'=>isset($data['email']) ?$data['email']: '',
             'fdelete' => '0',
             'createdDate' => $datetime,
             'createdBy' =>  $this->username,
@@ -57,6 +58,7 @@ class ContactUs_model extends CI_Model
             'description' => $data['contactus_desc'],
             'telp'=>isset($data['telp']) ?$data['telp']: '' ,
             'whatsapp'=>isset($data['whatsapp']) ?$data['whatsapp']: '' ,
+             'email'=>isset($data['email']) ?$data['email']: '',
             'modifiedBy' =>  $this->username,
             'modifiedDate' => $datetime,
         );

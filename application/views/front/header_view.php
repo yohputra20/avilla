@@ -12,22 +12,22 @@
               <div class="col-md-8 col-sm-12 col-xs-12">
                   <div class="nav-area">
                       <!-- Main Menu -->
-                      <nav class="mainmenu">
+                      <nav class="mainmenu fixed-top">
                           <div class="mobile-nav"></div>
                           <div class="collapse navbar-collapse">
                               <ul class="nav navbar-nav menu">
                                   <li <?php if ($menu_active == "home") {
-                                            echo 'class="active"';
+                                            echo 'class="nav-item active"';
                                         } ?>><a href="<?php echo base_url(); ?>">Home</a>
                                   </li>
-                                  <li><a href="<?php echo base_url(); ?>#about-us">About Us</a>
+                                  <li class="nav-item"><a href="<?php echo base_url(); ?>#about-us">About Us</a>
 
                                   <li <?php if ($menu_active == "product") {
-                                            echo 'class="active dropdown"';
+                                            echo 'class="nav-item active dropdown"';
                                         } ?>>
 
                                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          Product
+                                          Product<b class="caret"></b>
                                       </a>
                                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                           <a class="dropdown-item" href="<?php echo base_url(); ?>detail-produk/product/genset">Heavy Duty
@@ -38,14 +38,14 @@
                                       </div>
                                   </li>
                                   <li <?php if ($menu_active == "services") {
-                                            echo 'class="active"';
+                                            echo 'class="nav-item active"';
                                         } ?>><a href="<?php echo base_url(); ?>#service">Service</a></li>
                                   <li <?php if ($menu_active == "client") {
-                                            echo 'class="active"';
+                                            echo 'class="nav-item active"';
                                         } ?>><a href="<?php echo base_url(); ?>#clients">Client</a></li>
 
                                   </li>
-                                  <li><a href="<?php echo base_url(); ?>#contact">Contact Us</a></li>
+                                  <li class="nav-item"><a href="<?php echo base_url(); ?>#contact">Contact Us</a></li>
                               </ul>
                           </div>
                       </nav>

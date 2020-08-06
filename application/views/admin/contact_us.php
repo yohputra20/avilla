@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="control-label col-sm-12" for="contactus_title">Telp(Di bawah menu halaman home)</label>
+                                            <label class="control-label col-sm-12" for="contactus_title">Telp</label>
                                             <div class="col-sm-12">
                                                 <input type="number" class="form-control" id="telp" value="" name="telp" >
                                             </div>
@@ -38,9 +38,18 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="control-label col-sm-12" for="contactus_title">Whatsapp(Di bawah menu halaman home)</label>
+                                            <label class="control-label col-sm-12" for="contactus_title">Whatsapp</label>
                                             <div class="col-sm-12">
                                                 <input type="number" class="form-control" id="whatsapp" value="" name="whatsapp">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                      <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-12" for="contactus_title">Email</label>
+                                            <div class="col-sm-12">
+                                                <input type="email" class="form-control" id="email" value="" name="email">
                                             </div>
                                         </div>
 
@@ -79,8 +88,9 @@
 
                         </div>
                         <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12" id="telpBody">
-                            Telp(dibawah menu): <span id="telpcontactus"></span><br>
-                            Whatsapp(dibawah menu): <span id="whatsappcontactus"></span><br>
+                            Telp: <span id="telpcontactus"></span><br>
+                            Whatsapp: <span id="whatsappcontactus"></span><br>
+                             Email: <span id="emailcontactus"></span><br>
                         </div>
                     </div>
 

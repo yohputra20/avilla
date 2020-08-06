@@ -15,21 +15,21 @@
 <section id="blog" class="single section page">
     <div class="container" style="background-color: white;">
         <div class="row" style="padding-top: 20px;padding-bottom: 20px;">
-            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                <!-- Single blog -->
-                <!-- <div class="single-blog">
-                    <div class="blog-head"> -->
-                <img style="height:500px" src="<?php echo $path_image . $data_detail['img_path']; ?>" alt="<?php if (isset($data_detail['meta_title'])) {
-                                                                                                                echo $data_detail['meta_title'];
-                                                                                                            } else {
-                                                                                                                $data_detail['alt'];
-                                                                                                            }; ?>">
-                <!-- </div>
+            
+            <div class="col-md-2  hidden-xs ">
 
-                </div> -->
-                <!--/ End Single blog -->
+                </div>
+                <div class="col-md-8 col-sm-12 col-xs-12 text-center">
+                    <img src="<?php echo $path_image . $data_detail['img_path']; ?>" alt="<?php if (isset($data_detail['meta_title'])) {
+                                                                                                                    echo $data_detail['meta_title'];
+                                                                                                                } else {
+                                                                                                                    $data_detail['alt'];
+                                                                                                                }; ?>">
 
-            </div>
+                </div>
+                <div class="col-md-2  hidden-xs ">
+
+                </div>
         </div>
         <div class="row">
 
@@ -57,22 +57,22 @@
             $padddingimg="padding-top:35px;";
         }
         ?>
-        <div class="row">
+        <div class="row" style="margin-top:40px">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6" style="<?php echo $padding; ?>;vertical-align: bottom">
+                <div class="row align-items-end">
+                    <div class="col-md-6 col-sm-5 col-xs-5" style="min-height:50px">
                         <h5><?php echo (sizeof($productspec) > 0 ? (substr($productspec[0]['model'], 0, 2) == "AP" ? 'APK' : substr($productspec[0]['model'], 0, 2)) : ''); ?> Series Specifications</h5>
                     </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4 text-right" style="<?php echo $padding; ?>vertical-align: bottom">
+                    <div class="col-md-4 col-sm-4 col-xs-4 text-right" style="min-height:50px">
                         <h5>Powered By</h5>
                     </div>
-                    <div class="col-md-2 col-sm-2 col-xs-2" style="<?php echo $padddingimg; ?>">
+                    <div class="col-md-2 col-sm-3 col-xs-3 " style="padding-left:0px" >
                         <?php if ($data_spesifikasi['logo'] != "") { ?>
-                            <img style="min-height:40px" src="<?php echo $data_spesifikasi['logo']; ?>" alt="<?php if (isset($data_sub_detail[0]['meta_title'])) {
+                            <img style="max-height:50px" src="<?php echo $data_spesifikasi['logo']; ?>" alt="<?php if (isset($data_sub_detail[0]['meta_title'])) {
                                                                                                                     echo $data_spesifikasi['logo'];
                                                                                                                 } else {
                                                                                                                     $data_spesifikasi['title'];
-                                                                                                                }; ?>" width="100">
+                                                                                                                }; ?>" >
                         <?php } else { ?>
                             <img src="<?php echo base_url() . "assets/front/images/no_image.png"; ?>" alt="<?php if (isset($data_sub_detail[0]['meta_title'])) {
                                                                                                                 echo $data_sub_detail[0]['meta_title'];
@@ -81,9 +81,8 @@
                                                                                                             }; ?>">
                         <?php } ?>
                     </div>
-                    </div>
-                    <div class="row">
-
+                                                                                                        </div>
+                                                                                                        <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12" style="overflow-x:auto;">
                         <table class="table table-bordered responsive nowrap" style="text-align:center;font-size:smaller" id="dataTabledetailproductspec" width="100%" cellspacing="1">
                             <thead style="text-align:center;    background-color: aliceblue;">
