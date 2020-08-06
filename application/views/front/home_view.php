@@ -250,7 +250,7 @@ $description = strlen($row['description']) > 200 ? substr($row['description'], 0
                                 $whatsappsend = "62" . substr($data_contactus[0]['whatsapp'], 1);
                                 $whatsappshow = substr($data_contactus[0]['whatsapp'], 0, 4) . "-" . substr($data_contactus[0]['whatsapp'], 4, 4) . "-" . substr($data_contactus[0]['whatsapp'], 8);
                                 if( $data_contactus[0]['whatsapp']!=''){
-                                echo '  <i class="fa fa-whatsapp fa-lg"></i><a target="_blank" style="color:black" href="https://api.whatsapp.com/send?phone='. $whatsappsend.'&text=Saya%20ingin%20bertanya%20tentang">'.$whatsappshow.'</a>' ; 
+                                echo '  <i class="fa fa-whatsapp fa-lg"></i> <a target="_blank" style="color:black" href="https://api.whatsapp.com/send?phone='. $whatsappsend.'&text=Saya%20ingin%20bertanya%20tentang">'.$whatsappshow.'</a>' ; 
                                 }
                                 if( $data_contactus[0]['email']!=''){
 
