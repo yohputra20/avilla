@@ -133,15 +133,15 @@ class Product_model extends CI_Model
 
     private function _uploadexcel($file_name, $excel_name)
     {
-        // $this->load->library('upload'); // Load librari upload
+        $this->load->library('upload');
 
-        $config['upload_path'] = './assets/upload/product/excel_spec/';
+        $config['upload_path'] = './assets/admin/upload/product/excel_spec/';
         $config['allowed_types'] = 'xlsx|csv|xls';
         $config['max_size'] = '2048';
         $config['overwrite'] = true;
         $config['file_name'] = $file_name;
-
-        $this->load->library('upload', $config); // Load konfigurasi uploadnya
+        $this->upload->initialize($config);
+        // Load konfigurasi uploadnya
         if ($this->upload->do_upload($excel_name)) { // Lakukan upload dan Cek jika proses upload berhasil
             // Jika berhasil :
             $return = array('status' => '1', 'file' => $this->upload->data(), 'error' => '');
@@ -154,15 +154,38 @@ class Product_model extends CI_Model
     }
     public function readExcelSpecProductDetail($data)
     {
+        include APPPATH . 'third_party\PHPExcel.php';
+
         $datetime = date('Y-m-d H:i:s');
         $excelreader = new PHPExcel_Reader_Excel2007();
-        if($data['filename']!=''){
-            $loadexcel = $excelreader->load('assets/upload/product/excel_spec/' . $data['filename'] . ".xlsx"); // Load file yang tadi diupload ke folder excel
+        if ($data['filename'] != '') {
+
+            $loadexcel = $excelreader->load('assets/admin/upload/product/excel_spec/' . $data['filename']); // Load file yang tadi diupload ke folder excel
             $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
-            // echo json_encode(sizeof($sheet));die();
+            $this->db->select('*');
+            $this->db->where('produkdetail_id', $data['productdetail_id']);
+            $this->db->where('fdelete', '0');
+            $query = $this->db->get('productspecifikasi');
+            $result_array = $query->result_array();
+            if (sizeof($result_array) > 0) {
+                $update_data = array(
+                   'fdelete'=>"1",
+                    'modifiedBy' => $this->username,
+                    'modifiedDate' => $datetime,
+                );
+                $this->db->where('produkdetail_id', $data['productdetail_id']);
+                $product_update = $this->db->update('productspecifikasi', $update_data);
+
+            }
+
             if (sizeof($sheet) > 0) {
-                $x = 2;
+                $x = 0;
+                $ismodel = false;
+                $isop = false;
+                $isst = false;
+
                 foreach ($sheet as $row) {
+
                     $model = '';
                     $engine = '';
                     $outputKvaPrp = '';
@@ -178,10 +201,7 @@ class Product_model extends CI_Model
                     $st_w = '';
                     $st_h = '';
                     $st_weight = '';
-                    $ismodel = false;
-                    $isop = false;
-                    $isst = false;
-    
+
                     if ($x > 2) {
                         if ($x == 3 && strtolower(trim($row['B'])) == 'model') { //kolomprovinsi
                             $ismodel = true;
@@ -191,14 +211,14 @@ class Product_model extends CI_Model
                         } else if ($x == 3 && strtoupper(trim($row['I'])) == 'OPEN TYPE') {
                             $isop = true;
                         }
-    
+
                         if ($x == 3 && strtoupper(trim($row['M'])) == 'SILENT TYPE') {
                             $isst = true;
                         }
-    
-                        if ($x > 6 && $isop == false && $ismodel == true && $isst = false) {
+
+                        if ($x > 6) {
                             $insert_data = array(
-                                'productdetail_id' => $data['productdetail_id'],
+                                'produkdetail_id' => $data['productdetail_id'],
                                 'model' => $row['B'],
                                 'engine' => $row['C'],
                                 'outputKvaPrp' => $row['D'],
@@ -206,58 +226,57 @@ class Product_model extends CI_Model
                                 'outputKwPrp' => $row['F'],
                                 'outputKwEsp' => $row['G'],
                                 'loadFuel' => $row['H'],
-                                'st_l' => $row['I'],
-                                'st_w' => $row['J'],
-                                'st_h' => $row['K'],
-                                'st_weight' => $row['L'],
+
                                 'fdelete' => '0',
                                 'createdDate' => $datetime,
                                 'createdBy' => $this->username,
                             );
-                        } else if ($x > 6 && $isop == true && $ismodel == true && $isst = true) {
-                            $insert_data = array(
-                                'productdetail_id' => $data['productdetail_id'],
-                                'model' => $row['B'],
-                                'engine' => $row['C'],
-                                'outputKvaPrp' => $row['D'],
-                                'outputKvaEsp' => $row['E'],
-                                'outputKwPrp' => $row['F'],
-                                'outputKwEsp' => $row['G'],
-                                'loadFuel' => $row['H'],
-                                'ot_l' => $row['I'],
-                                'ot_w' => $row['J'],
-                                'ot_h' => $row['K'],
-                                'ot_weight' => $row['L'],
-                                'st_l' => $row['M'],
-                                'st_w' => $row['N'],
-                                'st_h' => $row['O'],
-                                'st_weight' => $row['P'],
-                                'fdelete' => '0',
-                                'createdDate' => $datetime,
-                                'createdBy' => $this->username,
-                            );
-                        } else if ($x > 6 && $isop == true && $ismodel == true && $isst = false) {
-                            $insert_data = array(
-                                'productdetail_id' => $data['productdetail_id'],
-                                'model' => $row['B'],
-                                'engine' => $row['C'],
-                                'outputKvaPrp' => $row['D'],
-                                'outputKvaEsp' => $row['E'],
-                                'outputKwPrp' => $row['F'],
-                                'outputKwEsp' => $row['G'],
-                                'loadFuel' => $row['H'],
-                                'ot_l' => $row['I'],
-                                'ot_w' => $row['J'],
-                                'ot_h' => $row['K'],
-                                'ot_weight' => $row['L'],
-    
-                                'fdelete' => '0',
-                                'createdDate' => $datetime,
-                                'createdBy' => $this->username,
-                            );
+
+                            if ($isop == true && $isst == true) {
+                                $dataop = array(
+                                    'ot_l' => $row['I'],
+                                    'ot_w' => $row['J'],
+                                    'ot_h' => $row['K'],
+                                    'ot_weight' => $row['L'],
+                                    'st_l' => $row['M'],
+                                    'st_w' => $row['N'],
+                                    'st_h' => $row['O'],
+                                    'st_weight' => $row['P'],
+                                );
+
+                                $insert_data = array_merge($insert_data, $dataop);
+                            }
+
+                            if ($isop == true && $isst == false) {
+                                $dataop = array(
+                                    'ot_l' => $row['I'],
+                                    'ot_w' => $row['J'],
+                                    'ot_h' => $row['K'],
+                                    'ot_weight' => $row['L'],
+
+                                );
+
+                                $insert_data = array_merge($insert_data, $dataop);
+                            }
+                            if ($isop == false && $isst == false) {
+                                $dataop = array(
+
+                                    'st_l' => $row['I'],
+                                    'st_w' => $row['J'],
+                                    'st_h' => $row['K'],
+                                    'st_weight' => $row['L'],
+                                );
+
+                                $insert_data = array_merge($insert_data, $dataop);
+                            }
+
+                            if ($row['B'] != null && $row['C'] != null && $row['H'] != null) {
+                                $product_insert = $this->db->insert('productspecifikasi', $insert_data);
+
+                            }
+
                         }
-                        $product_insert = $this->db->insert('productspecifikasi', $insert_data);
-    
+
                     }
                     $x++;
                 }
@@ -271,13 +290,13 @@ class Product_model extends CI_Model
                     'msg' => 'File Excel tidak ada data',
                 );
             }
-        }else{
+        } else {
             $balikan = array(
                 'status' => 1,
                 'msg' => 'File Excel tidak ada data',
-            ); 
+            );
         }
-        
+
         return $balikan;
     }
     public function getProdukDetail($id)
@@ -288,7 +307,6 @@ class Product_model extends CI_Model
         $this->db->order_by('orderby', 'asc');
         $query = $this->db->get('productdetail');
         $result_array = $query->result_array();
-        // echo json_encode($result_array);die();
         $json['aaData'] = array();
         if (sizeof($result_array) > 0) {
             $x = 1;
@@ -296,7 +314,7 @@ class Product_model extends CI_Model
                 $row['path_img'] = $row['path_img'] != '' ? base_url() . "/assets/admin/upload/product/" . $row['path_img'] : base_url() . "/assets/admin/img/no_photo.jpg";
                 $row['path_logo'] = $row['path_logo'] != '' ? base_url() . "/assets/admin/upload/product/" . $row['path_logo'] : base_url() . "/assets/admin/img/no_photo.jpg";
                 $cekproduk = $this->productGet($row['product_id']);
-                if (trim(strtolower($cekproduk['title']))=='genset') {
+                if (trim(strtolower($cekproduk['title'])) == 'genset') {
                     $btndetail = ' <button id="productspecdetailgenset" class="btn btn-info margin5" data-value="' . $row['id'] . '">
                 <i class="fa fa-list"></i>
             </button>';
@@ -350,14 +368,14 @@ class Product_model extends CI_Model
         } else {
             $imagelogo = $data['productlogo_old_image'];
         }
-        // echo json_encode($_FILES['excel_product_spec']);die();
         if (!empty($_FILES['excel_product_spec']['name'])) {
             $excelname = str_replace(" ", "_", $data['product_title']) . '_' . uniqid();
             $getexcel = $this->_uploadexcel($excelname, 'excel_product_spec');
             if ($getexcel['status'] == '0') {
                 return $getexcel['error'];
-            }else{
-                $excel=$getexcel['file'];
+            } else {
+                $excel = $getexcel['file']['file_name'];
+
             }
         } else {
             $excel = '';
@@ -373,16 +391,17 @@ class Product_model extends CI_Model
             'description' => $data['descdetail'],
             'slug' => str_replace(" ", "-", $data['product_title']),
             'path_spec' => $excel,
-            'orderby' => isset($data['sorting'])?$data['sorting']: 1,
+            'orderby' => isset($data['sorting']) ? $data['sorting'] : 1,
+            'parent' => $data['ischild'] != '0' ? $data['parent_id'] : '0',
+            'status' => '1',
             'fdelete' => '0',
             'createdDate' => $datetime,
             'createdBy' => $this->username,
         );
-        echo json_encode($insert_data);die();
         $product_insert = $this->db->insert('productdetail', $insert_data);
         $insert_id = $this->db->insert_id();
-        if ($product_insert == 1 && $excelname != '') {
-            $data['filename'] = $excelname;
+        if ($product_insert == 1 && $excel != '') {
+            $data['filename'] = $excel;
             $data['productdetail_id'] = $insert_id;
             $readexcel = $this->readExcelSpecProductDetail($data);
             $balikan = $readexcel;
@@ -403,10 +422,7 @@ class Product_model extends CI_Model
         $this->db->order_by('modifiedDate', 'desc');
         $query = $this->db->get('productdetail');
         $result_array = $query->row_array();
-        // print_r($result_array);die();
         if (sizeof($result_array) > 0) {
-            // $result_array['path_img'] = $result_array['path_img'] != '' ? base_url() . "/assets/admin/upload/product/" . $result_array['path_img'] : base_url() . "/assets/admin/img/no_photo.jpg";
-            // $result_array['path_logo'] = $result_array['path_logo'] != '' ? base_url() . "/assets/admin/upload/product/" . $result_array['path_logo'] : base_url() . "/assets/admin/img/no_photo.jpg";
 
             $balikan = array(
                 'status' => 1,
@@ -491,14 +507,13 @@ class Product_model extends CI_Model
         } else {
             $imagelogo = $data['productlogo_old_image'];
         }
-        // echo json_encode($_FILES['excel_product_spec']);die();
         if (!empty($_FILES['excel_product_spec']['name'])) {
             $excelname = str_replace(" ", "_", $data['product_title']) . '_' . uniqid();
             $getexcel = $this->_uploadexcel($excelname, 'excel_product_spec');
             if ($getexcel['status'] == '0') {
                 return $getexcel['error'];
-            }else{
-                $excel=$getexcel['file'];
+            } else {
+                $excel = $getexcel['file']['file_name'];
             }
         } else {
             $excel = '';
@@ -513,19 +528,32 @@ class Product_model extends CI_Model
             'path_logo' => $imagelogo,
             'description' => $data['descdetail'],
             'slug' => str_replace(" ", "-", $data['product_title']),
-            'orderby' => isset($data['sorting'])?$data['sorting']: 1,
+            'orderby' => isset($data['sorting']) ? $data['sorting'] : 1,
             'path_spec' => $excel,
+            'parent' => $data['ischild'] != '0' ? $data['parent_id'] : '0',
+            'status' => '1',
             'modifiedBy' => $this->username,
             'modifiedDate' => $datetime,
         );
         $this->db->where('id', $data['productDetailId']);
         $product_update = $this->db->update('productdetail', $update_data);
-        if ($product_update) {
-            $balikan = array(
-                'status' => 1,
 
-                'msg' => 'product detail have been update',
-            );
+        if ($product_update) {
+            if ($excel != '') {
+                $data['filename'] = $excel;
+                $data['productdetail_id'] = $data['productDetailId'];
+                $readexcel = $this->readExcelSpecProductDetail($data);
+                $balikan = $readexcel;
+
+            } else {
+                $balikan = array(
+                    'status' => 1,
+
+                    'msg' => 'product detail have been update',
+                );
+
+            }
+
         } else {
             $balikan = array(
                 'status' => 0,
@@ -554,7 +582,6 @@ class Product_model extends CI_Model
             $this->db->select('*');
             $this->db->where('produkdetail_id', $detailid);
             $this->db->where('fdelete', '0');
-// $this->db->order_by('modifiedDate', 'desc');
             $query = $this->db->get('productspecifikasi');
             $result_array = $query->result_array();
             if (sizeof($result_array) > 0) {
@@ -596,7 +623,7 @@ class Product_model extends CI_Model
             $desc = $checkproduct['data']['description'];
             $image = ($checkproduct['data']['path_img'] == '' ? '' : base_url() . '/assets/admin/upload/product/' . $checkproduct['data']['path_img']);
             $logo = ($checkproduct['data']['path_logo'] == '' ? '' : base_url() . '/assets/admin/upload/product/' . $checkproduct['data']['path_logo']);
-          
+
         }
 
         $balikan = array(
@@ -608,5 +635,16 @@ class Product_model extends CI_Model
         );
         return $balikan;
 
+    }
+    public function getallproductdetail($id)
+    {
+        $this->db->select('*');
+        $this->db->where('product_id', $id);
+        $this->db->where('fdelete', '0');
+        $this->db->where('parent', '0');
+        $this->db->order_by('orderby', 'asc');
+        $query = $this->db->get('productdetail');
+        $result_array = $query->result_array();
+        return $result_array;
     }
 }

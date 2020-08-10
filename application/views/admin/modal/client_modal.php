@@ -34,7 +34,7 @@
               </div>
               <div class="form-group">
                 <label class="control-label col-sm-12" for="client_image">Logo Image :</label>
-
+    <label class="control-label col-sm-12" for="client_image_sub">(your image must be more than 225x225 and square)</label>
                 <input type="hidden" class="form-control" id="client_old_image" name="client_old_image" value="">
                 <div class="col-sm-2 image-upload">
                   <label for="image_source_client" class="form-control">
@@ -45,8 +45,10 @@
                 </div>
                 <div class="col-sm-12">
                   <div id="app" @change="change" @dragover="dragover" @drop="drop">
-                    <input class="fa fa-camera" style="display: none" type="file" id="image_source_client" name="image_source_client" onchange="clientPreviewImage();" accept="image/jpeg,image/jpg,image/jpe,image/png,image/gif,image/webp,image/bmp,image/tiff" ref="input" />
+                    <input class="fa fa-camera" style="display: none" type="file" id="image_source_client" name="image_source_client" accept="image/jpeg,image/jpg,image/jpe,image/png,image/gif,image/webp,image/bmp,image/tiff" ref="input" />
+            <input type="hidden" id="logoimgclientwarning"value="0">
                   </div>
+                  <div class="alertimgclient" style="color:red;display:none"></div>
                 </div>
 
                 <div class="client-preview">

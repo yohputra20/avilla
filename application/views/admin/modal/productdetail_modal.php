@@ -81,18 +81,30 @@
                                 <textarea id="descdetail" class="form-control" name="descdetail" rows="10"></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
+                         <div class="form-group col-sm-12">
+                            <label class="control-label col-sm-12" for="product_desc">Product Specification:</label>
+                            <div class="col-sm-12">
+                                <input class='form_control' type="file" id="excel_product_spec" name="excel_product_spec" accept=".xls,.xlsx" ref="input">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
                                 <label class="control-label col-sm-12" for="product_title">Urutan Letak<span style="color:red">*</span> :</label>
                                 <div class="col-sm-12">
                                     <input type="number" class="form-control" id="sorting" value="" name="sorting" required="">
                                 </div>
                             </div>
-                        <!-- <div class="form-group col-sm-12">
-                            <label class="control-label col-sm-12" for="product_desc">Product Specification:</label>
-                            <div class="col-sm-12">
-                                <input class='form_control' type="file" id="excel_product_spec" name="excel_product_spec" accept=".xls,.xlsx" ref="input">
+                            <div class="form-group checkbox col-sm-12">
+                                <label class="control-label col-sm-12" for="">Have parent :   <input type="checkbox"  id="ischild" value="1" name="ischild" required=""></label>
+
+
                             </div>
-                        </div> -->
+                             <div class="form-group divIsParent col-sm-12" style="display:none">
+                                <label class="control-label col-sm-12" for="">Paren Id :</label>
+                                <div class="col-sm-12">
+                                  <select id="parent_id" name="parent_id" class="form-control"></select>
+                                </div>
+                            </div>
+                       
                     </div>
             </div>
             <div class="modal-footer" style="justify-content:center;">

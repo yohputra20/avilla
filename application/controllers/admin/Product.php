@@ -196,8 +196,32 @@ class Product extends CI_Controller
         $contentview = $this->load->view("admin/modal/productdetail_spec_modal", $getdetailspec, true);
         echo $contentview;
     }
-    public function getcountproductdetail(){
+    public function getcountproductdetail()
+    {
         $getproduct = $this->product_model->ProductData();
         echo sizeof($getproduct);
+    }
+    public function getallproductdetail($productid,$id)
+    {
+        $html='';;
+        $getproduct = $this->product_model->getallproductdetail($productid);
+        if(sizeof($getproduct)>0){
+            foreach($getproduct as $prod){
+                if($id!=''){
+                    if($id==$prod['id']){
+                        continue;
+                    }else{
+$html .= '<option value="' . $prod['id'] . '">' . $prod['title'] . "</option>";
+
+                    }
+                }else{
+                    $html .= '<option value="' . $prod['id'] . '">' . $prod['title'] . "</option>";
+
+                }
+                
+            }
+        }
+     echo $html;   
+
     }
 }

@@ -100,9 +100,12 @@ class Home_controllers extends CI_Controller
         $content['header'] = "front/header_view";
         $content['footer'] = "front/footer_view";
         $content['content_section'] = "front/spesifikasi_produk_view";
-
+        $cekdetailparent=$this->home_model->getdetailbyparent($param);
+// print_r($cekdetailparent);die();
         // $content['data_spesifikasi'] = $this->home_model->get_spesifikasi_produk($param);
         $content['data_spesifikasi'] = $this->home_model->getdetailSpec($param);
+        $content['data_spesifikasi_child']=$cekdetailparent!=null ? $this->home_model->getdetailSpec($cekdetailparent['id']):array();
+
         //echo json_encode($content['data_spesifikasi']);exit();
 
         $content['title_content'] = "Product Specification";
