@@ -26,15 +26,7 @@ function servicePreviewImage() {
 	};
 };
 
-function clientPreviewImage() {
-	document.getElementById('preview_image').style.display = 'block';
-	var oFReader = new FileReader();
-	oFReader.readAsDataURL(document.getElementById('image_source_client').files[0]);
 
-	oFReader.onload = function (oFREvent) {
-		document.getElementById('preview_image').src = oFREvent.target.result;
-	};
-};
 
 function productPreviewImage() {
 
@@ -91,6 +83,7 @@ function checkContactUs() {
 				$('#contactUsBody').html(data.data.description);
 				$('#telpcontactus').html(data.data.telp);
 				$('#whatsappcontactus').html(data.data.whatsapp);
+				$('#emailcontactus').html(data.data.email);
 			} else {
 				$('.viewContactUs').hide();
 				$('.editContactUs').show();
@@ -597,7 +590,13 @@ $(document).ready(function () {
 		$('#clientModal').modal('show');
 		$("#title_client_modal").text("Add client");
 		$('#clientForm').parsley().reset();
+		$('#client_title').val(null);
+		$('#client_meta_title').val(null);
+		$('#client_meta_desc').val(null);
+		$('#client_order').val(null);
 
+		$('#client_old_image').val(null);
+		$('#preview_image').hide();
 
 		$('#clientId').val(null);
 		$('#client_title').val(null);
@@ -615,7 +614,8 @@ $(document).ready(function () {
 		form.parsley().validate();
 		var formData = new FormData(this);
 		var id = $('#clientId').val();
-
+		var logo = $('#image_source_client').val();
+		var imgwarning = $('#logoimgclientwarning').val();
 		if (id != '') {
 			url = 'client/edit_client';
 
@@ -623,57 +623,65 @@ $(document).ready(function () {
 			url = 'client/add_client';
 
 		}
-
-		if (form.parsley().isValid()) {
-			$.ajax({
-				url: url,
-				data: formData,
-				type: 'POST',
-				datatype: 'JSON',
-				async: false,
-				processData: false,
-				contentType: false,
-				beforeSend: function () {
-					document.getElementById('rpModal').style.display = 'block';
-				},
-				success: function (data) {
-					var data = JSON.parse(data);
-
-					document.getElementById('rpModal').style.display = 'none';
-					if (data.status == 1) {
-						Swal.fire({
-							position: 'center',
-							type: 'success',
-							title: 'Data has been saved',
-							showConfirmButton: false,
-							timer: 1500
-						}).then((timer) => {
-							window.location.href = 'client';
-						});
-					} else {
+		if (imgwarning == '1') {
+			swal.fire(
+				'Error',
+				'logo image tidak sesuai ketentuan', // had a missing comma
+				'error'
+			)
+		} else {
+			if (form.parsley().isValid()) {
+				$.ajax({
+					url: url,
+					data: formData,
+					type: 'POST',
+					datatype: 'JSON',
+					async: false,
+					processData: false,
+					contentType: false,
+					beforeSend: function () {
+						document.getElementById('rpModal').style.display = 'block';
+					},
+					success: function (data) {
+						var data = JSON.parse(data);
 
 						document.getElementById('rpModal').style.display = 'none';
+						if (data.status == 1) {
+							Swal.fire({
+								position: 'center',
+								type: 'success',
+								title: 'Data has been saved',
+								showConfirmButton: false,
+								timer: 1500
+							}).then((timer) => {
+								window.location.href = 'client';
+							});
+						} else {
+
+							document.getElementById('rpModal').style.display = 'none';
+							swal.fire(
+								'Error',
+								'Oops, your data was not saved.', // had a missing comma
+								'error'
+							)
+						}
+
+
+					},
+					error: function (e) {
+
+						document.getElementById('rpModal').style.display = 'none';
+
 						swal.fire(
 							'Error',
 							'Oops, your data was not saved.', // had a missing comma
 							'error'
 						)
 					}
-
-
-				},
-				error: function (e) {
-
-					document.getElementById('rpModal').style.display = 'none';
-
-					swal.fire(
-						'Error',
-						'Oops, your data was not saved.', // had a missing comma
-						'error'
-					)
-				}
-			});
+				});
+			}
 		}
+
 
 	});
 
@@ -703,7 +711,7 @@ $(document).ready(function () {
 					$('#client_title').val(data.data.title);
 					$('#client_meta_title').val(data.data.alt);
 					$('#client_meta_desc').val(data.data.meta_description);
-
+					$('#client_order').val(data.data.order_by);
 
 					$('#client_old_image').val(data.data.logo_path);
 					$('#preview_image').attr('src', base_url + '/assets/admin/upload/client/' + data.data.logo_path);
@@ -772,6 +780,47 @@ $(document).ready(function () {
 		});
 	});
 
+	$('#image_source_client').change(function (e) {
+		$('.alertimgclient').hide()
+		var file, img;
+		var _URL = window.URL || window.webkitURL;
+		if ((file = this.files[0])) {
+			img = new Image();
+			var objectUrl = _URL.createObjectURL(file);
+			var minwidth = 225;
+			var minheight = 225;
+			console.log('sini');
+			img.onload = function () {
+				console.log('tum');
+				if (this.width == this.height) {
+					if (minwidth < this.width && minheight < this.height) {
+						console.log('ok')
+						document.getElementById('preview_image').style.display = 'block';
+						var oFReader = new FileReader();
+						oFReader.readAsDataURL(file);
+
+						oFReader.onload = function (oFREvent) {
+							document.getElementById('preview_image').src = oFREvent.target.result;
+						};
+						$('#logoimgclientwarning').val('0');
+						_URL.revokeObjectURL(objectUrl);
+					} else {
+						console.log('aa');
+						$('#logoimgclientwarning').val('1');
+						$('.alertimgclient').show().text('lebar dan panjang logo minimal 225');
+					}
+				} else {
+					console.log('bb')
+					$('#logoimgclientwarning').val('1');
+					$('.alertimgclient').show().text('panjang dan lebar logo harus sama');
+				}
+				// alert(this.width + " " + this.height);
+
+			};
+			img.src = objectUrl;
+		}
+
+	});
 
 
 	/* ================================================================================================================= */
@@ -989,7 +1038,8 @@ $(document).ready(function () {
 					console.log(data.data.description);
 					tinyMCE.activeEditor.setContent(data.data.description);
 					$('#telp').val(data.data.telp);
-				$('#whatsapp').val(data.data.whatsapp);
+					$('#whatsapp').val(data.data.whatsapp);
+					$('#email').val(data.data.email);
 				} else {
 
 					$('.viewContactUs').show();
@@ -1351,7 +1401,7 @@ $(document).ready(function () {
 		$('#productDetailModal').modal('show');
 		$('#productDetailForm').parsley().reset();
 		imagearray = [];
-
+	
 		$("#title_productdetail_modal").text("Edit Product Detail");
 		var id = $(this).attr('data-value');
 
@@ -1386,7 +1436,35 @@ $(document).ready(function () {
 					} else {
 						$('#preview_image').attr('style', 'display:none');
 					}
+				
+					if (data.data.parent != '0') {
+						$('#ischild').prop('checked', true);
+						$('.divIsParent').show();
+						var productid = $('#productId').val();
+						var id = $('#productDetailId').val();
+						if (id == '') {
+							id = 0
+						}
+						$.ajax({
+							url: base_url + 'admin/product/getallproductdetail/' + productid + "/" + id,
+							type: 'POST',
+							beforeSend: function () {
+								document.getElementById('rpModal').style.display = 'block';
+							},
+							success: function (dt) {
+								document.getElementById('rpModal').style.display = 'none';
+								$('#parent_id').html(dt);
 
+	$('#parent_id').val(data.data.parent);
+
+							},
+							error: function (e) {
+
+								document.getElementById('rpModal').style.display = 'none';
+							}
+						});
+					
+					}
 
 					tinyMCE.activeEditor.setContent(data.data.description);
 				}
@@ -1488,7 +1566,15 @@ $(document).ready(function () {
 			}
 		});
 	});
+	// getallproductdetail();
+	$('#ischild').change(function () {
 
+		if (this.checked) {
+			$('.divIsParent').show();
+		} else {
+			$('.divIsParent').hide();
+		}
+	})
 
 	$('#dataTabledetailproduct tbody').on('click', '#productspecdetailportable', function () {
 
@@ -1506,7 +1592,6 @@ $(document).ready(function () {
 			},
 			success: function (data) {
 
-				$('.divmodalspecdetail').html(data);
 				document.getElementById('rpModal').style.display = 'none';
 				$('#productDetailSpecModal').modal('show')
 				// $('#dataTabledetailproductspec').dataTable({
@@ -1520,6 +1605,7 @@ $(document).ready(function () {
 				document.getElementById('rpModal').style.display = 'none';
 				swal.fire(
 					'Error',
+					// $('.divmodalspecdetail').html(data);
 					'Oops, your data was not updated.', // had a missing comma
 					'error'
 				);
@@ -1922,6 +2008,7 @@ function clickproductdetailadd() {
 	$('#sorting').val(null);
 	tinyMCE.activeEditor.setContent('');
 	$('#preview_image').attr('src', '');
+	getallproductdetail();
 }
 
 function getlistproductdetail() {
@@ -1949,8 +2036,8 @@ function getlistproductdetail() {
 
 function getcountproduct() {
 	$.ajax({
-		url: base_url+"admin/product/getcountproductdetail",
-		
+		url: base_url + "admin/product/getcountproductdetail",
+
 		type: 'POST',
 		datatype: 'JSON',
 		async: false,
@@ -1962,14 +2049,41 @@ function getcountproduct() {
 		success: function (data) {
 
 			document.getElementById('rpModal').style.display = 'none';
-			if(data==2){
+			if (data == 2) {
 				$('#productAdd').hide();
-			}else{
+			} else {
 				$('#productAdd').show();
 			}
-			
+
 		},
 		error: function (e) {
+			document.getElementById('rpModal').style.display = 'none';
+		}
+	});
+
+}
+
+function getallproductdetail() {
+	var productid = $('#productId').val();
+	var id = $('#productDetailId').val();
+	if(id==''){
+		id=0
+	}
+	$.ajax({
+		url: base_url + 'admin/product/getallproductdetail/' + productid + "/" + id,
+		type: 'POST',
+		beforeSend: function () {
+			document.getElementById('rpModal').style.display = 'block';
+		},
+		success: function (data) {
+			document.getElementById('rpModal').style.display = 'none';
+			$('#parent_id').html(data);
+
+
+
+		},
+		error: function (e) {
+
 			document.getElementById('rpModal').style.display = 'none';
 		}
 	});

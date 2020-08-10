@@ -45,14 +45,7 @@
         </div>
         <div class="row">
             <!-- About Image -->
-            <!-- <div class="col-md-5 col-sm-12 col-xs-12 wow slideInLeft">
-                    <div class="about-main">
-                        <div class="about-img">
-                            <img src="<?php echo base_url(); ?>assets/admin/img/icon_tab_browser.png"
-                                alt="PT. Avilla Jaya Teknik" style="width: 70%;" />
-                        </div>
-                    </div>
-                </div> -->
+          
             <!--/ End About Image -->
             <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn" data-wow-delay="1s">
                 <!-- About Tab -->
@@ -107,12 +100,12 @@
                     <div class="portfolio-single">
                         <a href="<?php echo base_url() . "assets/admin/upload/product/" . $row['img_path']; ?>"
                             alt="<?php echo $row['alt'] ?>" class="zoom">
-                            <div class="portfolio-head">
+                            <!-- <div class="portfolio-head"> -->
                                 <img class="bttrlazyloading"
                                    src="<?php echo base_url() . "assets/admin/upload/product/" . $row['img_path']; ?>"
                                     alt="<?php echo $row['alt'] ?>" />
-                                <i class="fa fa-search"></i>
-                            </div>
+                               
+                            <!-- </div> -->
                         </a>
                         <div class="text">
                             <h4><?php echo $row['title']; ?></h4>
@@ -222,7 +215,7 @@ $description = strlen($row['description']) > 200 ? substr($row['description'], 0
                 </div>
             </div>
         </div>
-                          
+
 
         <!-- Google Map -->
         <div class="row">
@@ -231,33 +224,32 @@ $description = strlen($row['description']) > 200 ? substr($row['description'], 0
                     <div class="col-md-6 col-sm-12 col-xs-12" style="margin-bottom:30px">
                       <div class="row" style="margin-bottom:30px">
                         <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:30px">
-                       <h4>Office : </h4> 
+                       <h4>Office : </h4>
                                 <?php echo $data_contactus[0]['description']; ?>
-                    
+
                             </div>
                             </div>
                               <div class="row" style="margin-bottom:50px">
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                         <h4>Contact Info : </h4> 
-                              <?php 
-                               $telplink = "+62" . substr($data_contactus[0]['telp'], 1);
-                                $telp = substr($data_contactus[0]['telp'], 0, 3) . "-" . substr($data_contactus[0]['telp'], 3);
-                                if( $data_contactus[0]['telp']!=''){
-                               echo ' <i class="fa fa-phone fa-lg"></i> <a href="tel:'.$telplink.'" style="color:black">'.  $telp ."</a>"; 
-                                }
-                               ?><br>
-                               <?php 
-                                $whatsappsend = "62" . substr($data_contactus[0]['whatsapp'], 1);
-                                $whatsappshow = substr($data_contactus[0]['whatsapp'], 0, 4) . "-" . substr($data_contactus[0]['whatsapp'], 4, 4) . "-" . substr($data_contactus[0]['whatsapp'], 8);
-                                if( $data_contactus[0]['whatsapp']!=''){
-                                echo '  <i class="fa fa-whatsapp fa-lg"></i> <a target="_blank" style="color:black" href="https://api.whatsapp.com/send?phone='. $whatsappsend.'&text=Saya%20ingin%20bertanya%20tentang">'.$whatsappshow.'</a>' ; 
-                                }
-                                if( $data_contactus[0]['email']!=''){
+                         <h4>Contact Info : </h4>
+                              <?php
+$telplink = "+62" . substr($data_contactus[0]['telp'], 1);
+$telp = substr($data_contactus[0]['telp'], 0, 3) . "-" . substr($data_contactus[0]['telp'], 3);
+if ($data_contactus[0]['telp'] != '') {
+    echo ' <i class="fa fa-phone fa-lg"></i> <a href="tel:' . $telplink . '" style="color:black">' . $telp . "</a>";
+}
+?><br>
+                               <?php
+$whatsappsend = "62" . substr($data_contactus[0]['whatsapp'], 1);
+$whatsappshow = substr($data_contactus[0]['whatsapp'], 0, 4) . "-" . substr($data_contactus[0]['whatsapp'], 4, 4) . "-" . substr($data_contactus[0]['whatsapp'], 8);
+if ($data_contactus[0]['whatsapp'] != '') {
+    echo '  <i class="fa fa-whatsapp fa-lg"></i> <a target="_blank" style="color:black" href="https://api.whatsapp.com/send?phone=' . $whatsappsend . '&text=Saya%20ingin%20bertanya%20tentang">' . $whatsappshow . '</a>';
+}
+if ($data_contactus[0]['email'] != '') {
 
-                                
-                                ?><br>
+    ?><br>
                                  <i class="fa fa fa-envelope fa-lg"></i> <?php echo $data_contactus[0]['email']; ?><br>
-                                 <?php } ?>
+                                 <?php }?>
                         </div>
                     </div>
 
@@ -281,5 +273,5 @@ $description = strlen($row['description']) > 200 ? substr($row['description'], 0
             <div class="map"></div>
         </div> -->
 </section>
-<input type="hidden" id="baseurl" value="<?php echo base_url();?>">
+<input type="hidden" id="baseurl" value="<?php echo base_url(); ?>">
 <!--/ End Clients Us -->

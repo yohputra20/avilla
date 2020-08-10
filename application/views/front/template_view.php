@@ -5,12 +5,21 @@
     <!-- Meta tag -->
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
     <meta name="description" content="<?php echo $data_about[0]['meta_description'];?>">
     <meta name="keywords" content="<?php echo $data_about[0]['meta_title'];?>">
     <meta name="author" content="Avilla">
     <meta name='copyright' content='PT Avilla Jaya Teknik'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="canonical" href="https://avillapower.co.id/">
+    <meta property="description" content="<?php echo $data_about[0]['meta_description'];?>">
+    <meta property="language" content="Indonesia">
+    <meta property="rating" content="general">
+    <meta property="webcrawlers" content="all">
+    <meta property="spiders" content="all">
+    <meta property="robots" content="all">
 
     <!-- Title Tag -->
     <title>Avilla &minus; PT Avilla Jaya Teknik</title>
@@ -58,8 +67,11 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/front/css/skin/green.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/front/css/bttrlazyloading.min.css">
+    <meta name="google-site-verification" content="P0w7LTE0cOEONtlAonvyrAYgBJObqBzTJSclfzaKvEI" />
+
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-166766177-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-174932911-1"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -68,7 +80,7 @@
     }
     gtag('js', new Date());
 
-    gtag('config', 'UA-166766177-1');
+    gtag('config', 'UA-174932911-1');
     </script>
 
 
@@ -137,17 +149,17 @@
 
     <!-- Bootstrap JS -->
     <script type="text/javascript" src="<?php echo base_url();?>assets/front/js/bootstrap.min.js"></script>
- <script src="<?php echo base_url() ?>assets/front/js/jqBootstrapValidation.js"></script>
+    <script src="<?php echo base_url() ?>assets/front/js/jqBootstrapValidation.js"></script>
     <!-- Main JS -->
     <script type="text/javascript" src="<?php echo base_url();?>assets/front/js/main.js"></script>
 
     <script type="text/javascript" src="<?php echo base_url();?>assets/front/js/jquery.bttrlazyloading.min.js"></script>
 
     <script>
-        // $('.bttrlazyloading').bttrlazyloading({
-        //     delay: 500,
-        //     placeholder: '<?php echo base_url() ?>assets/front/images/loading_animate.gif'
-        // });
+    // $('.bttrlazyloading').bttrlazyloading({
+    //     delay: 500,
+    //     placeholder: '<?php echo base_url() ?>assets/front/images/loading_animate.gif'
+    // });
     </script>
 </body>
 

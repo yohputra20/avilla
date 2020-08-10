@@ -3,17 +3,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Home_model extends CI_Model
 {
-    public function get_data($nama_table){
+    public function get_data($nama_table)
+    {
         $this->db->select("*");
         $this->db->from($nama_table);
         $this->db->where("fdelete", "0");
         $query = $this->db->get();
 
         return $query->result_array();
-        
+
     }
 
-    public function get_data_by_slug($slug, $nama_table){
+    public function get_data_by_slug($slug, $nama_table)
+    {
         $this->db->select("*");
         $this->db->from($nama_table);
         $this->db->where("fdelete", "0");
@@ -24,7 +26,8 @@ class Home_model extends CI_Model
     }
 
     // PRODUK PAGE
-    public function get_header_produk($id, $nama_table){
+    public function get_header_produk($id, $nama_table)
+    {
         $this->db->select("*");
         $this->db->from($nama_table);
         $this->db->where("fdelete", "0");
@@ -34,29 +37,32 @@ class Home_model extends CI_Model
         return $query->row_array();
     }
 
-    public function get_detail_produk($product_id, $type){
+    public function get_detail_produk($product_id, $type)
+    {
         $this->db->select("*");
         $this->db->from("productdetail");
         $this->db->where("fdelete", "0");
-        // $this->db->orderBy('orderby','asc');
-        if($type == "by_id_produk"){
+        $this->db->where("parent", "0");
+        $this->db->order_by('orderby', 'asc');
+        if ($type == "by_id_produk") {
             $this->db->where("product_id", $product_id);
-        }else{
+        } else {
             $this->db->where("id", $product_id);
         }
-        
+
         $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function get_spesifikasi_produk($produkdetail_id){
+    public function get_spesifikasi_produk($produkdetail_id)
+    {
         $this->db->select("*");
         $this->db->from("productspecifikasi");
         $this->db->where("fdelete", "0");
         $this->db->where("produkdetail_id", $produkdetail_id);
         $query = $this->db->get();
         return $query->result_array();
-        
+
     }
     public function getdetailSpec($detailid)
     {
@@ -74,7 +80,7 @@ class Home_model extends CI_Model
         $productspec = array();
         $opentype = 0;
         $silenttype = 0;
-        if (sizeof($result_array)>0) {
+        if (sizeof($result_array) > 0) {
             $title = $result_array['title'];
             $desc = $result_array['description'];
             $image = ($result_array['path_img'] == '' ? '' : base_url() . '/assets/admin/upload/product/' . $result_array['path_img']);
@@ -90,7 +96,7 @@ class Home_model extends CI_Model
                     if ($row['ot_l'] != null && $row['ot_w'] != null && $row['ot_h'] != null && $row['ot_weight'] != null) {
                         $opentype = 1;
                     }
-                    if ($row['ot_l'] != null && $row['ot_w'] != null && $row['ot_h'] != null && $row['ot_weight'] != null) {
+                    if ($row['st_l'] != null && $row['st_w'] != null && $row['st_h'] != null && $row['st_weight'] != null) {
                         $silenttype = 1;
                     }
 
@@ -112,16 +118,28 @@ class Home_model extends CI_Model
         return $balikan;
     }
 
-    function getSpesifikasiProdukFooter($product_id){
+    public function getSpesifikasiProdukFooter($product_id)
+    {
         $this->db->select("*");
         $this->db->from("productdetail");
         $this->db->where("fdelete", "0");
+        $this->db->where("parent", "0");
+        $this->db->order_by('orderby', 'asc');
+
         $this->db->where("product_id", $product_id);
-        $this->db->limit(6);  
+        $this->db->limit(6);
         $query = $this->db->get();
         return $query->result_array();
     }
+    public function getdetailbyparent($parent_id)
+    {
+        $this->db->select("*");
+        $this->db->from("productdetail");
+        $this->db->where("fdelete", "0");
+        $this->db->where("parent", $parent_id);
+        $this->db->order_by('orderby', 'asc');
+        $query = $this->db->get();
+        return $query->row_array();
 
-    
-
+    }
 }

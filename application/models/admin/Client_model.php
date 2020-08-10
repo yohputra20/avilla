@@ -13,7 +13,7 @@ class Client_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->where('fdelete', '0');
-        $this->db->order_by('modifiedDate', 'desc');
+        $this->db->order_by('order_by', 'asc');
         $query = $this->db->get('client');
         $result_array = $query->result_array();
 
@@ -38,11 +38,10 @@ class Client_model extends CI_Model
             'logo_path' => $image,
             'meta_description' => $data['meta_desc'],
             'description' => $data['client_desc'],
-            'order_by'=>$data['client_order'],
+            'order_by' => $data['client_order'],
             'fdelete' => '0',
             'createdDate' => $datetime,
-            'createdBy' =>  $this->username,
-
+            'createdBy' => $this->username,
 
         );
         $client_insert = $this->db->insert('client', $insert_data);
@@ -67,7 +66,7 @@ class Client_model extends CI_Model
             $this->db->where('id', $data['clientId']);
             $query = $this->db->get('client');
             $result = $query->row_array();
-            
+
             if (file_exists("./assets/admin/upload/client/" . $result['logo_path'])) {
                 unlink("./assets/admin/upload/client/" . $result['logo_path']);
             }
@@ -84,9 +83,9 @@ class Client_model extends CI_Model
             'alt' => $data['meta_title'],
             'meta_description' => $data['meta_desc'],
             'logo_path' => $image,
-            'order_by'=>$data['client_order'],
+            'order_by' => $data['client_order'],
             'description' => $data['client_desc'],
-            'modifiedBy' =>  $this->username,
+            'modifiedBy' => $this->username,
             'modifiedDate' => $datetime,
         );
         $this->db->where('id', $data['clientId']);
@@ -100,7 +99,7 @@ class Client_model extends CI_Model
         $delete_data = array(
             'fdelete' => '1',
             'modifiedDate' => $datetime,
-            'modifiedBy' =>  $this->username,
+            'modifiedBy' => $this->username,
         );
 
         $this->db->where('id', $id);
@@ -109,17 +108,30 @@ class Client_model extends CI_Model
     }
     private function _uploadImage($file_name, $image_name)
     {
-        $config['upload_path']          = './assets/admin/upload/client/';
-        $config['allowed_types']        = 'jpg|png|jpeg|JPEG|JPG|PNG';
-        $config['file_name']            = $file_name;
-        $config['overwrite']            = true;
-        $config['max_size']             = 10240; // 10MB
-        // $config['max_width']            = 1024;
-        // $config['max_height']           = 768;
+        $config['upload_path'] = './assets/admin/upload/client/';
+        $config['allowed_types'] = 'jpg|png|jpeg|JPEG|JPG|PNG';
+        $config['file_name'] = $file_name;
+        $config['overwrite'] = true;
+        $config['max_size'] = 10240; // 10MB
+        $config['min_width']            = 225;
+        $config['min_height']           = 225;
         // echo($image_name);die(0);
 
         $this->load->library('upload', $config);
         if ($this->upload->do_upload($image_name)) {
+            $gbr = $this->upload->data();
+
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = './assets/admin/upload/client/' . $gbr['file_name'];
+            $config['create_thumb'] = false;
+            $config['maintain_ratio'] = true;
+            $config['quality'] = '80%';
+            $config['width'] = 225;
+            $config['height'] = 225;
+            $config['new_image'] = './assets/admin/upload/client/' . $gbr['file_name'];
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
+
             return $this->upload->data('file_name');
         } else {
             echo $this->upload->display_errors();
