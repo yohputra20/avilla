@@ -154,7 +154,7 @@ class Product_model extends CI_Model
     }
     public function readExcelSpecProductDetail($data)
     {
-        include APPPATH . 'third_party\PHPExcel.php';
+        include APPPATH . 'third_party/PHPExcel.php';
 
         $datetime = date('Y-m-d H:i:s');
         $excelreader = new PHPExcel_Reader_Excel2007();
@@ -381,7 +381,7 @@ class Product_model extends CI_Model
             $excel = '';
             $excelname = '';
         }
-
+        $data['ischild']= isset($data['ischild']) ?$data['ischild'] :'0';
         $insert_data = array(
             'product_id' => $data['productId'],
             'title' => $data['product_title'],
@@ -519,7 +519,7 @@ class Product_model extends CI_Model
             $excel = '';
             $excelname = '';
         }
-
+       $data['ischild']= isset($data['ischild']) ?$data['ischild'] :'0';
         $update_data = array(
             'product_id' => $data['productId'],
             'title' => $data['product_title'],
@@ -530,7 +530,7 @@ class Product_model extends CI_Model
             'slug' => str_replace(" ", "-", $data['product_title']),
             'orderby' => isset($data['sorting']) ? $data['sorting'] : 1,
             'path_spec' => $excel,
-            'parent' => $data['ischild'] != '0' ? $data['parent_id'] : '0',
+            'parent' =>  $data['ischild'] != '0' ? $data['parent_id'] : '0',
             'status' => '1',
             'modifiedBy' => $this->username,
             'modifiedDate' => $datetime,

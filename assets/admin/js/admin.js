@@ -1566,11 +1566,12 @@ $(document).ready(function () {
 			}
 		});
 	});
-	// getallproductdetail();
+	 
 	$('#ischild').change(function () {
 
 		if (this.checked) {
 			$('.divIsParent').show();
+			getallproductdetail();
 		} else {
 			$('.divIsParent').hide();
 		}

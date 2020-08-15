@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="form-group checkbox col-sm-12">
-                                <label class="control-label col-sm-12" for="">Have parent :   <input type="checkbox"  id="ischild" value="1" name="ischild" required=""></label>
+                                <label class="control-label col-sm-12" for="">Have parent :   <input type="checkbox"  id="ischild" value="1" name="ischild"></label>
 
 
                             </div>
