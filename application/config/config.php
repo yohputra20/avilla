@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 switch ( $_SERVER['HTTP_HOST'] ) {
-    case 'https://avillapower.co.id/':
+    case 'avillapower.co.id':
             $url = 'https://';
         break;
     default:
