@@ -23,7 +23,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$root = "http://".$_SERVER['HTTP_HOST'];
+
+
+switch ( $_SERVER['HTTP_HOST'] ) {
+    case 'https://avillapower.co.id/':
+            $url = 'https://';
+        break;
+    default:
+            $url = 'http://';
+}
+
+$root = $url.$_SERVER['HTTP_HOST'];
 $root .= dirname($_SERVER['SCRIPT_NAME']);
 $config['base_url'] = $root;
 
