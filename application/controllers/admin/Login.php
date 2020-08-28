@@ -20,7 +20,7 @@ class Login extends CI_Controller{
         if($this->session->userdata('status') == 'login'){
 			redirect(base_url('admin/home'));
 		}
-        $this->load->view('admin/header');
+       
         $this->load->view('admin/login');
     }
 
@@ -36,7 +36,7 @@ class Login extends CI_Controller{
             $balikan = [
                 'status' => '1',
                 'message' => 'success',
-                'data' => $ceklogin[0]
+                'data' => $ceklogin
             ];
             $this->set_session($balikan['data']);
 

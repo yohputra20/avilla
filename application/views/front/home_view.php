@@ -1,298 +1,277 @@
-<div class="lh-imgbg">
-  <div class="cover">
-    <div class="container containertexthometop">
-      <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12 imghometop text-center">
-          <img src="<?php echo base_url(); ?>assets/front/img/logo_main_banner.png" alt="Blair Townsend" class="img-responsive img-logo-home" >
-        </div>
-      </div>
-      <div class="row texthometop">
-        <div class="col-md-12">
-          <p class="descbanner">
-          Have you been looking for a specific piece of furniture you’ve been unable to find? Do you want something unique and customized to your needs?   Turning your desires into reality is my specialty. The furniture below has already been commissioned and delivered. First, I’ll produce drawings and samples so you are absolutely certain of the final product. Then our fabricators, who have been with us for 20 plus years, construct each project using almost any material imaginable. The process is always fun and positive for everyone involved.
-          </p>
+<!-- Start Slider -->
+<section id="j-slider">
+    <div class="slide-main">
 
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- <div class="section" style="background-color: #18011b;"> -->
-<div class="section_content"  id="comissions_mobile">
- 
- 
-
-  <!-- SECTION COMISSIONS -->
-  <div class="container-fluid section_comissions_title" id="comissions_from_mobile">
-   
-    <center>
-      <h1 class="title" id="comissions">COMMISSIONS</h1>
-      <input type="hidden" name="limit_comissions" id="limit_comissions" class="limit_comissions" value="<?php echo $limit_comissions; ?>" autocomplete="off">
-      <input type="hidden" name="start_comissions" id="start_comissions" class="start_comissions" value="<?php echo $start_comissions; ?>" autocomplete="off">
-
-    </center>
-
-  </div>
-
-  <div class="container section_comissions_desc" >
-    <!-- <div class="row row-flex box_comissions_ajax" id="comissions_mobile"> -->
-    <div class="row box_comissions_ajax">
-      <?php foreach ($commisions as $row) { ?>
-        <!-- <div class="col-md-4 col-sm-6 col-xs-6">
-          <a href="<?php echo base_url() . "comissions_detail/" . $row['id']; ?>" style="text-decoration: none;">
-            <div class="content" style="padding: 5px;">
-              <center>
-              <img src="<?php echo base_url(); ?>assets/admin/upload/comissions/<?php echo $row['image']; ?>" alt="Blair" style="max-width:100%; max-height:250px;" class="img-responsive">
-              </center>
-              <div style="padding-left: 20px; padding-right:20px">
-                <center class="title_item_comissions"><?php echo $row['title']; ?></center>
-
-
-                <?php if (strlen($row['description']) > 110) { ?>
-                  <center class="desc_item_comissions"><span class="desc_item_comissions"><?php echo substr(strip_tags($row['description']), 0, 110) . "..."; ?></span></center>
-                <?php } else { ?>
-                  <center class="desc_item_comissions"><span class="desc_item_comissions"><?php echo strip_tags($row['description']); ?></span></center>
-                <?php } ?>
-
-              </div>
+        <?php foreach ($data_banner as $row) {?>
+        <!-- Single Slider -->
+        <div class="single-slider"
+            style="background-image:url('<?php echo base_url() . "assets/admin/upload/banner/" . $row['img_path']; ?>');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                        <!-- Slider Text -->
+                        <div class="slide-text left">
+                            <div class="slider-inner">
+                                <!-- <h1></h1> -->
+                                <?php echo $row['description']; ?>
+                                <!-- <div class="slide-button">
+                                        <a href="#" class="button">Buy Bizpro</a>
+                                        <a href="#contact" class="button primary">Contact Us</a>
+                                    </div> -->
+                            </div>
+                        </div>
+                        <!--/ End Slider Text -->
+                    </div>
+                </div>
             </div>
-          </a>
-        </div> -->
-
-
-
-        <div class="col-md-4 col-sm-6 col-xs-6 margintopcardnews">
-          <a href="<?php echo base_url() . "comissions_detail/" . $row['id']; ?>" style="text-decoration: none;">
-            <!-- <div class=" containercardgallery" style="border-radius:5px; background: url('<?php echo base_url(); ?>assets/admin/upload/comissions/<?php echo $row['image']; ?>') no-repeat center center;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
-              <div class="containeropacity_news">
-              </div> -->
-
-            <div class=" containercardcommisions">
-              <div class="containeropacity_news" style="align-items: normal !important; padding:5px !important;">
-                <center>
-                  <img src="<?php echo base_url(); ?>assets/admin/upload/comissions/<?php echo $row['image']; ?>" alt="Blair" style="max-width:100%; max-height:250px;" class="img-responsive">
-                </center>
-              </div>
-
-              <div class="containerdesc_news" style="padding-bottom: 10px;">
-                <div><span class="title_item_comissions titlenews_item"><?php echo $row['title']; ?></span></div>
-
-                <?php if (strlen($row['description']) > 110) { ?>
-                  <div><span class="desc_item_comissions descnews_item"><?php echo substr(strip_tags($row['description']), 0, 110) . "..."; ?></span></div>
-                <?php } else { ?>
-                  <div><span class="desc_item_comissions descnews_item"><?php echo strip_tags($row['description']); ?></span></div>
-                <?php } ?>
-
-              </div>
-            </div>
-          </a>
         </div>
+        <!--/ End Single Slider -->
+        <?php }?>
 
-      <?php } ?>
+
     </div>
+</section>
+<!--/ End Slider -->
 
-    <!-- SHOW MORE LOADING COMISSIONS -->
-    <div class="row loading_shimmer_comissions" style="display: none;">
-      <div class="col-md-12" style="margin-top:40px;">
-        <center>
-          <div class="spinner">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
-          </div>
-        </center>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <center>
-          <div style="padding: 20px" class="btn_loadmore_comissions"><button type="button" onclick="loadmore_comissions();" class="btn btn-xs buttonmore">Show More <i class="fa fa-angle-double-down" aria-hidden="true"></i></button></div>
-        </center>
-      </div>
-    </div>
-    <div id="gallery_from_mobile"></div>
-  </div>
-
-
-  <!-- SECTION GALLERY -->
-  <div class="container-fluid section_gallery_title">
-    <div class="row" >
-      <div class="col-md-12" id="gallery_mobile" style="margin-top: 55px;border-top:1px solid white;">
-      </div>
-    </div>
-    <center>
-      <h1 class="title" id="gallery">GALLERY</h1>
-    </center>
-  </div>
-
-  <div class="wrapper_carousel_gallery">
-    <div class="row carousel_gallery">
-
-      <?php foreach ($gallery as $row) { ?>
-        <a href="<?php echo base_url() . "detail/gallery/" . $row['id']; ?>" style="text-decoration: none;">
-          <div class="col-md-12 col-sm-12 col-xs-12 margintopcardnews">
-            <div class=" containercardgallery" style="background: url('<?php echo base_url(); ?>assets/admin/upload/gallery/<?php echo $row['image']; ?>') no-repeat center center;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
-              <div class="containeropacity_gallery">
-              </div>
-
-              <div class="containerdescgallery" style="padding:0px 20px 5px 15px;">
-                <div><span class="title_item_comissions" style="color:white;"><?php echo $row['title']; ?></span></div>
-
-                <?php if (strlen($row['description']) > 110) { ?>
-                  <div><span class="desc_item_comissions" style="color:white;"><?php echo substr(strip_tags($row['description']), 0, 110) . "..."; ?></span></div>
-                <?php } else { ?>
-                  <div><span class="desc_item_comissions" style="color:white;"><?php echo strip_tags($row['description']); ?></span></div>
-                <?php } ?>
-
-              </div>
-            </div>
-          </div>
-        </a>
-
-      <?php } ?>
-    </div>
-    <div id="news_from_mobile"></div>
-  </div>
-  <!-- SECTION ABOUT -->
-  <div class="container">
-  <div class="row">
-      <div class="col-md-12" id="about_mobile" style="margin-top: 55px;border-top:1px solid white;">
-      </div>
-    </div>
-    <center>
-      <div class="section " >
-        <h1 class="title" id="about">ABOUT</h1>
-      </div>
-    </center>
-  </div>
-
-  <div class="col-md-9 aboutdesc_mobile" style="background-color: #68551B;">
+<!-- Start About Us -->
+<section id="about-us" class="section about-us">
     <div class="container">
-      <div class="section">
         <div class="row">
-          <div class="col-md-12 col-sm-12 col-xs-12">
-          <img src='<?php echo base_url() ?>assets/front/img/about_front.png' style="width: 100%;" />
-          <!-- <div style="background: url('<?php echo base_url() ?>assets/front/img/about_front.png') no-repeat center center;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;width: 100%;height: 350px;position: relative;z-index: 1;top: 2%;/*! left: 80%; */"></div> -->
-          </div>
-         
-
-          <div class="col-md-12 col-sm-12 col-xs-12">
-            <br>
-            <h5 class="headingabout"><?php echo $about['title']; ?></h5>
-            <span class="descabout"><?php echo $about['description']; ?></span>
-          </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn" style="background-color:#ffffff94">
+                <div class="section-title center">
+                    <h2 >About Us</h2>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="row">
+            <!-- About Image -->
+          
+            <!--/ End About Image -->
+            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn" data-wow-delay="1s">
+                <!-- About Tab -->
+                <div class="tabs-main" style="margin-top:0px;background-color:#ffffff94;box-shadow:none;">
+                    <!-- Tab Nav -->
+                    <!-- <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#welcome" data-toggle="tab">Welcome</a></li>
+                            <li role="presentation"><a href="#about" data-toggle="tab">Vision & Mission</a></li>
+                        </ul> -->
+                    <!--/ End Tab Nav -->
+                    <!-- Tab Content -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="welcome">
+                            <div class="about">
+                                <?php echo $data_about[0]['description']; ?>
+                            </div>
+                        </div>
+                        <!-- <div role="tabpanel" class="tab-pane fade in" id="about">
+                                <div class="about">
+                                    <?php echo $data_about[0]['vision_mission']; ?>
+                                </div>
+                            </div> -->
+
+                    </div>
+                    <!--/ End Tab Content -->
+                </div>
+                <!--/ End About Tab -->
+            </div>
+        </div>
     </div>
-  </div>
+</section>
+<!--/ End About Us -->
 
 
-  <div class="col-md-12 aboutdesc_web" style="background-color: #68551B;margin-bottom:100px;min-height: 400px;padding-top: 60px;padding-bottom: 30px;">
+
+<!-- Start Products -->
+<section id="portfolio" class="section" style="border-top:1px solid #d2cccc;">
     <div class="container">
-      <div class="row">
-       
-        <div class="col-md-7">
-          <h5 class="headingabout"><?php echo $about['title']; ?></h5>
-          <div style="width: 80%;">
-            <span class="descabout"><?php echo $about['description']; ?></span>
-          </div>
-          <!-- <div style="background: url('https://lh3.googleusercontent.com/-IfBIRlNJYEY/Xhy0Uc1DOxI/AAAAAAAABc0/VYdvYk6s3BQwZnj_FEKeecn1kSOEjJfCwCK8BGAsYHg/s0/2020-01-13.jpg') no-repeat center center;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: unset;width: 350px;height: 350px;position: absolute;z-index: 1;top: 16%;left: 80%;"></div> -->
-
-        </div>
-        <div class="col-md-5 aboutdesc_web">
-        <img src='<?php echo base_url() ?>assets/front/img/about_front.png' style="width: 120%;" />
-    <!-- <div style="margin-left: 40px;height: 306px;width: 300px;background: url('https://lh3.googleusercontent.com/-YklE8fQX8IM/XiEj9a2r_PI/AAAAAAAABfQ/o-AnvO5orgw4CC_--ie6t-azxQtIE5OHgCK8BGAsYHg/s0/2020-01-16.png') no-repeat center center;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;/* background-position: unset; */float: right;position: absolute;/* right: 200px; */z-index: 2;"></div> -->
-  </div>
-      </div>
-    </div>
-   
-  </div>
-
-
-
-  <!-- SECTION NEWS -->
-  <div class="container-fluid section_news_title">
-    <div class="row">
-      <div class="col-md-12" id="news_mobile" style="margin-top: 55px;border-top:1px solid white;">
-      </div>
-    </div>
-    <center>
-      <h1 class="title" id="news">NEWS</h1>
-      <input type="hidden" name="limit_news" id="limit_news" class="limit_news" value="<?php echo $limit_news; ?>" autocomplete="off">
-      <input type="hidden" name="start_news" id="start_news" class="start_news" value="<?php echo $start_news; ?>" autocomplete="off">
-    </center>
-  </div>
-
-
-
-  <div class="container section_news_desc">
-    <!-- <div class="row row-flex box_news_ajax" id="news_mobile"> -->
-    <div class="row box_news_ajax">
-      <?php foreach ($news as $row) { ?>
-        <!-- <div class="col-md-4 col-sm-6 col-xs-6">
-          <a href="<?php echo base_url() . "detail/news/" . $row['id']; ?>" style="text-decoration: none;">
-            <div class="content">
-              <center><img src="<?php echo base_url() . 'assets/admin/upload/news/' . $row['image']; ?>" alt="Blair" style="width:80%;" class="img-responsive"></center>
-              <div style="padding:10px 10px 5px 10px;">
-                <span class="title_item_comissions titlenews_item"><?php echo $row['title']; ?></span>
-
-                <?php if (strlen($row['description']) > 40) { ?>
-                  <span class="desc_item_comissions descnews_item"><?php echo substr(strip_tags($row['description']), 0, 110) . "..."; ?></span>
-                <?php } else { ?>
-                  <span class="desc_item_comissions descnews_item"><?php echo $row['description']; ?></span>
-                <?php } ?>
-              </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
+                <div class="section-title center">
+                    <h2>Our Product</h2>
+                </div>
             </div>
-          </a>
-        </div> -->
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="portfolio-carousel">
+                    <!-- Single Portfolio -->
 
-        <div class="col-md-4 col-sm-6 col-xs-6 margintopcardnews">
-          <a href="<?php echo base_url() . "detail/news/" . $row['id']; ?>" style="text-decoration: none;">
-            <div class=" containercardgallery" style="border-radius:5px; background: url('<?php echo base_url() . 'assets/admin/upload/news/' . $row['image']; ?>') no-repeat center center;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
-              <div class="containeropacity_news">
-              </div>
+                    <?php foreach ($data_product as $row) {?>
+                    <div class="portfolio-single">
+                        <a href="<?php echo base_url() . "assets/admin/upload/product/" . $row['img_path']; ?>"
+                            alt="<?php echo $row['alt'] ?>" class="zoom">
+                            <!-- <div class="portfolio-head"> -->
+                                <img class="bttrlazyloading"
+                                   src="<?php echo base_url() . "assets/admin/upload/product/" . $row['img_path']; ?>"
+                                    alt="<?php echo $row['alt'] ?>" />
+                               
+                            <!-- </div> -->
+                        </a>
+                        <div class="text">
+                            <h4><?php echo $row['title']; ?></h4>
+                            <p>
+                                <?php
+$description = strlen($row['description']) > 200 ? substr($row['description'], 0, 200) . "..." : $row['description'];
+    echo $description;
+    ?>
+                            </p>
+                            <?php //if(strlen($row['description']) > 200) { ?>
+                            <a href="<?php echo base_url(); ?>detail-produk/product/<?php echo strtolower($row['slug']); ?>"
+                                title="Baca selengkapnya"><u>Baca selengkapnya </u></a>
+                            <?php //} ?>
+                        </div>
+                    </div>
+                    <?php }?>
 
-              <div class="containerdesc_news" style="padding-bottom: 10px;">
-                <div><span class="title_item_comissions titlenews_item"><?php echo $row['title']; ?></span></div>
-
-                <?php if (strlen($row['description']) > 110) { ?>
-                  <div><span class="desc_item_comissions descnews_item"><?php echo substr(strip_tags($row['description']), 0, 110) . "..."; ?></span></div>
-                <?php } else { ?>
-                  <div><span class="desc_item_comissions descnews_item"><?php echo strip_tags($row['description']); ?></span></div>
-                <?php } ?>
-
-              </div>
+                </div>
             </div>
-          </a>
+        </div>
+    </div>
+</section>
+<!--/ End Products -->
+<!-- Start Service -->
+<section id="service" class="section" style="border-top:1px solid #d2cccc; background:white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
+                <div class="section-title center">
+                    <h2>Our Services</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Single Service -->
+            <?php $delay = 4;foreach ($data_service as $row) {?>
+            <div class="col-md-6 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="0.<?php echo $delay ?>s">
+
+                <div class="single-service">
+                    <div class="hover_image_service_box">
+                        <img class="img_services bttrlazyloading"
+                           src="<?php echo base_url() . "assets/admin/upload/service/" . $row['img_path']; ?>"
+                            alt="<?php echo $row['meta_title'] ?>">
+                    </div>
+                    <br>
+                    <h2><?php echo $row['title']; ?></h2>
+
+                    <?php $description = strlen($row['description']) > 200 ? substr($row['description'], 0, 200) . "..." : $row['description'];
+    echo $description;?>
+
+                    <?php if (strlen($row['description']) > 200) {?>
+                    <br>
+                    <a href="<?php echo base_url(); ?>front/home_controllers/detail_page/service/<?php echo $row['slug'] ?>"
+                        title="Baca selengkapnya"><u>read more </u></a>
+                    <?php }?>
+
+
+                </div>
+
+            </div>
+            <?php $delay += 2;}?>
+
+        </div>
+    </div>
+</section>
+<!--/ End Service -->
+
+<!-- Start Client -->
+<section id="clients" class="section wow fadeIn">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
+                <div class="section-title center">
+                    <h2>Client</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="clients-carousel">
+                    <!-- Single Clients -->
+
+                    <?php $o = 0;foreach ($data_client as $row) {if ($o < 6) {?>
+                    <div class="single-client">
+                        <img src="<?php echo base_url() . "assets/admin/upload/client/" . $row['logo_path']; ?>"
+                            alt="<?php echo $row['alt'] ?>" class="img-responsive">
+                    </div>
+                    <?php }
+    ;
+    $o++;}?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Client -->
+
+
+
+<!-- Contact Us -->
+<section id="contact" class="section" style="border-top:1px solid #d2cccc; background:white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn">
+                <div class="section-title center">
+                    <h2>Contact Us</h2>
+                </div>
+            </div>
         </div>
 
-      <?php } ?>
 
-    </div>
-    <!-- SHOW MORE LOADING NEWS -->
-    <div class="row loading_shimmer_news" style="display: none;">
-      <div class="col-md-12">
-        <div class="spinner">
-          <div class="bounce1"></div>
-          <div class="bounce2"></div>
-          <div class="bounce3"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+        <!-- Google Map -->
+        <div class="row">
+            <!-- Contact Form -->
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <center>
-          <div style="padding: 20px" class="btn_loadmore_news"><button type="button" onclick="loadmore_news();" class="btn btn-xs buttonmore">Show More <i class="fa fa-angle-double-down" aria-hidden="true"></i></button></div>
-        </center>
-      </div>
-    </div>
-  </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12" style="margin-bottom:30px">
+                      <div class="row" style="margin-bottom:30px">
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:30px">
+                       <h4>Office : </h4>
+                                <?php echo $data_contactus[0]['description']; ?>
+
+                            </div>
+                            </div>
+                              <div class="row" style="margin-bottom:50px">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                         <h4>Contact Info : </h4>
+                              <?php
+$telplink = "+62" . substr($data_contactus[0]['telp'], 1);
+$telp = substr($data_contactus[0]['telp'], 0, 3) . "-" . substr($data_contactus[0]['telp'], 3);
+if ($data_contactus[0]['telp'] != '') {
+    echo ' <i class="fa fa-phone fa-lg"></i> <a href="tel:' . $telplink . '" style="color:black">' . $telp . "</a>";
+}
+?><br>
+                               <?php
+$whatsappsend = "62" . substr($data_contactus[0]['whatsapp'], 1);
+$whatsappshow = substr($data_contactus[0]['whatsapp'], 0, 4) . "-" . substr($data_contactus[0]['whatsapp'], 4, 4) . "-" . substr($data_contactus[0]['whatsapp'], 8);
+if ($data_contactus[0]['whatsapp'] != '') {
+    echo '  <i class="fa fa-whatsapp fa-lg"></i> <a target="_blank" style="color:black" href="https://api.whatsapp.com/send?phone=' . $whatsappsend . '&text=Saya%20ingin%20bertanya%20tentang">' . $whatsappshow . '</a>';
+}
+if ($data_contactus[0]['email'] != '') {
+
+    ?><br>
+                                 <i class="fa fa fa-envelope fa-lg"></i> <?php echo $data_contactus[0]['email']; ?><br>
+                                 <?php }?>
+                        </div>
+                    </div>
 
 </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <a title="Lokasi PT Avilla Jaya Teknik" target="_blank"
+                            href="https://www.google.com/maps/place/PT+Avilla+Jaya+Teknik/@-6.1254101,106.7302827,16.75z/data=!4m5!3m4!1s0x2e6a1dc6db31b3d5:0x2bb145509be38a7e!8m2!3d-6.1254049!4d106.7295137">
+                            <img src="<?php echo base_url(); ?>assets/front/images/maps_avilla.png"
+                                class="img-responsive bttrlazyloading" style="border: 1px solid #dfdfdf;" />
+                        </a>
+                    </div>
+                    </div>
+
+            </div>
+            <!--/ End Contact Form -->
+        </div>
+    </div>
+    <!-- <div class="gmap">
+            <div class="map"></div>
+        </div> -->
+</section>
+<input type="hidden" id="baseurl" value="<?php echo base_url(); ?>">
+<!--/ End Clients Us -->

@@ -193,7 +193,12 @@
 .label_view{
     color: black;
 }
-
+#previewlogo_image{
+    display: none;
+    max-width: 300px;
+    max-height: 168px;
+    height: auto;
+}
 /* input[type="file"] {
     display: block;
   } */
@@ -220,4 +225,15 @@
     background: white;
     color: black;
   }
-  
+  @media all and (max-width:480px) {
+
+  }
+
+.collapse-item-user{
+    color:white !important;
+
+}
+  .collapse-item-user:hover{
+      color:black !important;
+
+  }

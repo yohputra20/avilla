@@ -3,181 +3,143 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Home_model extends CI_Model
 {
-    /*
-	========================================
-	** ABOUT
-	========================================
-    */
-    public function select_data_about(){
+    public function get_data($nama_table)
+    {
         $this->db->select("*");
-        $this->db->from("about");
+        $this->db->from($nama_table);
         $this->db->where("fdelete", "0");
         $query = $this->db->get();
 
-        if(sizeof($query->row_array()) == 0){
-            $html['title'] = "ABOUT BLAIR TOWNSEND";
-            $html['description'] = "<p>BA Princeton; Economics</p>
-            <p>Masters in Fine Art Otis College</p>
-            <p>Worked in New York Gallery World</p>
-            <p>Asst to boutique hotelier Ian Schraeger</p>
-            <p>Worked for Getty furniture designer Roy McMakin</p>
-            <p>One time Hotel owner: Hotel Oloffson, Port-au-Prince,</p>
-            <p>Haiti (Hotel from Graham Greene book, The Comedians) which still exists.</p>
-            <p>All custom furniture and interior design for producer Barry Levinson&rsquo;s house and Vidal Sassoon&rsquo;s house working under Larry Totah.</p>";
-            return $html;
-        }else{
-            return $query->row_array();
+        return $query->result_array();
+
+    }
+
+    public function get_data_by_slug($slug, $nama_table)
+    {
+        $this->db->select("*");
+        $this->db->from($nama_table);
+        $this->db->where("fdelete", "0");
+        $this->db->where("slug", $slug);
+        $query = $this->db->get();
+
+        return $query->row_array();
+    }
+
+    // PRODUK PAGE
+    public function get_header_produk($id, $nama_table)
+    {
+        $this->db->select("*");
+        $this->db->from($nama_table);
+        $this->db->where("fdelete", "0");
+        $this->db->where("id", $id);
+        $query = $this->db->get();
+
+        return $query->row_array();
+    }
+
+    public function get_detail_produk($product_id, $type)
+    {
+        $this->db->select("*");
+        $this->db->from("productdetail");
+        $this->db->where("fdelete", "0");
+        $this->db->where("parent", "0");
+        $this->db->order_by('orderby', 'asc');
+        if ($type == "by_id_produk") {
+            $this->db->where("product_id", $product_id);
+        } else {
+            $this->db->where("id", $product_id);
         }
-        
-    }
 
-    /*
-	========================================
-	** COMISSIONS
-	========================================
-    */
-    public function select_all_comissions($limit, $start)
-    {
-        //SELECT * FROM comissions order by modified_date desc LIMIT 6, 6;
-        $this->db->select('c.*, cd.image, cd.fdelete as fdelete_detail');
-        $this->db->from("comissions as c");
-        $this->db->join('comissions_image AS cd', 'c.id = cd.id_comissions');
-        $this->db->order_by("c.modified_date", "desc");
-        $this->db->where('c.fdelete', "0");
-        //$this->db->where('cd.fdelete', "0");
-        $this->db->where('cd.status', "1");
-        //$this->db->limit("3", "4");
-        $this->db->limit($limit, $start);
-        
-        $query = $this->db->get();
-        //echo json_encode($query->result_array());exit();
-        return $query->result_array();
-    }
-
-    public function select_all_commissions_data(){
-        $this->db->select('c.*, cd.image, cd.fdelete as fdelete_detail');
-        $this->db->from("comissions as c");
-        $this->db->join('comissions_image AS cd', 'c.id = cd.id_comissions');
-        $this->db->order_by("c.modified_date", "desc");
-        $this->db->where('c.fdelete', "0");
-        $this->db->where('cd.status', "1");
         $query = $this->db->get();
         return $query->result_array();
     }
-    public function select_detail_comissions($id)
-    {
 
+    public function get_spesifikasi_produk($produkdetail_id)
+    {
+        $this->db->select("*");
+        $this->db->from("productspecifikasi");
+        $this->db->where("fdelete", "0");
+        $this->db->where("produkdetail_id", $produkdetail_id);
+        $query = $this->db->get();
+        return $query->result_array();
+
+    }
+    public function getdetailSpec($detailid)
+    {
         $this->db->select('*');
-        $this->db->from('comissions');
-        $this->db->where('comissions.id',$id);
-        $this->db->where('comissions.fdelete', '0');
-        $query = $this->db->get();
-        $result = $query->result_array();
+        $this->db->where('id', $detailid);
+        $this->db->where('fdelete', '0');
+        $this->db->order_by('modifiedDate', 'desc');
+        $query = $this->db->get('productdetail');
+        $result_array = $query->row_array();
+        // $checkproduct = $this->getOneProdukDetail($detailid);
+        $title = '';
+        $image = '';
+        $logo = '';
+        $desc = '';
+        $productspec = array();
+        $opentype = 0;
+        $silenttype = 0;
+        if (sizeof($result_array) > 0) {
+            $title = $result_array['title'];
+            $desc = $result_array['description'];
+            $image = ($result_array['path_img'] == '' ? '' : base_url() . '/assets/admin/upload/product/' . $result_array['path_img']);
+            $logo = ($result_array['path_logo'] == '' ? '' : base_url() . '/assets/admin/upload/product/' . $result_array['path_logo']);
+            $this->db->select('*');
+            $this->db->where('produkdetail_id', $detailid);
+            $this->db->where('fdelete', '0');
+// $this->db->order_by('modifiedDate', 'desc');
+            $query = $this->db->get('productspecifikasi');
+            $result_array = $query->result_array();
+            if (sizeof($result_array) > 0) {
+                foreach ($result_array as $row) {
+                    if ($row['ot_l'] != null && $row['ot_w'] != null && $row['ot_h'] != null && $row['ot_weight'] != null) {
+                        $opentype = 1;
+                    }
+                    if ($row['st_l'] != null && $row['st_w'] != null && $row['st_h'] != null && $row['st_weight'] != null) {
+                        $silenttype = 1;
+                    }
 
-        foreach ($result as $res => $value) {
-            $this->db->where('comissions_image.id_comissions', $value['id']);
-            $this->db->where('comissions_image.fdelete', '0');
-            $this->db->order_by("status", "DESC");
-            $image_query = $this->db->get('comissions_image');
-            $image_result = $image_query->result_array();
-            $result[$res]['image_multiple'] = $image_result;
+                }
+            }
+            $productspec = $result_array;
         }
-        //echo json_encode($result);exit();;
-        return $result;
 
-    }
-    public function select_comissions_related($id){
-     
-
-        $this->db->select('c.*, cd.image, cd.fdelete as fdelete_detail');
-        $this->db->from("comissions as c");
-        $this->db->join('comissions_image AS cd', 'c.id = cd.id_comissions');
-        $this->db->order_by("c.modified_date", "desc");
-        $this->db->where('c.fdelete', "0");
-        $this->db->where('cd.fdelete', "0");
-        $this->db->where('cd.id_comissions != ', $id);
-        $this->db->where('cd.status', "1");
-        $query = $this->db->get();
-        //echo json_encode($query->result_array());exit();
-        return $query->result_array();
+        $balikan = array(
+            'title' => $title,
+            'image' => $image,
+            'logo' => $logo,
+            'desc' => $desc,
+            'productspec' => $productspec,
+            'opentype' => $opentype,
+            'silenttype' => $silenttype,
+            'categori' => 'genset',
+        );
+        return $balikan;
     }
 
-
-    /*
-	========================================
-	** GALLERY
-	========================================
-    */
-    public function select_all_gallery()
+    public function getSpesifikasiProdukFooter($product_id)
     {
         $this->db->select("*");
-        $this->db->from("gallery");
-        $this->db->order_by("modified_date", "desc");
-        $this->db->where('fdelete', "0");
+        $this->db->from("productdetail");
+        $this->db->where("fdelete", "0");
+        $this->db->where("parent", "0");
+        $this->db->order_by('orderby', 'asc');
+
+        $this->db->where("product_id", $product_id);
+        $this->db->limit(6);
         $query = $this->db->get();
         return $query->result_array();
     }
-
-    public function select_detail_gallery_by_id($id){
-        $this->db->select("*");
-        $this->db->from("gallery");
-        $this->db->where('id',$id);
-        $this->db->where('fdelete', "0");
-        $query = $this->db->get();
-        return $query->row_array();
-    }
-
-    public function select_gallery_related($id){
-        $this->db->select("*");
-        $this->db->from("gallery");
-        $this->db->where('id != ', $id);
-        $this->db->where('fdelete', "0");
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-    
-
-
-    /*
-	========================================
-	** NEWS
-	========================================
-    */
-    public function select_all_news($limit, $start)
+    public function getdetailbyparent($parent_id)
     {
         $this->db->select("*");
-        $this->db->from("news");
-        $this->db->where('fdelete', "0");
-        $this->db->order_by("modified_date", "desc");
-        $this->db->limit($limit, $start);
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-    public function select_detail_news_by_id($id){
-        $this->db->select("*");
-        $this->db->from("news");
-        $this->db->where('id',$id);
-        $this->db->where('fdelete', "0");
-        $this->db->order_by("modified_date", "desc");
+        $this->db->from("productdetail");
+        $this->db->where("fdelete", "0");
+        $this->db->where("parent", $parent_id);
+        $this->db->order_by('orderby', 'asc');
         $query = $this->db->get();
         return $query->row_array();
-    }
-    
-    public function select_news_related($id){
-        $this->db->select("*");
-        $this->db->from("news");
-        $this->db->where('fdelete', "0");
-        $this->db->where('id != ', $id);
-        $this->db->order_by("modified_date", "desc");
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-    public function select_all_news_data(){
-        $this->db->select("*");
-        $this->db->from("news");
-        $this->db->where('fdelete', "0");
-        $this->db->order_by("modified_date", "desc");
-        $query = $this->db->get();
-        return $query->result_array();
+
     }
 }
