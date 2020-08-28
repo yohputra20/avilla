@@ -17,7 +17,7 @@ Options -Indexes
 
 
 #RewriteCond %{SERVER_PORT} 80
-#RewriteRule ^(.*)$ https://avillapower.co.id/$1 [R,L]
+RewriteRule ^(.*)$ https://avillapower.co.id/$1 [R,L]
 
 
 
