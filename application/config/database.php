@@ -74,7 +74,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 switch ( $_SERVER['HTTP_HOST'] ) {
-    case 'https://avillapower.co.id/':
+    case 'avillapower.co.id':
 		$db['default'] = array(
 			'dsn'	=> '',
 			'hostname' => 'localhost',
