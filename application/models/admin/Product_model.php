@@ -311,6 +311,11 @@ class Product_model extends CI_Model
         if (sizeof($result_array) > 0) {
             $x = 1;
             foreach ($result_array as $row) {
+                if($row['path_spec']!=null || $row['path_spec']!=''){
+                    $spec="<a href='".base_url()."assets/admin/upload/product/excel_spec/".$row['path_spec']."' target='_blank'>Download ".$row['title']."</a>" ;
+                }else{
+                    $spec="";
+                }
                 $row['path_img'] = $row['path_img'] != '' ? base_url() . "/assets/admin/upload/product/" . $row['path_img'] : base_url() . "/assets/admin/img/no_photo.jpg";
                 $row['path_logo'] = $row['path_logo'] != '' ? base_url() . "/assets/admin/upload/product/" . $row['path_logo'] : base_url() . "/assets/admin/img/no_photo.jpg";
                 $cekproduk = $this->productGet($row['product_id']);
@@ -337,7 +342,7 @@ class Product_model extends CI_Model
                     $row['meta_title'],
                     '<img id="preview_image_list" alt="image preview" width="300" src="' . $row['path_img'] . '" />',
                     '<img id="preview_logo_list" alt="image preview" width="100" src="' . $row['path_logo'] . '" />',
-                    '',
+                    $spec,
                     $btndetail . " " . $btnedit . " " . $btndelete,
                 );
                 $x++;

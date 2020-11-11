@@ -1277,7 +1277,7 @@ $(document).ready(function () {
 		event.preventDefault(); // prevent form submit
 		Swal.fire({
 			title: 'Delete',
-			text: 'Are you sure want to delete this Commission?',
+			text: 'Are you sure want to delete this Product?',
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',

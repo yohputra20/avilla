@@ -20,7 +20,6 @@ class Home_controllers extends CI_Controller
         $this->load->library('email');
 
         $this->load->model('front/home_model');
-        // $this->load->model('admin/product_model');
     }
 
     public function index()
@@ -40,7 +39,6 @@ class Home_controllers extends CI_Controller
         $content['content_section'] = "front/home_view";
 
         $content['menu_active'] = "Beranda";
-        // echo json_encode($content['data_contactus']);exit();
         $this->load->view('front/template_view', $content);
     }
 
@@ -72,7 +70,6 @@ class Home_controllers extends CI_Controller
                 }
                 $content['data_sub_detail'] = $data_sub_detail;
             } else {
-                //array_push($arr_sub_detail, $data_sub_detail);
                 $content['data_sub_detail'] = $data_sub_detail;
             }
 
@@ -101,13 +98,8 @@ class Home_controllers extends CI_Controller
         $content['footer'] = "front/footer_view";
         $content['content_section'] = "front/spesifikasi_produk_view";
         $cekdetailparent=$this->home_model->getdetailbyparent($param);
-// print_r($cekdetailparent);die();
-        // $content['data_spesifikasi'] = $this->home_model->get_spesifikasi_produk($param);
         $content['data_spesifikasi'] = $this->home_model->getdetailSpec($param);
         $content['data_spesifikasi_child']=$cekdetailparent!=null ? $this->home_model->getdetailSpec($cekdetailparent['id']):array();
-
-        //echo json_encode($content['data_spesifikasi']);exit();
-
         $content['title_content'] = "Product Specification";
         $content['menu_active'] = "product";
         $content['path_image'] = base_url() . "assets/admin/upload/product/";
