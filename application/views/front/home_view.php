@@ -13,7 +13,7 @@
                                 <div class="slider-inner">
                                     <!-- <h1></h1> -->
                                     <?php echo $row['description']; ?>
-                                   
+
                                 </div>
                             </div>
                             <!--/ End Slider Text -->
@@ -46,14 +46,14 @@
             <div class="col-md-12 col-sm-12 col-xs-12 wow fadeIn" data-wow-delay="1s">
                 <!-- About Tab -->
                 <div class="tabs-main" style="margin-top:0px;background-color:#ffffff94;box-shadow:none;">
-                  
+
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active" id="welcome">
                             <div class="about">
                                 <?php echo $data_about[0]['description']; ?>
                             </div>
                         </div>
-                   
+
 
                     </div>
                     <!--/ End Tab Content -->
@@ -141,7 +141,7 @@
 
                         <?php if (strlen($row['description']) > 200) { ?>
                             <br>
-                            <a href="<?php echo base_url(); ?>front/home_controllers/detail_page/service/<?php echo $row['slug'] ?>" title="Baca selengkapnya"><u>read more </u></a>
+                            <a href="<?php echo base_url(); ?>detail/service/<?php echo strtolower($row['slug']) ?>" title="Baca selengkapnya"><u>read more </u></a>
                         <?php } ?>
 
 
@@ -173,7 +173,7 @@
 
                     <?php $o = 0;
                     foreach ($data_client as $row) {
-                        if ($o < 6) { ?>
+                        if ($o < 5) { ?>
                             <div class="single-client">
                                 <img src="<?php echo base_url() . "assets/admin/upload/client/" . $row['logo_path']; ?>" alt="<?php echo $row['alt'] ?>" class="img-responsive">
                             </div>
@@ -240,11 +240,39 @@
             </div>
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <a title="Lokasi PT Avilla Jaya Teknik" target="_blank" href="https://www.google.com/maps/place/PT+Avilla+Jaya+Teknik/@-6.1254101,106.7302827,16.75z/data=!4m5!3m4!1s0x2e6a1dc6db31b3d5:0x2bb145509be38a7e!8m2!3d-6.1254049!4d106.7295137">
-                            <img src="<?php echo base_url(); ?>assets/front/images/maps_avilla.png" class="img-responsive bttrlazyloading" style="border: 1px solid #dfdfdf;" />
-                        </a>
-                    </div>
+                    <!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
+                    <form id="contactForm" name="sentMessage" novalidate="novalidate">
+
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom:30px">
+                            <div class="form-group">
+                                <label>Nama</label>
+                                <input class="form-control" id="name" type="text" placeholder="Nama" required="required" data-validation-required-message="Nama harus di isi">
+                                <p class="help-block text-warning" style="color:red"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input class="form-control" id="email" type="email" placeholder="Email" required="required" data-validation-required-message="Email harus di isi">
+                                <p class="help-block text-warning" style="color:red"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Telp</label>
+                                <input class="form-control" id="phone" type="number" inputmode="numeric" pattern="[0-9]*" placeholder="Telp" required="required" data-validation-required-message="Telp harus di isi">
+                                <p class="help-block text-warning" style="color:red"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Pesan</label>
+                                <textarea class="form-control" rows="15" id="message" placeholder="Pesan" required="required" data-validation-required-message="Pesan Harus Di isi"></textarea>
+                                <p class="help-block text-warning" style="color:red"></p>
+                            </div>
+                            <div class="text-right">
+                                <div id="success"></div>
+                                <button class="btn btn-primary btn-contactus btn-md" id="sendMessageButton" type="submit">Kirim</button>
+                            </div>
+                        </div>
+
+                    </form>
+                    <!-- </div> -->
                 </div>
 
             </div>

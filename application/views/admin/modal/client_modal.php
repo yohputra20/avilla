@@ -34,7 +34,7 @@
               </div>
               <div class="form-group">
                 <label class="control-label col-sm-12" for="client_image">Logo Image :</label>
-    <label class="control-label col-sm-12" for="client_image_sub">(your image must be more than 225x225 and square)</label>
+                <label class="control-label col-sm-12" for="client_image_sub">(your image must be more than 225x225 and square)</label>
                 <input type="hidden" class="form-control" id="client_old_image" name="client_old_image" value="">
                 <div class="col-sm-2 image-upload">
                   <label for="image_source_client" class="form-control">
@@ -46,7 +46,7 @@
                 <div class="col-sm-12">
                   <div id="app" @change="change" @dragover="dragover" @drop="drop">
                     <input class="fa fa-camera" style="display: none" type="file" id="image_source_client" name="image_source_client" accept="image/jpeg,image/jpg,image/jpe,image/png,image/gif,image/webp,image/bmp,image/tiff" ref="input" />
-            <input type="hidden" id="logoimgclientwarning"value="0">
+                    <input type="hidden" id="logoimgclientwarning" value="0">
                   </div>
                   <div class="alertimgclient" style="color:red;display:none"></div>
                 </div>
@@ -70,6 +70,35 @@
               <label class="control-label col-sm-12" for="client_desc">Description<span style="color:red">*</span> :</label>
               <div class="col-sm-12">
                 <textarea id="client_desc" class="form-control" name="client_desc" required=""></textarea>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label col-sm-12" for="client_image2">Image :</label>
+                <!-- <label class="control-label col-sm-12" for="client_image_sub">(your image must be more than 225x225 and square)</label> -->
+                <input type="hidden" class="form-control" id="client_old_image2" name="client_old_image2" value="">
+                <div class="col-sm-2 image-upload">
+                  <label for="image_source_client2" class="form-control">
+                    <center>
+                      <i class="fa fa-camera" aria-hidden="true"></i>
+                    </center>
+                  </label>
+                </div>
+                <div class="col-sm-12">
+                  <div id="app" @change="change" @dragover="dragover" @drop="drop">
+                    <input class="fa fa-camera" style="display: none" type="file" id="image_source_client2" onchange="previewimage2client()" name="image_source_client2" accept="image/jpeg,image/jpg,image/jpe,image/png,image/gif,image/webp,image/bmp,image/tiff" ref="input" />
+                    <input type="hidden" id="imgclientwarning" value="0">
+                  </div>
+                  <div class="alertimgclient" style="color:red;display:none"></div>
+                </div>
+
+                <div class="client-preview2" id="client-preview2">
+                  <div class="col-sm-3">
+                  </div>
+                  <div class="col-sm-9">
+                    <img id="preview_image2" alt="image preview" width="150" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

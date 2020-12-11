@@ -59,6 +59,8 @@ $route['home/load_more_comissions'] = 'front/home_controllers/load_more_comissio
 $route['comissions_detail/(:any)'] = "front/home_controllers/comissions_detail/$1";
 $route['detail/(:any)/(:any)'] = "front/home_controllers/detail_page/$1/$2";
 $route['home/kirim_kontak_kami'] = 'front/home_controllers/kirim_kontak_kami';
+$route['sendcontactus'] = 'front/home_controllers/sendcontactus';
+// $route['translate_uri_dashes'] = FALSE;
 // $route['translate_uri_dashes'] = FALSE;
 
 /* Admin Route */
@@ -72,8 +74,8 @@ $route['admin/client'] = 'admin/client';
 $route['admin/contact_us'] = 'admin/contact_us';
 
 // front route
-$route['detail-produk/(:any)/(:any)'] = 'front/home_controllers/detail_page/$1/$2';
+$route['detail/(:any)/(:any)'] = 'front/home_controllers/detail_page/$1/$2';
 $route['spesifikasi-produk/(:any)'] = 'front/home_controllers/spesifikasi_produk/$1';
-
+//$route['detail-service/(:any)/(:any)'] = 'front/home_controllers/detail_page/$1/$2';
 
 

@@ -1627,14 +1627,14 @@ Version:	1.1
 	font-size: 14px;
 }
 
-#blog .blog-content .btn {
+/* #blog .blog-content .btn {
 	margin-top: 15px;
 	font-size: 12px;
 	padding: 0px;
 	background: transparent;
 	border: none;
 	text-transform: uppercase;
-}
+} */
 
 #blog .blog-content .btn:hover {
 	color: #333;
@@ -2020,7 +2020,7 @@ Version:	1.1
 
 #contact .form-group {
 	position: relative;
-	text-align: center;
+	text-align: left;
 }
 
 #contact .form-group:last-child {
@@ -2030,7 +2030,8 @@ Version:	1.1
 #contact .form-group input {
 	width: 100%;
 	height: 44px;
-	border: 1px solid #e2e2e2;
+	border: 1px solid #000000;
+	border-radius: 20px;
 	padding-left: 10px;
 	-webkit-transition: all 0.4s ease;
 	-moz-transition: all 0.4s ease;
@@ -2042,11 +2043,12 @@ Version:	1.1
 	float: none;
 }
 #contact .form-group textarea {
-	border: 1px solid #e2e2e2;
+	border: 1px solid  #000000;
 	padding: 10px;
 	width: 100%;
 	height: 200px;
 	padding-left: 10px;
+	border-radius: 20px;
 	resize: none;
 	-webkit-transition: all 0.4s ease;
 	-moz-transition: all 0.4s ease;
@@ -2060,6 +2062,7 @@ Version:	1.1
 	border: 0px solid;
 	padding: 0;
 	font-size: 14px;
+	border-radius: 20px;
 	text-transform: uppercase;
 	display: inline-block;
 	padding: 0 25px;
@@ -2662,10 +2665,10 @@ ul.no-bullets {
 	padding-bottom: 30px !important;
 	background-color: white !important;
 	border-top: 1px solid #d2cccc !important;
-	background-repeat: no-repeat !important;
+	/* background-repeat: no-repeat !important;
 	background-position: center center !important;
 	background-image: url("../admin/img/logo_front.png") !important;
-	background-size: 80% !important;
+	background-size: 80% !important; */
 }
 	.bttrlazyloading {
 		height: auto !important;

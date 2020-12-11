@@ -25,17 +25,30 @@ class Client_model extends CI_Model
         $datetime = date('Y-m-d H:i:s');
 
         if (!empty($_FILES['image_source_client']['name'])) {
-            $image = $this->_uploadImage('client' . '_' . uniqid(), 'image_source_client');
-            if ($image == '0') {
-                return '0';
+            $imglogoname = 'client' . '_' . uniqid();
+            $logo = $this->_uploadlogo($imglogoname, 'image_source_client');
+            // print_r($logo);die();
+            if (strpos($logo,$imglogoname)  <0) {
+                return $logo;
             }
         } else {
-            $image = $data['client_old_image'];
+            $logo = $data['client_old_image'];
+        }
+        if (!empty($_FILES['image_source_client2']['name'])) {
+            $imgname = 'client' . '_img_' . uniqid();
+            $image = $this->_uploadimage($imgname, 'image_source_client2');
+            if (strpos($image,$imgname)  <0) {
+                return $image;
+            }
+        } else {
+            $image = $data['client_old_image2'];
         }
         $insert_data = array(
             'title' => $data['client_title'],
             'alt' => $data['meta_title'],
-            'logo_path' => $image,
+            'logo_path' => $logo,
+            'img_path' => $image,
+            'slug' => str_replace(" ","-",$data['client_title']) ,
             'meta_description' => $data['meta_desc'],
             'description' => $data['client_desc'],
             'order_by' => $data['client_order'],
@@ -53,6 +66,7 @@ class Client_model extends CI_Model
         $this->db->select('*');
         $this->db->where('id', $id);
         $query = $this->db->get('client');
+
         $result = $query->row_array();
 
         return $result;
@@ -61,28 +75,35 @@ class Client_model extends CI_Model
     public function clientEdit($data)
     {
         $datetime = date('Y-m-d H:i:s');
+        $this->db->select('*');
+        $this->db->where('id', $data['clientId']);
+        $query = $this->db->get('client');
+        $result = $query->row_array();
         if (!empty($_FILES['image_source_client']['name'])) {
-            $this->db->select('*');
-            $this->db->where('id', $data['clientId']);
-            $query = $this->db->get('client');
-            $result = $query->row_array();
-
-            if (file_exists("./assets/admin/upload/client/" . $result['logo_path'])) {
-                unlink("./assets/admin/upload/client/" . $result['logo_path']);
-            }
-
-            $image = $this->_uploadImage('client' . '_' . uniqid(), 'image_source_client');
-            if ($image == '0') {
-                return '0';
+            $imglogoname = 'client' . '_' . uniqid();
+            $logo = $this->_uploadlogo($imglogoname, 'image_source_client');
+            if (strpos($logo,$imglogoname)  <0) {
+                return $logo;
             }
         } else {
-            $image = $data['client_old_image'];
+            $logo = $data['client_old_image'];
+        }
+        if (!empty($_FILES['image_source_client2']['name'])) {
+            $imgname = 'client' . '_img_' . uniqid();
+            $image = $this->_uploadimage($imgname, 'image_source_client2');
+            if (strpos($image,$imgname)  <0) {
+                return $image;
+            }
+        } else {
+            $image = $data['client_old_image2'];
         }
         $update_data = array(
             'title' => $data['client_title'],
             'alt' => $data['meta_title'],
             'meta_description' => $data['meta_desc'],
-            'logo_path' => $image,
+            'logo_path' => $logo,
+            'img_path' => $image,
+            'slug' => str_replace(" ","-",$data['client_title']) ,
             'order_by' => $data['client_order'],
             'description' => $data['client_desc'],
             'modifiedBy' => $this->username,
@@ -106,13 +127,13 @@ class Client_model extends CI_Model
         $delete = $this->db->update('client', $delete_data);
         return $delete;
     }
-    private function _uploadImage($file_name, $image_name)
+    private function _uploadlogo($file_name, $image_name)
     {
         $config['upload_path'] = './assets/admin/upload/client/';
         $config['allowed_types'] = 'jpg|png|jpeg|JPEG|JPG|PNG';
         $config['file_name'] = $file_name;
         $config['overwrite'] = true;
-        $config['max_size'] = 10240; // 10MB
+        $config['max_size'] = 2024; // 10MB
         $config['min_width']            = 225;
         $config['min_height']           = 225;
         // echo($image_name);die(0);
@@ -134,8 +155,40 @@ class Client_model extends CI_Model
 
             return $this->upload->data('file_name');
         } else {
-            echo $this->upload->display_errors();
-            die(0);
+            return $this->upload->display_errors();
+        }
+        // return '';
+    }
+    private function _uploadimage($file_name, $image_name)
+    {
+        $config['upload_path'] = './assets/admin/upload/client/';
+        $config['allowed_types'] = 'jpg|png|jpeg|JPEG|JPG|PNG';
+        $config['file_name'] = $file_name;
+        $config['overwrite'] = true;
+        $config['max_size'] = 2024; // 10MB
+        $config['min_width']            = 225;
+        $config['min_height']           = 225;
+        // echo($image_name);die(0);
+
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload($image_name)) {
+            $gbr = $this->upload->data();
+
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = './assets/admin/upload/client/' . $gbr['file_name'];
+            $config['create_thumb'] = false;
+            $config['maintain_ratio'] = true;
+            $config['quality'] = '80%';
+            $config['width'] = 400;
+
+            $config['new_image'] = './assets/admin/upload/client/' . $gbr['file_name'];
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
+
+            return $this->upload->data('file_name');
+        } else {
+            return $this->upload->display_errors();
+            // die(0);
         }
         // return '';
     }
