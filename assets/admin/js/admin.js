@@ -26,6 +26,16 @@ function servicePreviewImage() {
 	};
 };
 
+function previewimage2client() {
+	document.getElementById('client-preview2').style.display = 'block';
+	var oFReader = new FileReader();
+	oFReader.readAsDataURL(document.getElementById('image_source_client2').files[0]);
+
+	oFReader.onload = function (oFREvent) {
+		document.getElementById('preview_image2').src = oFREvent.target.result;
+	};
+	document.getElementById('preview_image2').style.display = 'block'
+};
 
 
 function productPreviewImage() {
@@ -597,6 +607,7 @@ $(document).ready(function () {
 
 		$('#client_old_image').val(null);
 		$('#preview_image').hide();
+		$('#preview_image2').hide();
 
 		$('#clientId').val(null);
 		$('#client_title').val(null);
@@ -615,6 +626,7 @@ $(document).ready(function () {
 		var formData = new FormData(this);
 		var id = $('#clientId').val();
 		var logo = $('#image_source_client').val();
+		var image = $('#image_source_client2').val();
 		var imgwarning = $('#logoimgclientwarning').val();
 		if (id != '') {
 			url = 'client/edit_client';
@@ -661,7 +673,7 @@ $(document).ready(function () {
 							document.getElementById('rpModal').style.display = 'none';
 							swal.fire(
 								'Error',
-								'Oops, your data was not saved.', // had a missing comma
+								data.message, // had a missing comma
 								'error'
 							)
 						}
@@ -715,6 +727,9 @@ $(document).ready(function () {
 
 					$('#client_old_image').val(data.data.logo_path);
 					$('#preview_image').attr('src', base_url + '/assets/admin/upload/client/' + data.data.logo_path);
+					$('#client_old_image2').val(data.data.img_path);
+					$('#preview_image2').attr('src', base_url + '/assets/admin/upload/client/' + data.data.img_path);
+					
 					tinyMCE.activeEditor.setContent(data.data.description);
 
 				}
@@ -1277,7 +1292,7 @@ $(document).ready(function () {
 		event.preventDefault(); // prevent form submit
 		Swal.fire({
 			title: 'Delete',
-			text: 'Are you sure want to delete this Commission?',
+			text: 'Are you sure want to delete this Product?',
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
@@ -1401,7 +1416,7 @@ $(document).ready(function () {
 		$('#productDetailModal').modal('show');
 		$('#productDetailForm').parsley().reset();
 		imagearray = [];
-	
+
 		$("#title_productdetail_modal").text("Edit Product Detail");
 		var id = $(this).attr('data-value');
 
@@ -1436,7 +1451,7 @@ $(document).ready(function () {
 					} else {
 						$('#preview_image').attr('style', 'display:none');
 					}
-				
+
 					if (data.data.parent != '0') {
 						$('#ischild').prop('checked', true);
 						$('.divIsParent').show();
@@ -1455,7 +1470,7 @@ $(document).ready(function () {
 								document.getElementById('rpModal').style.display = 'none';
 								$('#parent_id').html(dt);
 
-	$('#parent_id').val(data.data.parent);
+								$('#parent_id').val(data.data.parent);
 
 							},
 							error: function (e) {
@@ -1463,7 +1478,7 @@ $(document).ready(function () {
 								document.getElementById('rpModal').style.display = 'none';
 							}
 						});
-					
+
 					}
 
 					tinyMCE.activeEditor.setContent(data.data.description);
@@ -1566,7 +1581,7 @@ $(document).ready(function () {
 			}
 		});
 	});
-	 
+
 	$('#ischild').change(function () {
 
 		if (this.checked) {
@@ -2067,8 +2082,8 @@ function getcountproduct() {
 function getallproductdetail() {
 	var productid = $('#productId').val();
 	var id = $('#productDetailId').val();
-	if(id==''){
-		id=0
+	if (id == '') {
+		id = 0
 	}
 	$.ajax({
 		url: base_url + 'admin/product/getallproductdetail/' + productid + "/" + id,

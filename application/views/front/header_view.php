@@ -30,9 +30,9 @@
                                           Product<b class="caret"></b>
                                       </a>
                                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                          <a class="dropdown-item" href="<?php echo base_url(); ?>detail-produk/product/genset">Heavy Duty
+                                          <a class="dropdown-item" href="<?php echo base_url(); ?>detail/product/genset">Heavy Duty
                                               Genset</a>
-                                          <a class="dropdown-item" href="<?php echo base_url(); ?>detail-produk/product/portable-genset">Portable
+                                          <a class="dropdown-item" href="<?php echo base_url(); ?>detail/product/portable-genset">Portable
                                               Genset</a>
 
                                       </div>
@@ -42,7 +42,7 @@
                                         } ?>><a href="<?php echo base_url(); ?>#service">Service</a></li>
                                   <li <?php if ($menu_active == "client") {
                                             echo 'class="nav-item active"';
-                                        } ?>><a href="<?php echo base_url(); ?>#clients">Client</a></li>
+                                        } ?>><a href="<?php echo base_url(); ?>detail/client/clients">Client</a></li>
 
                                   </li>
                                   <li class="nav-item"><a href="<?php echo base_url(); ?>#contact">Contact Us</a></li>

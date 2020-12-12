@@ -29,7 +29,7 @@
                       <th>Meta</th>
                       <th>Image</th>
                       <th>Description</th>
-                      <th>Slug</th>
+                      <!-- <th>Slug</th> -->
                       <th>Action</th>
                     </tr>
                   </thead>

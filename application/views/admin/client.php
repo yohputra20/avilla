@@ -20,6 +20,7 @@
                                     <th>logo</th>
                                     <th>alt</th>
                                     <th>Description</th>
+                                    <th>image</th>
                                     <th>Order</th>
                                     <th>Action</th>
                                 </tr>
@@ -31,14 +32,15 @@
                                         <td width="5%"><?php echo $i; ?></td>
                                         <td width="25%"><?php echo $row['title']; ?></td>
                                        
-                                        <td width="30%">
-                                            <img id="preview_image_list" width="200" alt="image preview" src="<?php if($row['logo_path']!=''){ echo base_url() . "/assets/admin/upload/client/" . $row['logo_path'];}else{ echo base_url() . "/assets/admin/img/no_photo.jpg";} ?>" />
+                                        <td width="20%">
+                                            <img id="preview_logo_list" width="100" alt="image preview" src="<?php if($row['logo_path']!=''){ echo base_url() . "assets/admin/upload/client/" . $row['logo_path'];}else{ echo base_url() . "assets/admin/img/no_photo.jpg";} ?>" />
                                         </td>
                                         <td width="30%"><b><?php echo $row['alt'] ?></b>
                                             <p><?php echo $row['meta_description'] ?></p>
                                         </td>
-                                        <td width="25%"><?php echo $row['description']; ?></td>
-                                        <td width="25%"><?php echo $row['order_by']; ?></td>
+                                        <td width="30%"><?php echo $row['description']; ?></td>
+                                        <td width="25%"> <img id="preview_image_list" width="100" alt="image preview" src="<?php if($row['img_path']!=''){ echo base_url() . "assets/admin/upload/client/" . $row['img_path'];}else{ echo base_url() . "assets/admin/img/no_photo.jpg";} ?>" /></td>
+                                        <td width="5%"><?php echo $row['order_by']; ?></td>
                                         <td align="center" width="10%">
                                             <button id="clientEdit" style="width:80px;" class="btn btn-warning margin5" data-value="<?php echo $row['id']; ?>">
                                                 Edit

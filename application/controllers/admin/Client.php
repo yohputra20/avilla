@@ -33,7 +33,9 @@ class Client extends CI_Controller{
         $client_data = $this->client_model->clientData();
         return $client_data;
     }
+    public function countclient(){
 
+    }
     public function get_client($id){
         $client_data = $this->client_model->clientGet($id);
         if (sizeof($client_data) != 0) {
@@ -71,7 +73,7 @@ class Client extends CI_Controller{
             $balikan = [
                 'status' => '0',
                 'message' => 'failed',
-                'data' => []
+                'data' => $clientAdd
             ];
         }
         echo json_encode($balikan);
@@ -94,7 +96,7 @@ class Client extends CI_Controller{
             $balikan = [
                 'status' => '0',
                 'message' => 'failed',
-                'data' => []
+                'data' => $clientEdit
             ];
         }
         echo json_encode($balikan);

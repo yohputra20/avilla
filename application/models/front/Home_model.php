@@ -21,7 +21,7 @@ class Home_model extends CI_Model
         $this->db->where("fdelete", "0");
         $this->db->where("slug", $slug);
         $query = $this->db->get();
-
+      
         return $query->row_array();
     }
 
