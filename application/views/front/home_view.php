@@ -100,7 +100,7 @@
                                 </p>
                                 <?php //if(strlen($row['description']) > 200) { 
                                 ?>
-                                <a href="<?php echo base_url(); ?>detail-produk/product/<?php echo strtolower($row['slug']); ?>" title="Baca selengkapnya"><u>Baca selengkapnya </u></a>
+                                <a href="<?php echo base_url(); ?>detail/product/<?php echo strtolower($row['slug']); ?>" title="Baca selengkapnya"><u>Baca selengkapnya </u></a>
                                 <?php //} 
                                 ?>
                             </div>
