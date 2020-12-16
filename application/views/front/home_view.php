@@ -242,7 +242,7 @@
              <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <a title="Lokasi PT Avilla Jaya Teknik" target="_blank"
-                            href="https://www.google.com/maps/place/PT+Avilla+Jaya+Teknik/@-6.1254101,106.7302827,16.75z/data=!4m5!3m4!1s0x2e6a1dc6db31b3d5:0x2bb145509be38a7e!8m2!3d-6.1254049!4d106.7295137">
+                            href="https://www.google.com/maps/place/PT+Avilla+Jaya+Teknik/@-6.1362377,106.7355881,17.6z/data=!4m5!3m4!1s0x0:0x2bb145509be38a7e!8m2!3d-6.1361812!4d106.7372906">
                             <img src="<?php echo base_url(); ?>assets/front/images/maps_avilla.png"
                                 class="img-responsive bttrlazyloading" style="border: 1px solid #dfdfdf;height:auto !important" />
                         </a>
