@@ -408,7 +408,8 @@ Version:	1.1
 		======================================*/
 		// 	$('.player').mb_YTPlayer();	
 		$(".imglistclient").on("click",function(){
-			var imgsrc=this.src;
+			console.log(this);
+			var imgsrc=$(this).data('img');
 			$("#zoomImageModal").modal('show');
 			document.getElementById('previewzoomimage').src=imgsrc;
 		})

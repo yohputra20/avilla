@@ -205,6 +205,7 @@
                     <div class="<?php echo  $style; ?>">
                         <?php $x = 1;
                         foreach ($data_client as $client) { ?>
+                        
                             <!-- <img style=" display:block;margin:auto"  width="150" src="<?php echo $path_image . $client['logo_path']; ?>" alt="<?php echo $client['alt'] ?>">
                             <br> -->
                             <h5><?php echo $client['title'] ?></h5>
@@ -222,9 +223,9 @@
                     <?php
                     foreach ($data_client as $client) {
                          if($client['img_path']!=""){ ?>
-                        <div class="col-lg-2 col-md-2 col-4">
-                            
-                            <img style=" display:block;margin:auto" class="imglistclient" src="<?php echo $path_image . $client['img_path']; ?>" alt="<?php echo $client['alt'] ?>">
+                        <div class="col-lg-2 col-md-2 col-4 ">
+                        <div class="imglistclient img-fluid img-thumbnail" data-img="<?php echo $path_image . $client['img_path']; ?>" style="background-image: url('<?php echo $path_image . $client['img_path']; ?>');display:block"></div>
+                            <!-- <img style=" display:none"  src="<?php echo $path_image . $client['img_path']; ?>" alt="<?php echo $client['alt'] ?>"> -->
 
                         </div>
                     <?php
