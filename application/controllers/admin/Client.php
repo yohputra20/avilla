@@ -19,9 +19,11 @@ class Client extends CI_Controller{
     public function index(){
         
         $client_data['query'] = $this->client_model->clientData();
+        $galery_data = $this->client_model->galeryData();
         $content = array(
             'username' => $this->session->userdata('username'),
-            'client_data' => $client_data
+            'client_data' => $client_data,
+            'galery_data' =>  $galery_data 
         );
         $content['data_content'] = "admin/client";
         $content['content_modal'] = "admin/modal/client_modal";
@@ -78,7 +80,46 @@ class Client extends CI_Controller{
         }
         echo json_encode($balikan);
     }
+    public function add_gallery(){
+		$data = array();
+		foreach ($_POST as $key => $value) {
+			$data[$key] = $value;
+        }
+        // echo json_encode($data);die(0);
+        $galleryAdd = $this->client_model->galleryAdd($data);
+        if ($galleryAdd == 1) {
+            $balikan = [
+                'status' => '1',
+                'message' => 'success',
+                'data' => $galleryAdd
+            ];
+        }else {
+            $balikan = [
+                'status' => '0',
+                'message' => 'failed',
+                'data' => $galleryAdd
+            ];
+        }
+        echo json_encode($balikan);
+    }
+    public function delete_gallery($id){
+        $delete = $this->client_model->galleryDelete($id);
 
+        if ($delete == 1) {
+            $balikan = [
+                'status' => '1',
+                'message' => 'success',
+                'data' => $delete
+            ];
+        }else {
+            $balikan = [
+                'status' => '0',
+                'message' => 'failed',
+                'data' => []
+            ];
+        }
+        echo json_encode($balikan);
+    }
     public function edit_client(){
         $data = array();
 		foreach ($_POST as $key => $value) {

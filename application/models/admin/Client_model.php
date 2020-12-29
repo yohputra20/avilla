@@ -19,7 +19,41 @@ class Client_model extends CI_Model
 
         return $result_array;
     }
+    public function galeryData()
+    {
+        $this->db->select('*');
+        $this->db->where('isDeleted', '0');
+        $this->db->order_by('createdDate', 'desc');
+        $query = $this->db->get('gallery');
+        $result_array = $query->result_array();
 
+        return $result_array;
+    }
+    public function galleryAdd($data){
+        $datetime = date('Y-m-d H:i:s');
+        if (!empty($_FILES['image_source_client2']['name'])) {
+            $imgname = 'client' . '_img_' . uniqid();
+            $image = $this->_uploadimage($imgname, 'image_source_client2');
+            if (strpos($image,$imgname)  <0) {
+                return $image;
+            }
+        } else {
+            $image = $data['client_old_image2'];
+        }
+        $insert_data = array(
+           
+            'alt' => $data['galery_alt'],
+         
+            'path_img' => $image,
+           
+            'isDeleted' => '0',
+            'createdDate' => $datetime,
+            'createdBy' => $this->username,
+
+        );
+        $client_insert = $this->db->insert('gallery', $insert_data);
+        return $client_insert;
+    }
     public function clientAdd($data)
     {
         $datetime = date('Y-m-d H:i:s');
@@ -125,6 +159,18 @@ class Client_model extends CI_Model
 
         $this->db->where('id', $id);
         $delete = $this->db->update('client', $delete_data);
+        return $delete;
+    }
+    public function galleryDelete($id){
+        $datetime = date('Y-m-d H:i:s');
+        $delete_data = array(
+            'isDeleted' => '1',
+            'modifiedDate' => $datetime,
+            'modifiedBy' => $this->username,
+        );
+
+        $this->db->where('id', $id);
+        $delete = $this->db->update('gallery', $delete_data);
         return $delete;
     }
     private function _uploadlogo($file_name, $image_name)
