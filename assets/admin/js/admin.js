@@ -607,7 +607,7 @@ $(document).ready(function () {
 
 		$('#client_old_image').val(null);
 		$('#preview_image').hide();
-		$('#preview_image2').hide();
+
 
 		$('#clientId').val(null);
 		$('#client_title').val(null);
@@ -615,7 +615,15 @@ $(document).ready(function () {
 
 	});
 
-
+	$('#galeryAdd').on('click', function (e) {
+		$('#galeryModal').modal('show');
+		$("#title_galery_modal").text("Add Image Gallery");
+		$('#galeryForm').parsley().reset();
+		$('#galery_alt').val(null);
+		$('#client_old_image2').val(null);
+		$('#preview_image2').hide();
+		$('#galeryId').val(null);
+	});
 
 	$('#clientForm').parsley();
 	$('#clientForm').on('submit', function (e) {
@@ -696,7 +704,72 @@ $(document).ready(function () {
 
 
 	});
+	$('#galeryForm').parsley();
+	$('#galeryForm').on('submit', function (e) {
+		e.preventDefault();
+		var url;
+		var form = $(this);
+		form.parsley().validate();
+		var formData = new FormData(this);
+	
 
+		url = 'client/add_gallery';
+
+
+		if (form.parsley().isValid()) {
+			$.ajax({
+				url: url,
+				data: formData,
+				type: 'POST',
+				datatype: 'JSON',
+				async: false,
+				processData: false,
+				contentType: false,
+				beforeSend: function () {
+					document.getElementById('rpModal').style.display = 'block';
+				},
+				success: function (data) {
+					var data = JSON.parse(data);
+
+					document.getElementById('rpModal').style.display = 'none';
+					if (data.status == 1) {
+						Swal.fire({
+							position: 'center',
+							type: 'success',
+							title: 'Data has been saved',
+							showConfirmButton: false,
+							timer: 1500
+						}).then((timer) => {
+							window.location.href = 'client';
+						});
+					} else {
+
+						document.getElementById('rpModal').style.display = 'none';
+						swal.fire(
+							'Error',
+							data.message, // had a missing comma
+							'error'
+						)
+					}
+
+
+				},
+				error: function (e) {
+
+					document.getElementById('rpModal').style.display = 'none';
+
+					swal.fire(
+						'Error',
+						'Oops, your data was not saved.', // had a missing comma
+						'error'
+					)
+				}
+			});
+		}
+
+
+
+	});
 	/* Edit data table */
 	$('#dataTable tbody').on('click', '#clientEdit', function () {
 		$('#clientModal').modal('show');
@@ -729,7 +802,7 @@ $(document).ready(function () {
 					$('#preview_image').attr('src', base_url + '/assets/admin/upload/client/' + data.data.logo_path);
 					$('#client_old_image2').val(data.data.img_path);
 					$('#preview_image2').attr('src', base_url + '/assets/admin/upload/client/' + data.data.img_path);
-					
+
 					tinyMCE.activeEditor.setContent(data.data.description);
 
 				}
@@ -836,7 +909,53 @@ $(document).ready(function () {
 		}
 
 	});
-
+$("#btndeletegalery").on("click",function(){
+	var id = $(this).attr('data-id');
+	// console.log('Record ID is', id);     
+	event.preventDefault(); // prevent form submit
+	Swal.fire({
+		title: 'Delete',
+		text: 'Are you sure want to delete this image?',
+		type: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Yes',
+		reverseButtons: true,
+		cancelButtonText: 'No'
+	}).then((result) => {
+		if (result.value) {
+			$.ajax({
+				url: 'client/delete_gallery/' + id,
+				type: 'POST',
+				beforeSend: function () {
+					document.getElementById('rpModal').style.display = 'block';
+				},
+				success: function (e) {
+					document.getElementById('rpModal').style.display = 'none';
+					Swal.fire({
+						position: 'center',
+						type: 'success',
+						title: 'Data has been saved',
+						showConfirmButton: false,
+						timer: 1500
+					}).then((timer) => {
+						window.location.href = 'client';
+					});
+				},
+				error: function (e) {
+					// console.log(e.toString());
+					document.getElementById('rpModal').style.display = 'none';
+					swal.fire(
+						'Error',
+						'Oops, your data was not deleted.', // had a missing comma
+						'error'
+					);
+				}
+			});
+		}
+	});
+});
 
 	/* ================================================================================================================= */
 	/* Function Service JS */

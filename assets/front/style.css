@@ -2675,3 +2675,19 @@ ul.no-bullets {
 		width: auto !important;
 	}
 }
+.imglistclient{
+	margin-right: 5px;
+	margin-left: 5px;
+	padding-bottom: 62.5%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.imglistclientlogo{
+	margin-right: 10px;
+	margin-left: 10px;
+	padding-bottom: 62.5%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}

@@ -124,13 +124,13 @@
                                                 <?php echo (isset($row['description']) ? $row['description'] : "-"); ?>
                                             </span>
                                             <br>
-                                            <span >
-                                            <?php $nomor= "62".substr($data_contactus[0]['whatsapp'],1) ;
-                                                $msg="Saya ingin bertanya tentang genset portable ". (isset($row['title']) ? $row['title'] : "-");
-                                            ?>
-                                              <a style="color:white" class="btn btn-success btn-md" href="https://api.whatsapp.com/send?phone=<?php echo $nomor . "&text=".$msg;?>" target="_blank" style="color:white">Info</a>
+                                            <span>
+                                                <?php $nomor = "62" . substr($data_contactus[0]['whatsapp'], 1);
+                                                $msg = "Saya ingin bertanya tentang genset portable " . (isset($row['title']) ? $row['title'] : "-");
+                                                ?>
+                                                <a style="color:white" class="btn btn-success btn-md" href="https://api.whatsapp.com/send?phone=<?php echo $nomor . "&text=" . $msg; ?>" target="_blank" style="color:white">Info</a>
                                             </span>
-                                                                                                 
+
 
                                         </div>
                                     </div>
@@ -205,33 +205,43 @@
                     <div class="<?php echo  $style; ?>">
                         <?php $x = 1;
                         foreach ($data_client as $client) { ?>
+                            <div class="col-lg-2 col-md-2 col-3 " style="margin-bottom: 30px;">
+                                <div class="imglistclientlogo img-fluid" data-img="<?php echo $path_image . $client['logo_path']; ?>" style="background-image: url('<?php echo $path_image . $client['logo_path']; ?>');display:block"></div>
+                                <!-- <img style=" display:none"  src="<?php echo $path_image . $client['logo_path']; ?>" alt="<?php echo $client['alt'] ?>"> -->
+
+                            </div>
                             <!-- <img style=" display:block;margin:auto"  width="150" src="<?php echo $path_image . $client['logo_path']; ?>" alt="<?php echo $client['alt'] ?>">
                             <br> -->
-                            <h5><?php echo $client['title'] ?></h5>
-                            <?php if ($x % 20 == 0) { ?>
-                    </div>
-                    <div class="<?php echo  $style; ?>">
-                <?php  }
-                            $x++;
+                      
+                 <?php   $x++;
                         } ?>
                     </div>
 
 
                 </div>
-                <div class="row" style="margin-top:30px;margin-bottom:30px">
-                    <?php
-                    foreach ($data_client as $client) {
-                         if($client['img_path']!=""){ ?>
-                        <div class="col-lg-2 col-md-2 col-4">
-                            
-                            <img style=" display:block;margin:auto" class="imglistclient" src="<?php echo $path_image . $client['img_path']; ?>" alt="<?php echo $client['alt'] ?>">
+
+            <?php } ?>
+        </div>
+        <div class="container" style="background-color: white;">
+            <div class="row" style="margin-top:30px;margin-bottom:30px">
+                <div class="col-lg-12 col-md-12 col-12 ">
+                    <h3>GALLERY</h3>
+                </div>
+            </div>
+            <div class="row" style="margin-top:30px;margin-bottom:30px">
+                <?php
+                foreach ($data_galery as $client) {
+                    if ($client['path_img'] != "") { ?>
+                        <div class="col-lg-2 col-md-2 col-3 " style="margin-bottom:30px">
+                            <div class="imglistclient img-fluid img-thumbnail" data-img="<?php echo $path_image . $client['path_img']; ?>" style="background-image: url('<?php echo $path_image . $client['path_img']; ?>');display:block"></div>
+                            <!-- <img style=" display:none"  src="<?php echo $path_image . $client['path_img']; ?>" alt="<?php echo $client['alt'] ?>"> -->
 
                         </div>
-                    <?php
+                <?php
 
-                   } } ?>
-                </div>
-            <?php } ?>
+                    }
+                } ?>
+            </div>
         </div>
     <?php } ?>
 </section>

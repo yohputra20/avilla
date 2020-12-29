@@ -83,6 +83,7 @@ class Home_controllers extends CI_Controller
             $content['menu_active'] = "clients";
             $content['path_image'] = base_url() . "assets/admin/upload/client/";
             $content['data_client'] = $this->home_model->get_data("client");
+            $content['data_galery'] = $this->home_model->get_data_galery("gallery");
          
         }
         $this->load->view('front/template_view', $content);
