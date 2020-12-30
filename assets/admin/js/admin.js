@@ -909,7 +909,7 @@ $(document).ready(function () {
 		}
 
 	});
-$("#btndeletegalery").on("click",function(){
+$(".btndeletegalery").on("click",function(){
 	var id = $(this).attr('data-id');
 	// console.log('Record ID is', id);     
 	event.preventDefault(); // prevent form submit

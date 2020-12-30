@@ -201,21 +201,31 @@
                 }
             ?>
                 <div class="row" style="margin-top:30px;margin-bottom:30px">
+                    <div class="col-md-12">
+                        <div class="clients-carousel">
+                            <!-- Single Clients -->
 
-                    <div class="<?php echo  $style; ?>">
+                            <?php $o = 0;
+                            foreach ($data_client as $row) {
+                                if ($o < 5) { ?>
+                                    <div class="single-client">
+                                        <img src="<?php echo base_url() . "assets/admin/upload/client/" . $row['logo_path']; ?>" alt="<?php echo $row['alt'] ?>" class="img-responsive">
+                                    </div>
+                            <?php };
+                                $o++;
+                            } ?>
+                        </div>
+                    </div>
+                    <!-- <div class="<?php echo  $style; ?>">
                         <?php $x = 1;
                         foreach ($data_client as $client) { ?>
                             <div class="col-lg-2 col-md-2 col-3 " style="margin-bottom: 30px;">
                                 <div class="imglistclientlogo img-fluid" data-img="<?php echo $path_image . $client['logo_path']; ?>" style="background-image: url('<?php echo $path_image . $client['logo_path']; ?>');display:block"></div>
-                                <!-- <img style=" display:none"  src="<?php echo $path_image . $client['logo_path']; ?>" alt="<?php echo $client['alt'] ?>"> -->
-
                             </div>
-                            <!-- <img style=" display:block;margin:auto"  width="150" src="<?php echo $path_image . $client['logo_path']; ?>" alt="<?php echo $client['alt'] ?>">
-                            <br> -->
-                      
-                 <?php   $x++;
+
+                        <?php $x++;
                         } ?>
-                    </div>
+                    </div> -->
 
 
                 </div>
